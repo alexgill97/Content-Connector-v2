@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { AuthContext } from '../firebase/context';
-import { firestore, storage } from '../firebase/clientApp';
+import { AuthContext } from '../../firebase/context';
+import { firestore, storage } from '../../firebase/clientApp';
 import styles from '../styles/Modal.module.scss';
 
 import { doc, setDoc } from 'firebase/firestore';
@@ -31,8 +31,8 @@ function Modal() {
   const uploadPortfolioItem = async () => {
     setData({ ...data, uid: currentUser });
     const imageRef = ref(storage, `portfolio/${currentUser}/${title}`);
-    await uploadString(imageRef, selectedFile, 'data_url').then(
-      async (snapshot) => {
+    await uploadString(imageRef, selectedFile, 'data_url')
+      .then(async (snapshot) => {
         const downloadURL = await getDownloadURL(imageRef);
         await setDoc(doc(firestore, 'users', currentUser, 'portfolio', title), {
           title: title,
@@ -40,12 +40,11 @@ function Modal() {
           description: description,
           uid: currentUser,
         });
-      }
-    ).then(()=> {
-      return(window.location.reload())
-    });
+      })
+      .then(() => {
+        return window.location.reload();
+      });
     setSelectedFile(null);
-    
   };
 
   // ======================
@@ -61,7 +60,9 @@ function Modal() {
             onDoubleClick={() => setSelectedFile(null)}
             alt=""
           />
-        ) : <div> No Photo...yet!</div>}
+        ) : (
+          <div> No Photo...yet!</div>
+        )}
       </div>
       <div>
         <input type="file" onChange={addImageToPortfolio} />

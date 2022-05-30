@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { AuthContext } from '../firebase/context';
-import { firestore, storage } from '../firebase/clientApp';
+import { AuthContext } from '../../firebase/context';
+import { firestore, storage } from '../../firebase/clientApp';
 import { addDoc, updateDoc, collection, doc } from 'firebase/firestore';
 import { ref, getDownloadURL, uploadString } from 'firebase/storage';
 import { useRouter } from 'next/router';
@@ -9,8 +9,7 @@ import styles from '../styles/Register.module.scss';
 const UploadAvatar = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const { currentUser } = useContext(AuthContext);
-  const router = useRouter()
-  
+  const router = useRouter();
 
   const selectUserAvatar = (e) => {
     const reader = new FileReader();
@@ -24,7 +23,6 @@ const UploadAvatar = () => {
   };
   // ======================
   const uploadUserAvatar = async () => {
-    
     // const docRef = await addDoc(collection(firestore, 'users', currentUser), {
     //   username: currentUser,
     // });
@@ -36,12 +34,13 @@ const UploadAvatar = () => {
         const downloadURL = await getDownloadURL(imageRef);
         await updateDoc(doc(firestore, 'users', currentUser), {
           avatar: downloadURL,
-        }).then(()=> {
-          return(router.push('/'))
-        }
-        ).then(()=>{
-          return(window.location.reload())
         })
+          .then(() => {
+            return router.push('/');
+          })
+          .then(() => {
+            return window.location.reload();
+          });
       }
     );
     setSelectedFile(null);
@@ -64,7 +63,9 @@ const UploadAvatar = () => {
         <input type="file" onChange={selectUserAvatar} />
       </div>
       <div>
-        <button className={styles.button} onClick={uploadUserAvatar}>Upload</button>
+        <button className={styles.button} onClick={uploadUserAvatar}>
+          Upload
+        </button>
       </div>
     </div>
   );

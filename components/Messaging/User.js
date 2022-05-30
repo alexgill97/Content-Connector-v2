@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { onSnapshot, doc } from 'firebase/firestore';
-import { firestore } from '../firebase/clientApp';
+import { firestore } from '../../firebase/clientApp';
 // import IMG from "../default.png";
 
 import styles from '../styles/Message.module.scss';

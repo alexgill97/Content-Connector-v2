@@ -1,7 +1,7 @@
 import styles from '../styles/slider.module.scss';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 import React, { useState, useContext, useEffect } from 'react';
-import { firestore } from '../firebase/clientApp';
+import { firestore } from '../../firebase/clientApp';
 import {
   doc,
   deleteDoc,
@@ -10,7 +10,7 @@ import {
   query,
   collectionGroup,
 } from 'firebase/firestore';
-import { AuthContext } from '../firebase/context';
+import { AuthContext } from '../../firebase/context';
 
 export default function Slider({ portfolio, uid }) {
   // console.log(portfolio)

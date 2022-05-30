@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { firestore, auth, storage } from '../firebase/clientApp';
+import { firestore, auth, storage } from '../../firebase/clientApp';
 import {
   getDocs,
   collection,
@@ -22,7 +22,7 @@ import MessageItem from './MessageItem';
 import User from './User';
 import Link from 'next/link';
 
-import { AuthContext } from '../firebase/context';
+import { AuthContext } from '../../firebase/context';
 
 const Message = ({ profile, hidden, setHidden, showCloseButton }) => {
   // const [users, setUsers] = useState([]);
@@ -31,9 +31,6 @@ const Message = ({ profile, hidden, setHidden, showCloseButton }) => {
   const [img, setImg] = useState('');
   const [msgs, setMsgs] = useState([]);
   const [user3, setUser3] = useState();
-  
-
-
 
   const { currentUser } = useContext(AuthContext);
   const user1 = currentUser;
@@ -118,15 +115,17 @@ const Message = ({ profile, hidden, setHidden, showCloseButton }) => {
             </div>
             <div>
               {!hidden ? (
-                showCloseButton && <button
-                  onClick={() => setHidden(!hidden)}
-                  className={styles.buttonTwo}
-                >
-                  <img
-                    src={'../close_FILL0_wght400_GRAD0_opsz40.png'}
-                    className={styles.cancelButton}
-                  />{' '}
-                </button>
+                showCloseButton && (
+                  <button
+                    onClick={() => setHidden(!hidden)}
+                    className={styles.buttonTwo}
+                  >
+                    <img
+                      src={'../close_FILL0_wght400_GRAD0_opsz40.png'}
+                      className={styles.cancelButton}
+                    />{' '}
+                  </button>
+                )
               ) : (
                 <div>
                   <button

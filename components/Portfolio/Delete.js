@@ -1,9 +1,17 @@
 import React, { useContext } from 'react';
-import { auth, firestore } from '../firebase/clientApp';
+import { auth, firestore } from '../../firebase/clientApp';
 import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
-import { updateDoc, doc, deleteDoc, where, collection, getDocs, query } from 'firebase/firestore';
-import { AuthContext } from '../firebase/context';
+import {
+  updateDoc,
+  doc,
+  deleteDoc,
+  where,
+  collection,
+  getDocs,
+  query,
+} from 'firebase/firestore';
+import { AuthContext } from '../../firebase/context';
 
 const Delete = ({ postTitle }) => {
   const { currentUser } = useContext(AuthContext);
@@ -14,7 +22,7 @@ const Delete = ({ postTitle }) => {
       query(collection(firestore, 'users'), where('postTitle', '==', postTitle))
     );
     querySnapshot.forEach((doc) => {
-      delete(doc.data());
+      delete doc.data();
     });
   };
 

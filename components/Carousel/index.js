@@ -1,7 +1,21 @@
-import React, { useState } from 'react';
 import BtnSlider from './BtnSlider';
+import React, { useState, useContext, useEffect } from 'react';
+import { firestore } from '../../firebase/clientApp';
+import {
+  doc,
+  deleteDoc,
+  getDocs,
+  where,
+  query,
+  collectionGroup,
+} from 'firebase/firestore';
+import { AuthContext } from '../../firebase/context';
+import styles from '../styles/slider.module.scss';
 
-const Slider = ({ images }) => {
+const Slider = ({ portfolio, uid }) => {
+  //Get current user
+  const { currentUser } = useContext(AuthContext);
+
   //Tracks current selected slide
   const [slideIndex, setSlideIndex] = useState(1);
 

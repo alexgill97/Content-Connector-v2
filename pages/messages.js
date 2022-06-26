@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useRef } from 'react';
+import React, { useState } from 'react';
 import { AuthContext } from '../firebase/context';
 import { firestore, auth, storage } from '../firebase/clientApp';
 import {
@@ -10,12 +10,11 @@ import {
 } from 'firebase/firestore';
 
 import styles from '../styles/messages.module.scss';
-import Carousel from '../components/Carousel';
 
-import Message from '../components/Message';
+import Message from '../components/Messaging/Message';
 import { UserInfoCard } from '../components/UserInfoCard';
-import User from '../components/User';
 import Link from 'next/link';
+
 const Messages = ({ users }) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [hidden, setHidden] = useState(false);
@@ -25,7 +24,6 @@ const Messages = ({ users }) => {
     setHidden(!hidden);
   };
 
-  // console.log(selectedUser);
   return (
     <main className={styles.main_user_messages}>
       <div className={styles.info_card_container}>

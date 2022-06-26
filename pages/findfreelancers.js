@@ -1,14 +1,12 @@
-import React, { useContext, useState, useEffect } from 'react';
-import styles from '../styles/FindingFreelancers.module.scss';
-import UserList from '../components/UserList';
+import React, { useContext, useState } from 'react';
+import styles from '../styles/findFreelancers.module.scss';
+import UserList from '../components/Find_Freelancers/UserList';
 import { collection, query, getDocs } from 'firebase/firestore';
 
-import { doc, getDoc, where, collectionGroup } from 'firebase/firestore';
-import { useRouter } from 'next/router';
+import { getDoc, where } from 'firebase/firestore';
 
 import { firestore } from '../firebase/clientApp';
 import { AuthContext } from '../firebase/context';
-import { FirebaseError } from 'firebase/app';
 
 const findingFreelancers = ({ users }) => {
   const { currentUser, userData } = useContext(AuthContext);

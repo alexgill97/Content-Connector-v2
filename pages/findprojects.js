@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styles from '../styles/freelancerView.module.scss';
-import MapComponent from '../components/Freelancer_View/MapComponent';
-import { InfoCard } from '../components/Freelancer_View/InfoCard';
+import styles from '../styles/findProjects.module.scss';
+import MapComponent from '../components/Find_Projects/MapComponent';
+import { InfoCard } from '../components/Find_Projects/InfoCard';
 import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../firebase/clientApp';
 

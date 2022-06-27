@@ -11,13 +11,10 @@ import { AuthContext } from '../firebase/context';
 const findingFreelancers = ({ users }) => {
   const { currentUser, userData } = useContext(AuthContext);
 
-  const [profile, setProfile] = useState({});
-  const [portfolio, setPortfolio] = useState({});
-
   return (
     <div className={styles.container}>
       <h1>Content Creators Near You</h1>
-      <UserList users={users} profile={profile} />
+      <UserList users={users} />
     </div>
   );
 };
@@ -32,6 +29,7 @@ export async function getServerSideProps() {
   querySnapshot.forEach((doc) => {
     allUsers.push(doc.data());
   });
+
   return {
     props: {
       users: allUsers,

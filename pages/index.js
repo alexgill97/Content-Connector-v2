@@ -1,6 +1,6 @@
 import styles from '../styles/Home.module.scss';
 import Link from 'next/link';
-import UserList from '../components/UserList';
+
 // import HomeImage from '../LHL_final homepage.png'
 
 import React, { useContext } from 'react';
@@ -27,9 +27,7 @@ export default function Home() {
             </p>
           </div>
           {currentUser ? (
-            <div>
-              {/* <h4>Where Business meets Creativity</h4> */}
-            </div>
+            <div>{/* <h4>Where Business meets Creativity</h4> */}</div>
           ) : (
             <div className={`${styles.bothButtons}`}>
               <Link href="/login">
@@ -48,11 +46,13 @@ export default function Home() {
           )}
         </section>
         <section className={styles.home_right}>
-          <div className={styles.homepage_float_bottom}><img src={'homepage_float_2.png'} ></img></div>
-        
+          <div className={styles.homepage_float_bottom}>
+            <img src={'homepage_float_2.png'}></img>
+          </div>
+
           <div className={styles.image_container}>
             {/* <div className={styles.float1}>test</div> */}
-              {/* <div className={styles.float2}>
+            {/* <div className={styles.float2}>
                 <div className={styles.float2_container}>
                   
                 </div>

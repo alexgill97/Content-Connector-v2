@@ -5,7 +5,7 @@ import { InfoCard } from '../components/Find_Projects/InfoCard';
 import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../firebase/clientApp';
 
-import Message from '../components/Message';
+import Message from '../components/Messaging/Message';
 
 const freelancerview = ({ searchResults }) => {
   const [selectedProject, setSelectedProject] = useState('');

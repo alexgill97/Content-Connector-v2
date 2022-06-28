@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 // import Moment from "react-moment";
-import styles from '../styles/Message.module.scss';
+import styles from '../../styles/Message.module.scss';
 
 const MessageItem = ({ msg, user1 }) => {
   const scrollRef = useRef();

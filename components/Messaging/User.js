@@ -3,7 +3,7 @@ import { onSnapshot, doc } from 'firebase/firestore';
 import { firestore } from '../../firebase/clientApp';
 // import IMG from "../default.png";
 
-import styles from '../styles/Message.module.scss';
+import styles from '../../styles/Message.module.scss';
 
 const User = ({ user1, user, selectUser, chat }) => {
   const user2 = user?.uid;

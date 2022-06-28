@@ -15,7 +15,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
-import styles from '../styles/Message.module.scss';
+import styles from '../../styles/Message.module.scss';
 
 import MessageForm from './MessageForm';
 import MessageItem from './MessageItem';

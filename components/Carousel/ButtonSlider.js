@@ -14,8 +14,10 @@ export default function BtnSlider({ direction, moveSlide }) {
           : `${styles.btn_slide} ${styles.prev}`
       }
     >
-      <img
+      <Image
+        className={styles.btn_slide_image}
         src={direction === 'next' ? '/right-arrow.svg' : '/left-arrow.svg'}
+        layout="fill"
       />
     </button>
   );

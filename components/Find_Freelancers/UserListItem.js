@@ -38,7 +38,7 @@ const UserListItem = ({ user, username, uid, avatar, description }) => {
           </section>
           <section className={styles.card__overlay}>
             <div className={styles.card__header}>
-              <Link href={`userProfile/${uid}`}>
+              <Link href={`userprofile/${uid}`}>
                 <img className={styles.card__thumb} src={avatar} alt="" />
               </Link>
               <div className={styles.card__title}>

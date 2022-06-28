@@ -4,7 +4,7 @@ import { firestore, storage } from '../../firebase/clientApp';
 import { addDoc, updateDoc, collection, doc } from 'firebase/firestore';
 import { ref, getDownloadURL, uploadString } from 'firebase/storage';
 import { useRouter } from 'next/router';
-import styles from '../styles/Register.module.scss';
+import styles from '../../styles/Register.module.scss';
 
 const UploadAvatar = () => {
   const [selectedFile, setSelectedFile] = useState(null);

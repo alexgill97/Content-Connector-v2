@@ -2,18 +2,16 @@ import React, { useContext, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { firestore } from '../../firebase/clientApp';
 
-import MyFreelanceProfile from '../../components/profiles/MyFreelanceProfile';
-import MyBusinessProfile from '../../components/profiles/MyBusinessProfile';
-import RandomFreelanceProfile from '../../components/profiles/RandomFreelanceProfile';
-import RandomBusinessProfile from '../../components/profiles/RandomBusinessProfile';
+// import MyFreelanceProfile from '../../components/profiles/MyFreelanceProfile';
+// import MyBusinessProfile from '../../components/profiles/MyBusinessProfile';
+// import RandomFreelanceProfile from '../../components/profiles/RandomFreelanceProfile';
+// import RandomBusinessProfile from '../../components/profiles/RandomBusinessProfile';
 
-// import { addDoc, updateDoc, collection, doc, setDoc, getDocs, query, collectionGroup, where } from 'firebase/firestore';
+import FreelancerProfile from '../../components/Profiles/FreelancerProfile';
+import BusinessProfile from '../../components/Profiles/BusinessProfile';
+
 import {
-  addDoc,
-  updateDoc,
-  collection,
   doc,
-  setDoc,
   getDocs,
   query,
   collectionGroup,
@@ -21,20 +19,11 @@ import {
   getDoc,
 } from 'firebase/firestore';
 import { AuthContext } from '../../firebase/context';
-// import { doc, getDoc, where } from 'firebase/firestore';
-import { useRouter } from 'next/router';
 
-import Modal from '../../components/Modal';
-// import { render } from 'react-dom/cjs/react-dom.production.min';
+import { useRouter } from 'next/router';
 
 const index = ({ users }) => {
   const { userData, currentUser } = useContext(AuthContext);
-
-  const userList = users.map((x) => (
-    <Link href={`/userProfile/${x.uid}`}>
-      <li key={x.uid}>{x.username}</li>
-    </Link>
-  ));
 
   const router = useRouter();
   const { id } = router.query;
@@ -66,108 +55,17 @@ const index = ({ users }) => {
     getUserPortfolio(id);
   }, [id]);
 
-  // console.log(portfolio)
-  if (portfolio) {
-    return (
-      <div>
-        {profile.isBusiness && profile.uid === currentUser ? (
-          <div>
-            <MyBusinessProfile
-              profile={profile}
-            />
-          </div>
-        ) : profile.isBusiness && profile.uid !== currentUser ? (
-          <div>
-            <RandomBusinessProfile
-              profile={profile}
-            />
-          </div>
-        ) : !profile.isBusiness && profile.uid === currentUser ? (
-          <div>
-            <MyFreelanceProfile
-              profile={profile}
-              portfolio={portfolio}
-            />
-            {/* <Modal /> */}
-          </div>
-        ) : !profile.isBusiness && profile.uid !== currentUser ? (
-          <div>
-            <RandomFreelanceProfile
-              profile={profile}
-              portfolio={portfolio}
-            />
-          </div>
-        ) : null}
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        {profile.isBusiness && profile.uid === currentUser ? (
-          <div>
-            <MyBusinessProfile
-              address={profile.address}
-              avatar={profile.avatar}
-              description={profile.description}
-              username={profile.username}
-            />
-            <Modal />
-          </div>
-        ) : profile.isBusiness && profile.uid !== currentUser ? (
-          <div>
-            <RandomBusinessProfile
-              address={profile.address}
-              avatar={profile.avatar}
-              description={profile.description}
-              username={profile.username}
-            />
-          </div>
-        ) : !profile.isBusiness && profile.uid === currentUser ? (
-          <div>
-            <MyFreelanceProfile
-              avatar={profile.avatar}
-              description={profile.description}
-              username={profile.username}
-            />
-            <Modal />
-          </div>
-        ) : !profile.isBusiness && profile.uid !== currentUser ? (
-          <div>
-            <RandomFreelanceProfile
-              avatar={profile.avatar}
-              description={profile.description}
-              username={profile.username}
-            />
-          </div>
-        ) : null}
-      </div>
-    );
-  }
-};
-export default index;
+  console.log(profile);
 
-export async function getServerSideProps() {
-  const querySnapshot = await getDocs(
-    query(collection(firestore, 'users'), where('isBusiness', '==', true))
+  return (
+    <>
+      {profile.isBusiness ? (
+        <BusinessProfile profile={profile} />
+      ) : (
+        <FreelancerProfile profile={profile} />
+      )}
+    </>
   );
-  let allUsers = [];
-  querySnapshot.forEach((doc) => {
-    allUsers.push(doc.data());
-  });
-  return {
-    props: {
-      users: allUsers,
-    },
-  };
-}
-// {(() => {
-//   if (userData.isBusiness && userData.uid === currentUser) {
-//     return <MyBusinessProfile />;
-//   } else if (userData.isBusiness && userData.uid !== currentUser) {
-//     return <RandomBusinessProfile />;
-//   } else if (!userData.isBusiness && userData.uid === currentUser) {
-//     return <MyFreelanceProfile />;
-//   } else {
-//     return <RandomFreelanceProfile />;
-//   }
-// })()}
+};
+
+export default index;

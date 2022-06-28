@@ -2,11 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { firestore } from '../../firebase/clientApp';
 
-// import MyFreelanceProfile from '../../components/profiles/MyFreelanceProfile';
-// import MyBusinessProfile from '../../components/profiles/MyBusinessProfile';
-// import RandomFreelanceProfile from '../../components/profiles/RandomFreelanceProfile';
-// import RandomBusinessProfile from '../../components/profiles/RandomBusinessProfile';
-
 import FreelancerProfile from '../../components/Profiles/FreelancerProfile';
 import BusinessProfile from '../../components/Profiles/BusinessProfile';
 
@@ -22,7 +17,7 @@ import { AuthContext } from '../../firebase/context';
 
 import { useRouter } from 'next/router';
 
-const index = ({ users }) => {
+const index = () => {
   const { userData, currentUser } = useContext(AuthContext);
 
   const router = useRouter();
@@ -55,14 +50,14 @@ const index = ({ users }) => {
     getUserPortfolio(id);
   }, [id]);
 
-  console.log(profile);
+  console.log(portfolio);
 
   return (
     <>
       {profile.isBusiness ? (
         <BusinessProfile profile={profile} />
       ) : (
-        <FreelancerProfile profile={profile} />
+        <FreelancerProfile profile={profile} portfolio={portfolio} />
       )}
     </>
   );

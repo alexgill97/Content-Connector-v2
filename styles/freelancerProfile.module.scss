@@ -1,0 +1,39 @@
+.profile_container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.profile_left {
+  width: 20rem;
+}
+
+.profile_right {
+  width: 20rem;
+}
+
+.profile_main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: center;
+}
+
+.profile_header {
+  height: 10rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.avatar_container {
+  height: 30rem;
+  width: 20rem;
+  position: relative;
+}
+
+.avatar_image {
+  border-radius: 129px;
+  object-fit: cover;
+  outline: 1px solid rgba(66, 66, 66, 0.368);
+  outline-offset: 10px;
+}

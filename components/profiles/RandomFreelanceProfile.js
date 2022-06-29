@@ -108,55 +108,24 @@ export default function otherFreelanceProfile({ profile, portfolio }) {
                 {' '}
                 <p className={styles.buttonOne}> Close </p>{' '}
               </button> */}
-              <Message profile={profile} className={styles.messageContainer} hidden={hidden} setHidden={setHidden} showCloseButton />
+              <Message
+                profile={profile}
+                className={styles.messageContainer}
+                hidden={hidden}
+                setHidden={setHidden}
+                showCloseButton
+              />
             </div>
           ) : (
-            <button className={styles.messageButton} onClick={() => setHidden(!hidden)}> Send Message </button>
+            <button
+              className={styles.messageButton}
+              onClick={() => setHidden(!hidden)}
+            >
+              {' '}
+              Send Message{' '}
+            </button>
           )}
         </div>
-        <div className={styles.section}>
-          <h3>{`${profile.username}'s Portfolios`}</h3>
-        </div>
-        {/* <Carousel portfolio={portfolio} /> */}
-        {portfolio.length >= 1 && (
-          <section className={styles.slider}>
-            <FaArrowAltCircleLeft
-              className={styles.left_arrow}
-              onClick={prevSlide}
-            />
-            <FaArrowAltCircleRight
-              className={styles.right_arrow}
-              onClick={nextSlide}
-            />
-            {portfolio.map((slide, index) => {
-              return (
-                <div
-                  className={
-                    index === current
-                      ? `${styles.slide_active}`
-                      : `${styles.slide}`
-                  }
-                  key={index}
-                >
-                  {index === current && (
-                    <div className={styles.image}>
-                      <img src={slide.image} alt="image" />
-                      <div>{slide.description}</div>
-                      {currentUser === slide.uid ? (
-                        <button
-                          onClick={() => asyncFunction(slide)}
-                          className={styles.button}
-                        >
-                          Delete
-                        </button>
-                      ) : null}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </section>
-        )}
       </main>
     );
   }
@@ -217,7 +186,11 @@ export default function otherFreelanceProfile({ profile, portfolio }) {
               {' '}
               <p className={styles.buttonOne}> Close </p>{' '}
             </button> */}
-            <Message profile={profile} className={styles.messageContainer} showCloseButton />
+            <Message
+              profile={profile}
+              className={styles.messageContainer}
+              showCloseButton
+            />
           </div>
         ) : (
           <button onClick={() => setHidden(!hidden)}> Send Message </button>

@@ -22,8 +22,18 @@ export default function Home() {
         </p>
       </div>
       <div className={styles.heading_sub}>
-        <div> See who is hiring or creating in, Toronto, Canada</div>
-        <div>Show creators in your area</div>
+        <div>
+          <p>
+            Find projects in your area <br /> looking for a creative flare
+          </p>
+          <button>Show Projects</button>
+        </div>
+        <div>
+          <p>
+            See the creators in your area <br /> developing breathtaking visuals
+          </p>
+          <button>View Creators</button>
+        </div>
       </div>
       <div>
         <p>Ready to get started?</p>

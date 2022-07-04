@@ -1,10 +1,11 @@
 import styles from '../styles/home.module.scss';
 import Link from 'next/link';
 
-// import HomeImage from '../LHL_final homepage.png'
+import HeroImage from '../public/hero-image.jpg';
 
 import React, { useContext } from 'react';
 import { AuthContext } from '../firebase/context';
+import Image from 'next/image';
 
 export default function Home() {
   const { currentUser, userData } = useContext(AuthContext);
@@ -17,27 +18,19 @@ export default function Home() {
           with
           <br /> Local Creators
         </h2>
-        <p className={styles.copy_sub}>
-          Find the perfect creative in Toronto, Canada for your project
-        </p>
+        <h4 className={styles.copy_sub}>
+          Find the perfect creative in <br /> Toronto, Canada for your project
+        </h4>
       </div>
       <div className={styles.heading_sub}>
-        <div>
-          <p>
-            Find projects in your area <br /> looking for a creative flare
-          </p>
-          <button>Show Projects</button>
+        <div className={styles.hero_container}>
+          <Image
+            src={HeroImage}
+            className={styles.hero_image}
+            alt=""
+            layout="fill"
+          />
         </div>
-        <div>
-          <p>
-            See the creators in your area <br /> developing breathtaking visuals
-          </p>
-          <button>View Creators</button>
-        </div>
-      </div>
-      <div>
-        <p>Ready to get started?</p>
-        <button>Sign Up</button>
       </div>
     </main>
   );

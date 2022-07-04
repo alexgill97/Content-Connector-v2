@@ -14,13 +14,15 @@
 
 .heading_main {
   .copy_main {
-    font-size: 4rem;
-    font-weight: 900;
+    font-size: 56px;
+    font-weight: bold;
     letter-spacing: 5px;
     color: #1e255e;
   }
   .copy_sub {
     font-size: 2rem;
+    color: rgba(30, 37, 94, 0.7);
+    font-weight: normal;
     margin-top: 1rem;
   }
 }
@@ -33,6 +35,10 @@
   width: 50%;
 }
 
+.hero_container {
+  visibility: hidden;
+}
+
 @media (min-width: 640px) {
   .home_main {
     text-align: left;
@@ -40,5 +46,25 @@
     flex-direction: row;
     align-items: left !important;
     padding-left: 5rem;
+  }
+
+  .heading_main {
+    width: 50%;
+
+    .copy_sub {
+      padding-right: 150px;
+    }
+  }
+
+  .hero_container {
+    position: relative;
+    height: 30rem;
+    width: 25rem;
+    visibility: visible;
+
+    .hero_image {
+      object-fit: cover;
+      border-radius: 5%;
+    }
   }
 }

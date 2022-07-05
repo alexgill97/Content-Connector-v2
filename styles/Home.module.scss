@@ -4,6 +4,7 @@
   text-align: center;
   font-family: 'Poppins', sans-serif;
   z-index: 5;
+  padding-top: 8rem;
 }
 
 .home_container {
@@ -14,14 +15,8 @@
   position: absolute;
   overflow: hidden;
   right: 0;
-  width: 50rem;
+  width: 50em;
   height: 100%;
-
-  .image1 {
-    height: 100%;
-    width: 80%;
-    overflow: hidden;
-  }
 
   .image2 {
     size: 1010px;
@@ -36,13 +31,44 @@
     font-weight: bold;
     letter-spacing: 2px;
     color: #1e255e;
-    padding-top: 2rem;
   }
   .copy_sub {
     font-size: 2rem;
     color: rgba(30, 37, 94, 0.7);
     font-weight: normal;
     margin-top: 1rem;
+  }
+  .home_buttons {
+    top: 0;
+    button {
+      border: 1px solid #17a4d0;
+      font-size: 14px;
+      font-weight: 400;
+      width: 10rem;
+      height: 60px;
+      border-radius: 100px;
+      margin-top: 50px;
+      transition: all 0.25s ease-out;
+    }
+    .find_projects {
+      background-color: #1155cc;
+      color: #fff;
+      margin: 0 2rem 0 2rem;
+
+      &:hover {
+        background-color: #4eafeb;
+        color: white;
+      }
+    }
+    .find_creators {
+      color: #1155cc;
+      background-color: #f8fdff;
+
+      &:hover {
+        background-color: #4eafeb;
+        color: #f8fdff;
+      }
+    }
   }
 }
 
@@ -58,13 +84,14 @@
   visibility: hidden;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 910px) {
   .home_main {
     text-align: left;
     display: flex;
     flex-direction: row;
     align-items: left !important;
     padding-left: 5rem;
+    padding-top: 0;
   }
 
   .heading_main {

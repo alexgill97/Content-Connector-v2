@@ -35,6 +35,10 @@ export default function Home() {
           <h4 className={styles.copy_sub}>
             Find the perfect creative in <br /> Toronto, Canada for your project
           </h4>
+          <div className={styles.home_buttons}>
+            <button className={styles.find_projects}>Find Projects</button>
+            <button className={styles.find_creators}>Find Creators</button>
+          </div>
         </div>
         <div className={styles.heading_sub}>
           <div className={styles.hero_container}>

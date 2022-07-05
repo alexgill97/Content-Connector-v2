@@ -1,23 +1,42 @@
 .home_main {
-  height: 90vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   text-align: center;
-  background-color: white;
-  background-size: cover;
-  background: url('../public/background-2.png') no-repeat 1010px,
-    url('../public/background-1.png') no-repeat 931px;
   font-family: 'Poppins', sans-serif;
-  background-color: #f8fdff;
+  z-index: 5;
+}
+
+.home_container {
+  max-height: 100vh;
+}
+
+.background_container {
+  position: absolute;
+  overflow: hidden;
+  right: 0;
+  width: 50rem;
+  height: 100%;
+
+  .image1 {
+    height: 100%;
+    width: 80%;
+    overflow: hidden;
+  }
+
+  .image2 {
+    size: 1010px;
+    overflow: hidden;
+  }
 }
 
 .heading_main {
+  z-index: 1;
   .copy_main {
     font-size: 56px;
     font-weight: bold;
-    letter-spacing: 5px;
+    letter-spacing: 2px;
     color: #1e255e;
+    padding-top: 2rem;
   }
   .copy_sub {
     font-size: 2rem;
@@ -50,6 +69,7 @@
 
   .heading_main {
     width: 50%;
+    margin-top: 5%;
 
     .copy_sub {
       padding-right: 150px;
@@ -58,13 +78,13 @@
 
   .hero_container {
     position: relative;
-    height: 30rem;
-    width: 25rem;
+    height: 32rem;
+    width: 30rem;
     visibility: visible;
 
     .hero_image {
       object-fit: cover;
-      border-radius: 5%;
+      border-radius: 10%;
     }
   }
 }

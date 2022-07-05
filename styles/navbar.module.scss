@@ -1,11 +1,8 @@
 .nav_main {
-  top: 0;
-  margin: 0;
-  z-index: 50;
   display: flex;
   height: 10vh;
-  background-color: whitesmoke;
   align-items: center;
+  justify-content: center;
   justify-content: space-between;
   font-family: 'Poppins';
   font-size: large;
@@ -114,30 +111,30 @@
   transition: transform 0.3s ease-in-out;
 }
 
+.register::before {
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #1155cc;
+  bottom: 0;
+  left: 8;
+  top: 2.3em;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
 .a:hover::before {
   transform-origin: left;
   transform: scaleX(1);
 }
 
-// @mixin button-bg($bg) {
-//   background: $bg;
-
-//   .btn {
-//     color: white;
-//     text-decoration: none;
-//     padding: 5px 10px;
-//     border-radius: 3px;
-//     font-family: 'Poiret One', cursive;
-//     font-size: 2em;
-//     &:hover {
-//       background: darken($bg, 8%);
-//       transition: all 0.3s ease;
-//     }
-//     &:active {
-//       background: darken($bg, 25%);
-//     }
-//   }
-// }
+.register:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
 
 .nav_right_signin {
   cursor: pointer;
@@ -155,7 +152,7 @@
   flex-direction: column;
   align-content: center;
   padding-bottom: 0px;
-  background-color: #7abde4;
+  background-color: #1155cc;
   color: white;
   border: none;
   padding: 15px 25px;
@@ -165,11 +162,19 @@
   transition-duration: 0.4s;
 }
 .blueButton:hover {
-  background-color: #1155cc !important;
+  background-color: #4eafeb !important;
   transition-duration: 0.4s;
 }
 .register {
-  margin-top: 0.5em;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  padding-bottom: 0px;
+  align-items: center;
 }
 .logout {
   font-size: medium;

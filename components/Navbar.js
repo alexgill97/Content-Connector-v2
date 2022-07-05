@@ -41,13 +41,7 @@ const Navbar = () => {
   const path = router.pathname;
 
   return (
-    <nav
-      className={
-        path === '/freelancerview'
-          ? styles.nav_main_freelancerview
-          : styles.nav_main
-      }
-    >
+    <nav className={styles.nav_main}>
       <Link href="/">
         <div className={styles.nav_left}>
           <img src="/LHL_final_logo.png" alt="" />
@@ -81,7 +75,7 @@ const Navbar = () => {
               </p>
             </Link>
             <Link href="/register">
-              <p className={`${styles.a} ${styles.register}`}>Register</p>
+              <p className={`${styles.register}`}>Register</p>
             </Link>
           </div>
         )}

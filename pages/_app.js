@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
           href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         /> */}
       </Head>
-      <Navbar />
+      {/* <Navbar /> */}
       <Component {...pageProps} />
     </AuthProvider>
   );

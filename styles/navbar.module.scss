@@ -6,6 +6,7 @@
   justify-content: space-between;
   font-family: 'Poppins';
   font-size: large;
+  z-index: 50;
 }
 
 .nav_main_freelancerview {
@@ -29,6 +30,7 @@
   padding-left: 2rem;
   display: flex;
   align-items: center;
+  z-index: 50;
 
   img {
     height: 3rem;

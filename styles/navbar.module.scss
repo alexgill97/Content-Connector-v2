@@ -1,4 +1,4 @@
-.nav_main {
+.nav_container {
   display: flex;
   height: 10vh;
   align-items: center;
@@ -7,20 +7,6 @@
   font-family: 'Poppins';
   font-size: large;
   z-index: 50;
-}
-
-.nav_main_freelancerview {
-  position: sticky;
-  top: 0;
-  margin: 0;
-  z-index: 50;
-  display: flex;
-  height: 10vh;
-  background-color: whitesmoke;
-  align-items: center;
-  justify-content: space-between !important;
-  font-family: 'Poppins';
-  font-size: large;
 }
 
 .nav_left {
@@ -46,157 +32,168 @@
   }
 }
 
-.nav_middle {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 2.5rem;
-  p {
-    color: rgba(54, 54, 54, 0.885);
-    margin-right: 1rem;
-  }
+.mobile_container {
+  margin-right: 3rem;
+  z-index: 50;
 }
 
-.nav_right {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 1rem;
+@media (min-width: 910px) {
+  .mobile_container {
+    display: none;
+  }
 
-  .nav_right_user_true {
+  .nav_middle {
     cursor: pointer;
     display: flex;
+    justify-content: center;
     align-items: center;
+    margin-right: 2.5rem;
+    p {
+      color: rgba(54, 54, 54, 0.885);
+      margin-right: 1rem;
+    }
+
+    .a {
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      padding-bottom: 0px;
+      align-items: center;
+    }
+
+    .a::before {
+      content: '';
+      position: absolute;
+      width: 70%;
+      height: 4px;
+      border-radius: 4px;
+      background-color: #1155cc;
+      bottom: 0;
+      left: 8;
+      top: 1.5em;
+      transform-origin: right;
+      transform: scaleX(0);
+      transition: transform 0.3s ease-in-out;
+    }
+  }
+
+  .nav_right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-right: 1rem;
-    img {
-      height: 3.5rem;
-      width: 3.5rem;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-right: 1em;
-      box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.658),
-        5px 5px 10px #90a4ae8e;
-    }
-    span {
-      margin-right: 1em;
+
+    .nav_right_user_true {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      margin-right: 1rem;
+      img {
+        height: 3.5rem;
+        width: 3.5rem;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-right: 1em;
+        box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.658),
+          5px 5px 10px #90a4ae8e;
+      }
+      span {
+        margin-right: 1em;
+      }
     }
   }
-}
 
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-}
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  }
 
-.a {
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  padding-bottom: 0px;
-  align-items: center;
-}
+  .register::before {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: #1155cc;
+    bottom: 0;
+    left: 8;
+    top: 2.3em;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+  }
 
-.a::before {
-  content: '';
-  position: absolute;
-  width: 70%;
-  height: 4px;
-  border-radius: 4px;
-  background-color: #1155cc;
-  bottom: 0;
-  left: 8;
-  top: 1.5em;
-  transform-origin: right;
-  transform: scaleX(0);
-  transition: transform 0.3s ease-in-out;
-}
+  .a:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
 
-.register::before {
-  content: '';
-  position: absolute;
-  width: 70%;
-  height: 4px;
-  border-radius: 4px;
-  background-color: #1155cc;
-  bottom: 0;
-  left: 8;
-  top: 2.3em;
-  transform-origin: right;
-  transform: scaleX(0);
-  transition: transform 0.3s ease-in-out;
-}
+  .register:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
 
-.a:hover::before {
-  transform-origin: left;
-  transform: scaleX(1);
-}
-
-.register:hover::before {
-  transform-origin: left;
-  transform: scaleX(1);
-}
-
-.nav_right_signin {
-  cursor: pointer;
-  display: flex;
-  margin-right: 1em;
-  p {
+  .nav_right_signin {
+    cursor: pointer;
+    display: flex;
     margin-right: 1em;
+    p {
+      margin-right: 1em;
+    }
   }
-}
 
-.blueButton {
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  padding-bottom: 0px;
-  background-color: #1155cc;
-  color: white;
-  border: none;
-  padding: 15px 25px;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-  transition-duration: 0.4s;
-}
-.blueButton:hover {
-  background-color: #4eafeb !important;
-  transition-duration: 0.4s;
-}
-.register {
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  padding-bottom: 0px;
-  align-items: center;
-}
-.logout {
-  font-size: medium;
-  font-family: 'Poppins';
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  padding-bottom: 0px;
-  background-color: #1155cc;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 40px;
-  cursor: pointer;
-  float: right;
-  transition-duration: 0.4s;
-}
-.logout:hover {
-  background-color: #7abde4 !important;
-  transition-duration: 0.4s;
+  .login {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding-bottom: 0px;
+    background-color: #1155cc;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    transition-duration: 0.4s;
+  }
+  .login:hover {
+    background-color: #4eafeb !important;
+    transition-duration: 0.4s;
+  }
+  .register {
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding-bottom: 0px;
+    align-items: center;
+  }
+  .logout {
+    font-size: medium;
+    font-family: 'Poppins';
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding-bottom: 0px;
+    background-color: #1155cc;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 40px;
+    cursor: pointer;
+    float: right;
+    transition-duration: 0.4s;
+  }
+  .logout:hover {
+    background-color: #7abde4 !important;
+    transition-duration: 0.4s;
+  }
 }

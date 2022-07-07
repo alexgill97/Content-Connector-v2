@@ -34,7 +34,12 @@
 
 .mobile_container {
   margin-right: 3rem;
+  margin-top: 0.6rem;
   z-index: 50;
+
+  .menu_icon {
+    cursor: pointer;
+  }
 }
 
 @media (min-width: 910px) {

@@ -35,10 +35,37 @@
 .mobile_container {
   margin-right: 3rem;
   margin-top: 0.6rem;
+  transition: 0.5s ease-in-out;
+
   z-index: 50;
 
   .menu_icon {
     cursor: pointer;
+  }
+
+  .mobile_menu {
+    position: absolute;
+    background-color: white;
+    padding: 20px 40px 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 50px 100px -20px rgba(50, 50, 93, 0.25),
+      0 30px 60px -30px rgba(0, 0, 0, 0.3);
+    right: 38px;
+    top: 15px;
+    transition: 0.5s ease-in-out;
+
+    .close {
+      position: relative;
+      left: 85px;
+      padding-left: 10rem;
+      opacity: 0.5;
+      height: 15px;
+    }
+
+    ul {
+      list-style: none;
+      margin-top: 1rem;
+    }
   }
 }
 

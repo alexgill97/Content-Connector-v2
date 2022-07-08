@@ -21,9 +21,6 @@ const RightSection = ({ currentUser }) => {
           <Link href="/login">
             <p className={styles.login}>Login</p>
           </Link>
-          <Link href="/register">
-            <p className={`${styles.register}`}>Register</p>
-          </Link>
         </div>
       )}
     </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import styles from '../../styles/navbar.module.scss';
 import Logout from '../Logout';
+import Login from '../Login';
 
 const RightSection = ({ currentUser }) => {
   return (
@@ -17,11 +18,7 @@ const RightSection = ({ currentUser }) => {
           <Logout />
         </div>
       ) : (
-        <div className={`${styles.nav_right_signin}`}>
-          <Link href="/login">
-            <p className={styles.login}>Login</p>
-          </Link>
-        </div>
+        <Login />
       )}
     </div>
   );

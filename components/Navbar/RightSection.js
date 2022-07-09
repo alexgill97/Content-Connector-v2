@@ -12,7 +12,7 @@ const RightSection = ({ currentUser }) => {
           <Link href="/messages">
             <span className="material-symbols-outlined">forum</span>
           </Link>
-          <Link href={`/userProfile/${currentUser}`}>
+          <Link href={`/userprofile/${currentUser}`}>
             <img src={userData.avatar}></img>
           </Link>
           <Logout />

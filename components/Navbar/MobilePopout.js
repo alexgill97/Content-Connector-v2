@@ -3,17 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../../styles/navbar.module.scss';
 
-import MenuIcon from '../../public/hamburger-menu.svg';
+import close from '../../public/close.svg';
+import Login from '../Login';
+
 const MobilePopout = ({ setOpen }) => {
   return (
     <div className={styles.mobile_menu} onClick={() => setOpen(!open)}>
       <div className={styles.close}>
-        <Image
-          className={styles.close_image}
-          src={MenuIcon}
-          layout="fill"
-          alt=""
-        />
+        <Image src={close} layout="fill" />
       </div>
       <div>
         <ul>
@@ -24,9 +21,7 @@ const MobilePopout = ({ setOpen }) => {
             <li>Find Creators</li>
           </Link>
 
-          <Link href="/login">
-            <li>Login</li>
-          </Link>
+          <Login />
         </ul>
       </div>
     </div>

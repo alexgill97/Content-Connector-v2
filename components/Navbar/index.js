@@ -26,6 +26,7 @@ const Navbar = () => {
       <MiddleSection />
       {/* Right Section */}
       <RightSection currentUser={currentUser} />
+
       {/* Mobile Section */}
       <Mobile />
     </nav>

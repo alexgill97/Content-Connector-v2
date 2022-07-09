@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import styles from '../../styles/navbar.module.scss';
-import close from '../../public/close.svg';
+import MenuIcon from '../../public/hamburger-menu.svg';
 
 import MobilePopout from './MobilePopout';
 import Image from 'next/image';
@@ -12,7 +12,9 @@ const Mobile = () => {
   return (
     <div className={styles.mobile_container}>
       {open ? (
-        <MobilePopout setOpen={setOpen} />
+        <div className={styles.mobile_popout}>
+          <MobilePopout setOpen={setOpen} />
+        </div>
       ) : (
         <Image
           onClick={() => setOpen(!open)}

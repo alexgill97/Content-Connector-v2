@@ -36,7 +36,6 @@
   margin-right: 3rem;
   margin-top: 0.6rem;
   transition: 0.5s ease-in-out;
-
   z-index: 50;
 
   .menu_icon {
@@ -52,7 +51,7 @@
       0 30px 60px -30px rgba(0, 0, 0, 0.3);
     right: 38px;
     top: 15px;
-    transition: 0.5s ease-in-out;
+    transition: linear 0.5s ease-in-out;
 
     .close {
       position: relative;
@@ -226,6 +225,6 @@
   }
   .logout:hover {
     background-color: #7abde4 !important;
-    transition-duration: 0.4s;
+    transition: 0.4s;
   }
 }

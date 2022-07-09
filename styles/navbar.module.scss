@@ -32,6 +32,10 @@
   }
 }
 
+.nav_middle {
+  display: none;
+}
+
 .nav_right {
   display: none;
 }
@@ -53,25 +57,38 @@
   .mobile_menu {
     position: absolute;
     background-color: white;
-    padding: 20px 40px 20px 40px;
+    padding: 20px 20px 20px 20px;
     border-radius: 10px;
     box-shadow: 0 50px 100px -20px rgba(50, 50, 93, 0.25),
       0 30px 60px -30px rgba(0, 0, 0, 0.3);
-    right: 38px;
-    top: 15px;
+    right: 35px;
+    top: 20px;
     transition: 0.5s ease-in-out;
 
     .close {
       position: relative;
       left: 85px;
-      padding-left: 10rem;
+      padding-left: 7rem;
       opacity: 0.5;
       height: 15px;
+      width: 15px;
+
+      img {
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+      }
     }
 
     ul {
       list-style: none;
       margin-top: 1rem;
+
+      li {
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+        text-align: left;
+      }
     }
   }
 }

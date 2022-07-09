@@ -14,9 +14,9 @@ const MobilePopout = ({ setOpen }) => {
       </div>
       <div>
         <ul>
-          <Link href="/findprojects">
-            <li>Find Freelancers</li>
-          </Link>
+          <li>
+            <Link href="/findprojects">Find Freelancers</Link>
+          </li>
           <Link href="/findfreelancers">
             <li>Find Creators</li>
           </Link>

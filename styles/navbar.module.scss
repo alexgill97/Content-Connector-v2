@@ -56,38 +56,53 @@
 
   .mobile_menu {
     position: absolute;
+    width: 15rem;
     background-color: white;
-    padding: 20px 20px 20px 20px;
-    border-radius: 10px;
+    border-radius: 12px;
     box-shadow: 0 50px 100px -20px rgba(50, 50, 93, 0.25),
       0 30px 60px -30px rgba(0, 0, 0, 0.3);
-    right: 35px;
-    top: 20px;
+    right: 44px;
+    top: 30px;
     transition: 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
 
     .close {
       position: relative;
-      left: 85px;
-      padding-left: 7rem;
+      top: 12px;
+      left: 210px;
       opacity: 0.5;
       height: 15px;
       width: 15px;
 
       img {
         cursor: pointer;
-        height: 15px;
-        width: 15px;
       }
     }
 
-    ul {
-      list-style: none;
-      margin-top: 1rem;
+    .popout_links {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
 
-      li {
-        margin-bottom: 0.5rem;
-        cursor: pointer;
-        text-align: left;
+      text-align: left;
+      width: 100%;
+      font-size: 16px;
+      a {
+        padding: 0.5rem 0;
+        padding-left: 16px;
+      }
+
+      a:hover {
+        background-color: whitesmoke;
+      }
+
+      .break_div {
+        margin: 8px 0;
+        padding-left: 0;
+        height: 1px;
+        background-color: rgba(0, 0, 0, 0.292);
       }
     }
   }

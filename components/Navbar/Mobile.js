@@ -12,9 +12,7 @@ const Mobile = () => {
   return (
     <div className={styles.mobile_container}>
       {open ? (
-        <div className={styles.mobile_popout}>
-          <MobilePopout setOpen={setOpen} />
-        </div>
+        <MobilePopout setOpen={setOpen} />
       ) : (
         <Image
           onClick={() => setOpen(!open)}

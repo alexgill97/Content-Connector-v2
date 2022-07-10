@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from '../../styles/UserList.module.scss';
+import styles from '../../styles/user_list.module.scss';
 import React, { useEffect, useState } from 'react';
 import { where, collectionGroup } from 'firebase/firestore';
 import { firestore } from '../../firebase/clientApp';
@@ -32,18 +32,14 @@ const UserListItem = ({ user, username, uid, avatar, description }) => {
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <main className={styles.card}>
-          <section className={styles.carousel_container}>
-            <Carousel uid={uid} images={portfolio} />
-          </section>
-          <section className={styles.card__overlay}>
-            <div className={styles.card__header}>
-              <Link href={`userprofile/${uid}`}>
-                <img className={styles.card__thumb} src={avatar} alt="" />
-              </Link>
-              <div className={styles.card__title}>
-                <h3>{username}</h3>
-              </div>
+        <main className={styles.card_container}>
+          <Carousel uid={uid} images={portfolio} />
+          <section className={styles.card_info}>
+            <Link href={`userprofile/${uid}`}>
+              <img className={styles.card_avatar} src={avatar} alt="" />
+            </Link>
+            <div className={styles.card__title}>
+              <h3>{username}</h3>
             </div>
             <div className={styles.card__description}>
               <p>{description}</p>

@@ -25,7 +25,7 @@ const Navbar = () => {
       {/* Middle Section */}
       <MiddleSection />
       {/* Right Section */}
-      <RightSection currentUser={currentUser} />
+      <RightSection currentUser={currentUser} userData={userData} />
 
       {/* Mobile Section */}
       <Mobile />

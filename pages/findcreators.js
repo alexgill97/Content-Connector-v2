@@ -10,6 +10,7 @@ import { AuthContext } from '../firebase/context';
 
 const findingFreelancers = ({ users }) => {
   const { currentUser, userData } = useContext(AuthContext);
+  console.log('user', currentUser);
 
   return (
     <div className={styles.container}>

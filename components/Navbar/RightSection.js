@@ -4,7 +4,8 @@ import styles from '../../styles/navbar.module.scss';
 import Logout from '../Logout';
 import Login from '../Login';
 
-const RightSection = ({ currentUser }) => {
+const RightSection = ({ currentUser, userData }) => {
+  console.log();
   return (
     <div className={styles.nav_right}>
       {currentUser && userData ? (

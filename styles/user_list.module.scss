@@ -1,22 +1,45 @@
 .user_list_container {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  row-gap: 2rem;
 }
 
 .card_container {
   height: 30rem;
-  width: 20rem;
-  border: 1px solid black;
+  width: 27rem;
   display: flex;
   flex-direction: column;
+  border-radius: 12px;
+  box-shadow: 0 50px 100px -20px rgba(50, 50, 93, 0.25),
+    0 30px 60px -30px rgba(0, 0, 0, 0.3);
 }
 
 .card_info {
   height: 25%;
   width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  font-family: 'Lato';
 
-  .card_avatar {
-    width: 100%;
-    height: 100%;
+  .card__header {
+    display: flex;
+    align-items: center;
+    .card_avatar {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .card_username {
+      margin-left: 1rem;
+      h3 {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .card_description {
   }
 }

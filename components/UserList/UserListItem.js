@@ -35,11 +35,13 @@ const UserListItem = ({ user, username, uid, avatar, description }) => {
         <main className={styles.card_container}>
           <Carousel uid={uid} images={portfolio} />
           <section className={styles.card_info}>
-            <Link href={`userprofile/${uid}`}>
-              <img className={styles.card_avatar} src={avatar} alt="" />
-            </Link>
-            <div className={styles.card__title}>
-              <h3>{username}</h3>
+            <div className={styles.card__header}>
+              <Link href={`userprofile/${uid}`}>
+                <img className={styles.card_avatar} src={avatar} alt="" />
+              </Link>
+              <div className={styles.card_username}>
+                <h3>{username}</h3>
+              </div>
             </div>
             <div className={styles.card__description}>
               <p>{description}</p>

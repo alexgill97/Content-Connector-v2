@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import styles from '../styles/find_creators.module.scss';
+import styles from '../styles/user_list.module.scss';
 import UserList from '../components/UserList';
 import { collection, query, getDocs } from 'firebase/firestore';
 
@@ -14,7 +14,10 @@ const findingFreelancers = ({ users }) => {
 
   return (
     <div className={styles.find_creators_container}>
-      <h1>Content Creators Near You</h1>
+      <div className={styles.find_creators_header}>
+        <h4>Content Creators Near You</h4>
+        <div>filter</div>
+      </div>
       <UserList users={users} />
     </div>
   );

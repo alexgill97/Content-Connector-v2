@@ -6,7 +6,7 @@ import { firestore } from '../../firebase/clientApp';
 import { query, getDocs } from 'firebase/firestore';
 import Carousel from '../Carousel/';
 
-const UserListItem = ({ user, username, uid, avatar, description }) => {
+const UserListItem = ({ user, username, uid, avatar, description, city }) => {
   const [loading, setLoading] = useState(true);
   const [portfolio, setPortfolio] = useState([]);
   let portfolioImages = [];
@@ -34,6 +34,7 @@ const UserListItem = ({ user, username, uid, avatar, description }) => {
       ) : (
         <main className={styles.card_container}>
           <Carousel uid={uid} images={portfolio} />
+
           <section className={styles.card_info}>
             <div className={styles.card__header}>
               <Link href={`userprofile/${uid}`}>
@@ -41,6 +42,7 @@ const UserListItem = ({ user, username, uid, avatar, description }) => {
               </Link>
               <div className={styles.card_username}>
                 <h3>{username}</h3>
+                <p>{city}</p>
               </div>
             </div>
             <div className={styles.card__description}>

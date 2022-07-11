@@ -14,6 +14,7 @@ const UserList = ({ users }) => {
           uid={user.uid}
           avatar={user.avatar}
           user={user}
+          city={user.city}
         ></UserListItem>
       ))}
     </div>

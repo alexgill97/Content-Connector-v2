@@ -26,6 +26,10 @@ export default function Document() {
           rel="stylesheet"
           href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat:wght@200;400&family=Roboto&family=Varela+Round&display=swap"
+        />
       </Head>
       <body>
         <Main />

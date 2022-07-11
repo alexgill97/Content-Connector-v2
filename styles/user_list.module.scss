@@ -1,6 +1,6 @@
 @media screen and (max-width: 944) {
   .user_list_container {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -10,9 +10,15 @@
   }
 }
 
-@media (min-width: 1500px) {
+@media (min-width: 1500px) and (max-width: 1899px) {
   .user_list_container {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1900px) {
+  .user_list_container {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -28,6 +34,7 @@
   width: 80%;
   padding: 0 10%;
   margin: 3rem 0;
+  font-family: 'Varela Round';
   h4 {
   }
 }
@@ -45,8 +52,7 @@
   flex-direction: column;
   border-radius: 12px;
   padding: 1rem;
-  box-shadow: 0 50px 100px -20px rgba(50, 50, 93, 0.25),
-    0 30px 60px -30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 .card_info {

@@ -15,8 +15,12 @@ const findingFreelancers = ({ users }) => {
   return (
     <div className={styles.find_creators_container}>
       <div className={styles.find_creators_header}>
-        <h4>Content Creators Near You</h4>
-        <div>filter</div>
+        <h4>
+          Content Creators Near: <br /> Toronto, Canada
+        </h4>
+        <div>
+          <p>filter</p>
+        </div>
       </div>
       <UserList users={users} />
     </div>

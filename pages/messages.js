@@ -16,7 +16,7 @@ import UserList from '../components/Message/UserList';
 
 import Link from 'next/link';
 
-const Messages = ({ users }) => {
+const Messages = ({ users, creators }) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('Creators');
   const [hidden, setHidden] = useState(false);
@@ -38,7 +38,7 @@ const Messages = ({ users }) => {
           </div>
           <div onClick={() => setSelectedCategory('Projects')}>Projects</div>
         </div>
-        {selectedCategory === 'Creators' && <UserList users={users} />}
+        {selectedCategory === 'Creators' && <UserList users={creators} />}
         {selectedCategory === 'Businesses' && <UserList />}
         {selectedCategory === 'Projects' && <UserList />}
       </div>
@@ -49,6 +49,21 @@ const Messages = ({ users }) => {
 export default Messages;
 
 export async function getServerSideProps() {
+  const usersRef = collection(firestore, 'users');
+
+  //Creators Query from Firestore
+  const creatorsQuery = query(
+    usersRef,
+    where('city', '==', 'Toronto'),
+    where('isBusiness', '==', false)
+  );
+  const creatorsSnapshot = await getDocs(creatorsQuery);
+  const creators = [];
+  creatorsSnapshot.forEach((doc) => {
+    console.log(doc.id, '=>', doc.data());
+    creators.push(doc.data());
+  });
+
   const querySnapshot = await getDocs(
     query(collection(firestore, 'users'), where('city', '==', 'Toronto'))
   );
@@ -58,6 +73,7 @@ export async function getServerSideProps() {
   });
   return {
     props: {
+      creators: creators,
       users: allUsers,
     },
   };

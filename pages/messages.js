@@ -29,7 +29,7 @@ const Messages = ({ users, creators, businesses }) => {
 
   return (
     <main className={styles.messages_container}>
-      <div className={styles.selected_messages}>Messages</div>
+      <div className={styles.selected_messages}>{selectedUser}</div>
       <div className={styles.messages_navigation}>
         <h4>Who would you like to message</h4>
         <div className={styles.user_categories}>
@@ -39,8 +39,12 @@ const Messages = ({ users, creators, businesses }) => {
           </div>
           <div onClick={() => setSelectedCategory('Projects')}>Projects</div>
         </div>
-        {selectedCategory === 'Creators' && <UserList users={creators} />}
-        {selectedCategory === 'Businesses' && <UserList users={businesses} />}
+        {selectedCategory === 'Creators' && (
+          <UserList users={creators} setSelectedUser={setSelectedUser} />
+        )}
+        {selectedCategory === 'Businesses' && (
+          <UserList users={businesses} setSelectedUser={setSelectedUser} />
+        )}
         {selectedCategory === 'Projects' && <UserList />}
       </div>
     </main>

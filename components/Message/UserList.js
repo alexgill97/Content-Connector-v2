@@ -1,10 +1,10 @@
 import React from 'react';
 
-const UserList = ({ users }) => {
+const UserList = ({ users, setSelectedUser }) => {
   return (
     <div>
       {users.map((user) => (
-        <div>{user.username}</div>
+        <div onClick={() => setSelectedUser(user.uid)}>{user.username}</div>
       ))}
     </div>
   );

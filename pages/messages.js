@@ -16,10 +16,11 @@ import UserList from '../components/Message/UserList';
 
 import Link from 'next/link';
 
-const Messages = ({ users, creators }) => {
+const Messages = ({ users, creators, businesses }) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('Creators');
   const [hidden, setHidden] = useState(false);
+  console.log(businesses);
 
   const clickFunction = (profile) => {
     setSelectedUser(profile);
@@ -39,7 +40,7 @@ const Messages = ({ users, creators }) => {
           <div onClick={() => setSelectedCategory('Projects')}>Projects</div>
         </div>
         {selectedCategory === 'Creators' && <UserList users={creators} />}
-        {selectedCategory === 'Businesses' && <UserList />}
+        {selectedCategory === 'Businesses' && <UserList users={businesses} />}
         {selectedCategory === 'Projects' && <UserList />}
       </div>
     </main>
@@ -51,7 +52,7 @@ export default Messages;
 export async function getServerSideProps() {
   const usersRef = collection(firestore, 'users');
 
-  //Creators Query from Firestore
+  //Get Creators Data from Firestore
   const creatorsQuery = query(
     usersRef,
     where('city', '==', 'Toronto'),
@@ -60,8 +61,20 @@ export async function getServerSideProps() {
   const creatorsSnapshot = await getDocs(creatorsQuery);
   const creators = [];
   creatorsSnapshot.forEach((doc) => {
-    console.log(doc.id, '=>', doc.data());
     creators.push(doc.data());
+  });
+
+  //Get Businesses Data from Firestore
+  const businessesQuery = query(
+    usersRef,
+    where('city', '==', 'Toronto'),
+    where('isBusiness', '==', true)
+  );
+  const businessesSnapshot = await getDocs(businessesQuery);
+  const businesses = [];
+  businessesSnapshot.forEach((doc) => {
+    console.log(doc.id, '=>', doc.data());
+    businesses.push(doc.data());
   });
 
   const querySnapshot = await getDocs(
@@ -74,6 +87,7 @@ export async function getServerSideProps() {
   return {
     props: {
       creators: creators,
+      businesses: businesses,
       users: allUsers,
     },
   };

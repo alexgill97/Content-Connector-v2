@@ -11,8 +11,8 @@ import {
 
 import styles from '../styles/messages.module.scss';
 
-import Message from '../components/Messaging/Message';
-import { UserInfoCard } from '../components/UserInfoCard';
+import Message from '../components/Message';
+
 import Link from 'next/link';
 
 const Messages = ({ users }) => {
@@ -24,36 +24,7 @@ const Messages = ({ users }) => {
     setHidden(!hidden);
   };
 
-  return (
-    <main className={styles.main_user_messages}>
-      <div className={styles.info_card_container}>
-        <div className={styles.messagesTitle}>Messages</div>
-        {users.map((profile) => (
-          <div onClick={() => clickFunction(profile)}>
-            <UserInfoCard profile={profile} />
-          </div>
-        ))}
-      </div>
-      {!hidden ? (
-        <div className={styles.message_container}>
-          {selectedUser && <Message profile={selectedUser} />}
-          {/* {selectedUser && !selectedUser.isBusiness && (
-            <div className={styles.carousel_container}>
-              <Carousel uid={selectedUser.uid} />
-            </div>
-          )} */}
-        </div>
-      ) : (
-        <div className={styles.message_container}>
-          {/* {selectedUser && !selectedUser.isBusiness && (
-            <div className={styles.carousel_container}>
-              <Carousel uid={selectedUser.uid} />
-            </div>
-          )} */}
-        </div>
-      )}
-    </main>
-  );
+  return <main className={styles.main_user_messages}></main>;
 };
 
 export default Messages;

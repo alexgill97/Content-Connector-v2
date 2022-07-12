@@ -77,18 +77,12 @@ export async function getServerSideProps() {
     businesses.push(doc.data());
   });
 
-  const querySnapshot = await getDocs(
-    query(collection(firestore, 'users'), where('city', '==', 'Toronto'))
-  );
-  let allUsers = [];
-  querySnapshot.forEach((doc) => {
-    allUsers.push(doc.data());
-  });
+  //Get Users Projects from Firestore
+
   return {
     props: {
       creators: creators,
       businesses: businesses,
-      users: allUsers,
     },
   };
 }

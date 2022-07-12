@@ -1,0 +1,15 @@
+.messages_container {
+}
+
+.messages_navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.user_categories {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}

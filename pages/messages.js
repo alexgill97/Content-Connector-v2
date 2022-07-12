@@ -24,7 +24,19 @@ const Messages = ({ users }) => {
     setHidden(!hidden);
   };
 
-  return <main className={styles.main_user_messages}></main>;
+  return (
+    <main className={styles.messages_container}>
+      <div className={styles.selected_messages}>Messages</div>
+      <div className={styles.messages_navigation}>
+        <h4>Who would you like to message</h4>
+        <div className={styles.user_categories}>
+          <div>Creators</div>
+          <div>Businesses</div>
+          <div>Projects</div>
+        </div>
+      </div>
+    </main>
+  );
 };
 
 export default Messages;

@@ -12,11 +12,13 @@ import {
 import styles from '../styles/messages.module.scss';
 
 import Message from '../components/Message';
+import UserList from '../components/Message/UserList';
 
 import Link from 'next/link';
 
 const Messages = ({ users }) => {
   const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('Creators');
   const [hidden, setHidden] = useState(false);
 
   const clickFunction = (profile) => {
@@ -30,10 +32,15 @@ const Messages = ({ users }) => {
       <div className={styles.messages_navigation}>
         <h4>Who would you like to message</h4>
         <div className={styles.user_categories}>
-          <div>Creators</div>
-          <div>Businesses</div>
-          <div>Projects</div>
+          <div onClick={() => setSelectedCategory('Creators')}>Creators</div>
+          <div onClick={() => setSelectedCategory('Businesses')}>
+            Businesses
+          </div>
+          <div onClick={() => setSelectedCategory('Projects')}>Projects</div>
         </div>
+        {selectedCategory === 'Creators' && <UserList users={users} />}
+        {selectedCategory === 'Businesses' && <UserList />}
+        {selectedCategory === 'Projects' && <UserList />}
       </div>
     </main>
   );

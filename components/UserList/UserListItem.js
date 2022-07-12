@@ -42,7 +42,8 @@ const UserListItem = ({ user, username, uid, avatar, description, city }) => {
               </Link>
               <div className={styles.card_username}>
                 <h3>{username}</h3>
-                <p>{city}</p>
+                <p className={styles.card_city}>{city}</p>
+                <p className={styles.card_price}>$12.50</p>
               </div>
             </div>
             <div className={styles.card__description}>

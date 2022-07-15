@@ -17,6 +17,7 @@ import {
 
 const MessageContainer = ({ currentUser, selectedUser }) => {
   const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   //Set unique message ID
 
@@ -39,6 +40,7 @@ const MessageContainer = ({ currentUser, selectedUser }) => {
         msgs.push(doc.data());
       });
       setMessages(msgs);
+      setLoading(false);
     });
 
     // // get last message between logged in user and selected user
@@ -50,7 +52,7 @@ const MessageContainer = ({ currentUser, selectedUser }) => {
     // }
   };
 
-  return <div>{messages}</div>;
+  return <div>{loading && <p>Loading...</p>}</div>;
 };
 
 export default MessageContainer;

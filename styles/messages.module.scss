@@ -1,5 +1,13 @@
-.selected_messages {
-  width: 40rem;
+.messages_main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .selected_messages {
+    height: 30rem;
+    width: 40rem;
+  }
 }
 
 .messages_navigation {
@@ -7,6 +15,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 5rem;
 }
 
 .user_categories {

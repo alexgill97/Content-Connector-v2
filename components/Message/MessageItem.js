@@ -12,9 +12,9 @@ const MessageItem = ({ currentUser, to, from, text, createdAt, media }) => {
   return (
     <>
       {from === currentUser ? (
-        <div className={styles.message_user1}>{text}</div>
+        <div className={styles.message_currentUser}>{text}</div>
       ) : (
-        <div className={styles.message_user2}>{text}</div>
+        <div className={styles.message_selectedUser}>{text}</div>
       )}
     </>
   );

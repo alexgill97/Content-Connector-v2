@@ -1,4 +1,5 @@
-.messages_container {
+.selected_messages {
+  width: 40rem;
 }
 
 .messages_navigation {
@@ -12,4 +13,30 @@
   display: flex;
   justify-content: space-evenly;
   width: 100%;
+}
+
+.messages_container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+
+  .message_currentUser {
+    background-color: rgb(198, 198, 198);
+    color: black;
+    border-radius: 1.125rem 0 1.125rem 1.125rem;
+    font-size: 1rem;
+
+    max-width: 66%;
+    margin: 0.1rem 0.1rem 0.1rem auto;
+    padding: 0.3rem 1rem;
+  }
+  .message_selectedUser {
+    background-color: #0084ff;
+    border-radius: 0 1.125rem 1.125rem 1.125rem;
+    font-size: 1rem;
+
+    max-width: 66%;
+    margin: 0.1rem auto 0.1rem 0.1rem;
+    padding: 0.3rem 1rem;
+  }
 }

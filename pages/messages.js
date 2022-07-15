@@ -11,10 +11,9 @@ import {
 
 import styles from '../styles/messages.module.scss';
 
-import Message from '../components/Message';
 import MessageForm from '../components/Message/MessageForm';
 import UserList from '../components/Message/UserList';
-import MessageContainer from '../components/Message/MessageContainer';
+import MessageContainer from '../components/Message';
 
 import Link from 'next/link';
 
@@ -32,7 +31,7 @@ const Messages = ({ users, creators, businesses }) => {
   };
 
   return (
-    <main className={styles.messages_container}>
+    <main className={styles.messages_main}>
       <div className={styles.selected_messages}>
         {selectedUser && (
           <MessageContainer

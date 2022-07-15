@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { firestore, auth, storage } from '../../firebase/clientApp';
+import React, { useState, useEffect } from 'react';
+import { firestore } from '../../firebase/clientApp';
 import {
   getDocs,
   collection,
@@ -14,149 +14,64 @@ import {
   getDoc,
   updateDoc,
 } from 'firebase/firestore';
-import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
-import styles from '../../styles/Message.module.scss';
 
-import MessageForm from './MessageForm';
 import MessageItem from './MessageItem';
-import User from './User';
-import Link from 'next/link';
+import styles from '../../styles/messages.module.scss';
 
-import { AuthContext } from '../../firebase/context';
+const MessageContainer = ({ currentUser, selectedUser }) => {
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-const Message = ({ profile, hidden, setHidden, showCloseButton }) => {
-  // const [users, setUsers] = useState([]);
-  const [chat, setChat] = useState('');
-  const [text, setText] = useState('');
-  const [img, setImg] = useState('');
-  const [msgs, setMsgs] = useState([]);
-  const [user3, setUser3] = useState();
-
-  const { currentUser } = useContext(AuthContext);
-  const user1 = currentUser;
+  //Set unique message ID
 
   useEffect(() => {
-    selectUser(profile);
-  }, [profile]);
+    getMessages();
+  }, [selectedUser]);
 
-  const selectUser = async (user) => {
-    setChat(user);
-    const user2 = user.uid;
-    const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
+  const getMessages = async () => {
+    const messageId =
+      currentUser > selectedUser
+        ? `${currentUser + selectedUser}`
+        : `${selectedUser + currentUser}`;
 
-    const msgsRef = collection(firestore, 'messages', id, 'chat');
-    const q = query(msgsRef, orderBy('createdAt', 'asc'));
-
-    onSnapshot(q, (querySnapshot) => {
+    //Get messages between current user and selected user
+    const msgsRef = collection(firestore, 'messages', messageId, 'chat');
+    const messagesQuery = query(msgsRef, orderBy('createdAt', 'asc'));
+    onSnapshot(messagesQuery, (messagesSnapshot) => {
       let msgs = [];
-      querySnapshot.forEach((doc) => {
+      messagesSnapshot.forEach((doc) => {
         msgs.push(doc.data());
       });
-      setMsgs(msgs);
+      setMessages(msgs);
+      setLoading(false);
     });
 
-    // get last message between logged in user and selected user
-    const docSnap = await getDoc(doc(firestore, 'lastMsg', id));
-    // if last message exists and message is from selected user
-    if (docSnap.data() && docSnap.data().from !== user1) {
-      // update last message doc, sets unread to false
-      await updateDoc(doc(firestore, 'lastMsg', id), { unread: false });
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // console.log(profile, "tesssts")
-    const user2 = profile.uid;
-    // messages => id => chat => add doc
-
-    const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
-
-    let url;
-    if (img) {
-      const imgRef = ref(
-        storage,
-        `images/${new Date().getTime()} - ${img.name}`
-      );
-      const snap = await uploadBytes(imgRef, img);
-      const downloadUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
-      url = downloadUrl;
-    }
-
-    await addDoc(collection(firestore, 'messages', id, 'chat'), {
-      text,
-      from: user1,
-      to: user2,
-      createdAt: Timestamp.fromDate(new Date()),
-      media: url || '',
-    });
-
-    await setDoc(doc(firestore, 'lastMsg', id), {
-      text,
-      from: user1,
-      to: user2,
-      createdAt: Timestamp.fromDate(new Date()),
-      media: url || '',
-      unread: true,
-    });
-    setText('');
+    // // get last message between logged in user and selected user
+    // const docSnap = await getDoc(doc(firestore, 'lastMsg', id));
+    // // if last message exists and message is from selected user
+    // if (docSnap.data() && docSnap.data().from !== user1) {
+    //   // update last message doc, sets unread to false
+    //   await updateDoc(doc(firestore, 'lastMsg', id), { unread: false });
+    // }
   };
 
   return (
-    <>
-      {chat && !hidden ? (
-        <main className={styles.main_message}>
-          <section className={styles.chat_header}>
-            <div className={styles.userAvatar}>
-              <Link href={`/userProfile/${chat.uid}`}>
-                <img src={profile.avatar} alt="" />
-              </Link>
-              <p>{chat.username}</p>
-            </div>
-            <div>
-              {!hidden ? (
-                showCloseButton && (
-                  <button
-                    onClick={() => setHidden(!hidden)}
-                    className={styles.buttonTwo}
-                  >
-                    <img
-                      src={'../close_FILL0_wght400_GRAD0_opsz40.png'}
-                      className={styles.cancelButton}
-                    />{' '}
-                  </button>
-                )
-              ) : (
-                <div>
-                  <button
-                    onClick={() => setHidden(!hidden)}
-                    className={styles.buttonTwo}
-                  >
-                    <div>Open</div>{' '}
-                  </button>
-                </div>
-              )}
-            </div>
-          </section>
-          <div className={styles.messages_container}>
-            {msgs.length
-              ? msgs.map((msg, i) => (
-                  <MessageItem key={i} msg={msg} user1={user1} />
-                ))
-              : null}
-          </div>
-          <div className={styles.messages_form}>
-            <MessageForm
-              handleSubmit={handleSubmit}
-              text={text}
-              setText={setText}
-              setImg={setImg}
-            />
-          </div>
-        </main>
-      ) : null}
-    </>
+    <div className={styles.messages_container}>
+      {loading && <p>Loading...</p>}
+      {messages &&
+        messages.map(({ to, from, text, createdAt, media }) => (
+          <MessageItem
+            key={createdAt}
+            currentUser={currentUser}
+            to={to}
+            from={from}
+            text={text}
+            createdAt={createdAt}
+            media={media}
+          />
+        ))}
+    </div>
   );
 };
 
-export default Message;
+export default MessageContainer;

@@ -8,7 +8,7 @@ const MiddleSection = () => {
       <Link href="/findprojects">
         <p className={`${styles.a}`}>Find Projects</p>
       </Link>
-      <Link href="/findfreelancers">
+      <Link href="/findcreators">
         <p className={`${styles.a}`}>Find Creators</p>
       </Link>
     </div>

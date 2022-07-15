@@ -12,6 +12,7 @@ import {
 import styles from '../styles/messages.module.scss';
 
 import Message from '../components/Message';
+import MessageForm from '../components/Message/MessageForm';
 import UserList from '../components/Message/UserList';
 import MessageContainer from '../components/Message/MessageContainer';
 
@@ -39,6 +40,7 @@ const Messages = ({ users, creators, businesses }) => {
             currentUser={currentUser}
           />
         )}
+        <MessageForm selectedUser={selectedUser} currentUser={currentUser} />
       </div>
       <div className={styles.messages_navigation}>
         <h4>Who would you like to message</h4>

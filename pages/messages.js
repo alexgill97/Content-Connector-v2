@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { AuthContext } from '../firebase/context';
-import { firestore, auth, storage } from '../firebase/clientApp';
+import { firestore } from '../firebase/clientApp';
 import {
   collection,
   query,
@@ -13,6 +13,7 @@ import styles from '../styles/messages.module.scss';
 
 import Message from '../components/Message';
 import UserList from '../components/Message/UserList';
+import MessageContainer from '../components/Message/MessageContainer';
 
 import Link from 'next/link';
 
@@ -20,6 +21,8 @@ const Messages = ({ users, creators, businesses }) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('Creators');
   const [hidden, setHidden] = useState(false);
+  const { currentUser, userData } = useContext(AuthContext);
+
   console.log(businesses);
 
   const clickFunction = (profile) => {
@@ -29,7 +32,14 @@ const Messages = ({ users, creators, businesses }) => {
 
   return (
     <main className={styles.messages_container}>
-      <div className={styles.selected_messages}>{selectedUser}</div>
+      <div className={styles.selected_messages}>
+        {selectedUser && (
+          <MessageContainer
+            selectedUser={selectedUser}
+            currentUser={currentUser}
+          />
+        )}
+      </div>
       <div className={styles.messages_navigation}>
         <h4>Who would you like to message</h4>
         <div className={styles.user_categories}>

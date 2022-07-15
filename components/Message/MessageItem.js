@@ -1,20 +1,20 @@
 import React, { useRef, useEffect } from 'react';
 // import Moment from "react-moment";
-import styles from '../../styles/Message.module.scss';
+import styles from '../../styles/messages.module.scss';
 
-const MessageItem = ({ msg, user1 }) => {
+const MessageItem = ({ currentUser, to, from, text, createdAt, media }) => {
   const scrollRef = useRef();
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [msg]);
+  }, [text]);
 
   return (
     <>
-      {msg.from === user1 ? (
-        <div className={styles.message_user1}>{msg.text}</div>
+      {from === currentUser ? (
+        <div className={styles.message_user1}>{text}</div>
       ) : (
-        <div className={styles.message_user2}>{msg.text}</div>
+        <div className={styles.message_user2}>{text}</div>
       )}
     </>
   );

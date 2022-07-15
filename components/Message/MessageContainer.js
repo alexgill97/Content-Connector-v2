@@ -15,6 +15,8 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 
+import MessageItem from './MessageItem';
+
 const MessageContainer = ({ currentUser, selectedUser }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -52,7 +54,23 @@ const MessageContainer = ({ currentUser, selectedUser }) => {
     // }
   };
 
-  return <div>{loading && <p>Loading...</p>}</div>;
+  return (
+    <div>
+      {loading && <p>Loading...</p>}
+      {messages &&
+        messages.map(({ to, from, text, createdAt, media }) => (
+          <MessageItem
+            key={createdAt}
+            currentUser={currentUser}
+            to={to}
+            from={from}
+            text={text}
+            createdAt={createdAt}
+            media={media}
+          />
+        ))}
+    </div>
+  );
 };
 
 export default MessageContainer;

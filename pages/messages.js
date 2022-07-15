@@ -16,6 +16,7 @@ import UserList from '../components/Message/UserList';
 import MessageContainer from '../components/Message';
 
 import Link from 'next/link';
+import Navigation from '../components/Message/Navigation';
 
 const Messages = ({ users, creators, businesses }) => {
   const [selectedUser, setSelectedUser] = useState(null);
@@ -41,23 +42,13 @@ const Messages = ({ users, creators, businesses }) => {
         )}
         <MessageForm selectedUser={selectedUser} currentUser={currentUser} />
       </div>
-      <div className={styles.messages_navigation}>
-        <h4>Who would you like to message</h4>
-        <div className={styles.user_categories}>
-          <div onClick={() => setSelectedCategory('Creators')}>Creators</div>
-          <div onClick={() => setSelectedCategory('Businesses')}>
-            Businesses
-          </div>
-          <div onClick={() => setSelectedCategory('Projects')}>Projects</div>
-        </div>
-        {selectedCategory === 'Creators' && (
-          <UserList users={creators} setSelectedUser={setSelectedUser} />
-        )}
-        {selectedCategory === 'Businesses' && (
-          <UserList users={businesses} setSelectedUser={setSelectedUser} />
-        )}
-        {selectedCategory === 'Projects' && <UserList />}
-      </div>
+      <Navigation
+        creators={creators}
+        businesses={businesses}
+        selectedCategory={selectedCategory}
+        setSelectedUser={setSelectedUser}
+        setSelectedCategory={setSelectedCategory}
+      />
     </main>
   );
 };

@@ -16,22 +16,24 @@
   align-items: center;
   justify-content: center;
   margin-top: 5rem;
-}
-
-.user_categories {
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
+  .user_categories {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
 }
 
 .messages_render_container {
-  width: 100%;
   height: 100%;
+  width: 100%;
   border: 1px solid black;
-
   .messages_render_main {
+    display: flex;
+    flex-direction: column;
     padding: 10px;
-    overflow-y: scroll;
+    min-height: 100%;
+    max-height: 100%;
+    overflow: scroll;
   }
 
   .message_currentUser {
@@ -39,7 +41,6 @@
     color: black;
     border-radius: 1.125rem 0 1.125rem 1.125rem;
     font-size: 1rem;
-
     max-width: 66%;
     margin: 0.1rem 0.1rem 0.1rem auto;
     padding: 0.3rem 1rem;
@@ -48,14 +49,15 @@
     background-color: #0084ff;
     border-radius: 0 1.125rem 1.125rem 1.125rem;
     font-size: 1rem;
-
     max-width: 66%;
     margin: 0.1rem auto 0.1rem 0.1rem;
     padding: 0.3rem 1rem;
   }
-  .message_form_container {
+  .message_form_test {
     height: 10%;
     width: 100%;
+    border-top: 1px solid lightgray;
     display: flex;
+    z-index: 5;
   }
 }

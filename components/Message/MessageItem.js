@@ -3,18 +3,12 @@ import React, { useRef, useEffect } from 'react';
 import styles from '../../styles/messages.module.scss';
 
 const MessageItem = ({ currentUser, to, from, text, createdAt, media }) => {
-  const scrollRef = useRef();
-
-  useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [text]);
-
   return (
     <>
       {from === currentUser ? (
-        <div className={styles.message_currentUser}>{text}</div>
+        <p className={styles.message_currentUser}>{text}</p>
       ) : (
-        <div className={styles.message_selectedUser}>{text}</div>
+        <p className={styles.message_selectedUser}>{text}</p>
       )}
     </>
   );

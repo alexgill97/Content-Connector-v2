@@ -61,7 +61,6 @@ const MessageForm = ({ currentUser, selectedUser, scroll }) => {
       unread: true,
     });
     setText('');
-    scroll.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (

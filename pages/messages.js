@@ -40,7 +40,6 @@ const Messages = ({ users, creators, businesses }) => {
             currentUser={currentUser}
           />
         )}
-        <MessageForm selectedUser={selectedUser} currentUser={currentUser} />
       </div>
       <Navigation
         creators={creators}

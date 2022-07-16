@@ -17,9 +17,9 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 
-import styles from '../../styles/Message.module.scss';
+import styles from '../../styles/messages.module.scss';
 
-const MessageForm = ({ currentUser, selectedUser }) => {
+const MessageForm = ({ currentUser, selectedUser, scroll }) => {
   const [text, setText] = useState('');
   const [img, setImg] = useState('');
 
@@ -61,11 +61,11 @@ const MessageForm = ({ currentUser, selectedUser }) => {
       unread: true,
     });
     setText('');
+    scroll.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <>
-      {selectedUser}
+    <div className={styles.message_form_container}>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -85,7 +85,7 @@ const MessageForm = ({ currentUser, selectedUser }) => {
         />
         <button>Send</button>
       </form>
-    </>
+    </div>
   );
 };
 

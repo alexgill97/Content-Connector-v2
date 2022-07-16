@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { firestore } from '../../firebase/clientApp';
 import {
   getDocs,
@@ -17,10 +17,12 @@ import {
 
 import MessageItem from './MessageItem';
 import styles from '../../styles/messages.module.scss';
+import MessageForm from './MessageForm';
 
 const MessageContainer = ({ currentUser, selectedUser }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const scroll = useRef();
 
   //Set unique message ID
 
@@ -56,20 +58,28 @@ const MessageContainer = ({ currentUser, selectedUser }) => {
   };
 
   return (
-    <div className={styles.messages_container}>
-      {loading && <p>Loading...</p>}
-      {messages &&
-        messages.map(({ to, from, text, createdAt, media }) => (
-          <MessageItem
-            key={createdAt}
-            currentUser={currentUser}
-            to={to}
-            from={from}
-            text={text}
-            createdAt={createdAt}
-            media={media}
-          />
-        ))}
+    <div className={styles.messages_render_container}>
+      <div className={styles.messages_render_main}>
+        {loading && <p>Loading...</p>}
+        {messages &&
+          messages.map(({ to, from, text, createdAt, media }) => (
+            <MessageItem
+              key={createdAt}
+              currentUser={currentUser}
+              to={to}
+              from={from}
+              text={text}
+              createdAt={createdAt}
+              media={media}
+            />
+          ))}
+      </div>
+      <MessageForm
+        currentUser={currentUser}
+        selectedUser={selectedUser}
+        scroll={scroll}
+      />
+      <div ref={scroll}></div>
     </div>
   );
 };

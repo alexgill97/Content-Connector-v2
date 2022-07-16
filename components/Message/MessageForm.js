@@ -25,8 +25,6 @@ const MessageForm = ({ currentUser, selectedUser, scroll }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(profile, "tesssts")
-    // messages => id => chat => add doc
 
     const id =
       currentUser > selectedUser

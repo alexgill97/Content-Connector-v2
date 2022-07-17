@@ -10,19 +10,6 @@
   }
 }
 
-.messages_navigation {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5rem;
-  .user_categories {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-  }
-}
-
 .messages_render_container {
   height: 100%;
   width: 100%;
@@ -62,21 +49,35 @@
   }
 }
 
-.message_card_container {
+.messages_navigation {
   display: flex;
-  border: 1px solid black;
-  height: 5rem;
-  width: 30rem;
-
-  .message_card_image {
-    height: 100%;
-    object-fit: contain;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+  .user_categories {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
   }
-  .message_card_info {
-    padding: 1rem;
-  }
-}
 
-.message_card_container:hover {
-  transform: scale(1.04);
+  .message_card_container {
+    display: flex;
+    // border: 1px solid black;
+    height: 5rem;
+    width: 30rem;
+
+    .message_card_image {
+      height: 100%;
+      object-fit: contain;
+    }
+    .message_card_info {
+      padding: 1rem;
+    }
+  }
+
+  .message_card_container:hover {
+    transform: scale(1.01);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
 }

@@ -30,6 +30,7 @@ const Messages = ({ users, creators, businesses }) => {
           <MessageContainer
             selectedUser={selectedUser}
             currentUser={currentUser}
+            setSelectedUser={setSelectedUser}
           />
         )}
       </div>

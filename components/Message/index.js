@@ -3,10 +3,11 @@ import { firestore } from '../../firebase/clientApp';
 import { collection, query, onSnapshot, orderBy } from 'firebase/firestore';
 
 import styles from '../../styles/messages.module.scss';
+import Header from './Header';
 import MessageForm from './MessageForm';
 import MessagesRender from './MessagesRender';
 
-const MessageContainer = ({ currentUser, selectedUser }) => {
+const MessageContainer = ({ currentUser, selectedUser, setSelectedUser }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -44,7 +45,7 @@ const MessageContainer = ({ currentUser, selectedUser }) => {
 
   return (
     <div className={styles.messages_render_container}>
-      <div>header</div>
+      <Header selectedUser={selectedUser} setSelectedUser={setSelectedUser} />
       <div className={styles.messages_render_main}>
         {loading && <p>Loading...</p>}
         {messages && (

@@ -2,20 +2,7 @@ import React, { useState } from 'react';
 import Attachment from './svg/Attachment';
 import { firestore, auth, storage } from '../../firebase/clientApp';
 import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
-import {
-  getDocs,
-  collection,
-  query,
-  where,
-  onSnapshot,
-  addDoc,
-  Timestamp,
-  orderBy,
-  setDoc,
-  doc,
-  getDoc,
-  updateDoc,
-} from 'firebase/firestore';
+import { collection, addDoc, Timestamp, setDoc, doc } from 'firebase/firestore';
 
 import styles from '../../styles/messages.module.scss';
 

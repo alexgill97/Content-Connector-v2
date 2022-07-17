@@ -24,8 +24,8 @@
   }
 
   .message_currentUser {
-    background-color: rgb(198, 198, 198);
-    color: black;
+    background-color: #0084ff;
+    color: white;
     border-radius: 1.125rem 0 1.125rem 1.125rem;
     font-size: 1rem;
     max-width: 66%;
@@ -33,7 +33,9 @@
     padding: 0.3rem 1rem;
   }
   .message_selectedUser {
-    background-color: #0084ff;
+    background-color: rgb(198, 198, 198);
+    color: white;
+
     border-radius: 0 1.125rem 1.125rem 1.125rem;
     font-size: 1rem;
     max-width: 66%;

@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import styles from '../styles/findProjects.module.scss';
-import MapComponent from '../components/Find_Projects/MapComponent';
-import { InfoCard } from '../components/Find_Projects/InfoCard';
 import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../firebase/clientApp';
 
-import Message from '../components/Messaging/Message';
+//Components
+import Message from '../components/Message';
+import MapComponent from '../components/Find_Projects/MapComponent';
+import { InfoCard } from '../components/Find_Projects/InfoCard';
+
+//Styles
+import styles from '../styles/find_projects.module.scss';
 
 const freelancerview = ({ searchResults }) => {
+  console.log(searchResults);
   const [selectedProject, setSelectedProject] = useState('');
   return (
-    <div className={styles.freelancerview}>
+    <div className={styles.find_projects_main}>
       <main className={styles.main}>
         <section className={styles.project_list}>
           <h1>Posts In Your Area</h1>
@@ -47,7 +51,7 @@ const freelancerview = ({ searchResults }) => {
 
 export default freelancerview;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const query = await getDocs(collection(firestore, 'posts'));
   const searchResults = [];
   query.forEach((doc) => {

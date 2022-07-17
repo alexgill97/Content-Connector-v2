@@ -9,15 +9,13 @@ import MessagesRender from './MessagesRender';
 const MessageContainer = ({ currentUser, selectedUser }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
-  const scroll = useRef();
-
-  //Set unique message ID
 
   useEffect(() => {
     getMessages();
   }, [selectedUser]);
 
   const getMessages = async () => {
+    //Set unique message ID
     const messageId =
       currentUser > selectedUser
         ? `${currentUser + selectedUser}`

@@ -21,15 +21,7 @@ import Navigation from '../components/Message/Navigation';
 const Messages = ({ users, creators, businesses }) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('Creators');
-  const [hidden, setHidden] = useState(false);
   const { currentUser, userData } = useContext(AuthContext);
-
-  console.log(businesses);
-
-  const clickFunction = (profile) => {
-    setSelectedUser(profile);
-    setHidden(!hidden);
-  };
 
   return (
     <main className={styles.messages_main}>

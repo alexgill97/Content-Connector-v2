@@ -61,3 +61,18 @@
     z-index: 5;
   }
 }
+
+.message_card_container {
+  display: flex;
+  border: 1px solid black;
+  height: 5rem;
+  width: 30rem;
+
+  .message_card_image {
+    height: 100%;
+    object-fit: contain;
+  }
+  .message_card_info {
+    padding: 1rem;
+  }
+}

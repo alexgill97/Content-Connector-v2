@@ -1,15 +1,13 @@
 import React from 'react';
+import styles from '../../styles/messages.module.scss';
 
 const User = ({ uid, username, avatar, city, description }) => {
   return (
-    <div>
-      <div>
-        <img src={avatar} alt="" />
-      </div>
-      <div>
+    <div className={styles.message_card_container}>
+      <img className={styles.message_card_image} src={avatar} alt="" />
+
+      <div className={styles.message_card_info}>
         <p>{username}</p>
-        <p>{city}</p>
-        <p>{description}</p>
       </div>
     </div>
   );

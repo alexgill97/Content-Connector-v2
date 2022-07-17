@@ -12,7 +12,7 @@ import styles from '../styles/find_projects.module.scss';
 
 const freelancerview = ({ searchResults }) => {
   console.log(searchResults);
-  const [selectedProject, setSelectedProject] = useState('');
+  const [selectedUser, setSelectedUser] = useState();
   return (
     <div className={styles.find_projects_main}>
       <main className={styles.main}>
@@ -24,7 +24,7 @@ const freelancerview = ({ searchResults }) => {
                 ? result.avatar
                 : 'https://firebasestorage.googleapis.com/v0/b/content-connector-fb9f1.appspot.com/o/avatar%2FrveDkWrIOgTZ0D2Kzcq9fRYTEya2%2Fimage?alt=media&token=086ee938-6d45-49d5-915a-378965db7911';
               return (
-                <div onDoubleClick={() => setSelectedProject(result.postTitle)}>
+                <div onDoubleClick={() => setSelectedUser(result.postTitle)}>
                   <InfoCard
                     key={result.uid}
                     uid={result.uid}
@@ -33,8 +33,11 @@ const freelancerview = ({ searchResults }) => {
                     postTitle={result.postTitle}
                     description={result.description}
                   />
-                  {selectedProject === result.postTitle && (
-                    <Message profile={result} />
+                  {selectedUser === result.postTitle && (
+                    <Message
+                      selectedUser={result}
+                      setSelectedUser={setSelectedUser}
+                    />
                   )}
                 </div>
               );

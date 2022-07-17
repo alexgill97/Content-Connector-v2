@@ -9,7 +9,7 @@ const MessagesRender = ({ messages, currentUser }) => {
   }, [messages]);
 
   return (
-    <div>
+    <>
       {messages.map(({ to, from, text, createdAt, media }) => (
         <MessageItem
           key={createdAt}
@@ -23,7 +23,7 @@ const MessagesRender = ({ messages, currentUser }) => {
         />
       ))}
       <div ref={scroll}></div>
-    </div>
+    </>
   );
 };
 

@@ -46,7 +46,7 @@ const Messages = ({ users, creators, businesses }) => {
 
 export default Messages;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const usersRef = collection(firestore, 'users');
 
   //Get Creators Data from Firestore

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../firebase/context';
 import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../firebase/clientApp';
 
@@ -12,6 +13,7 @@ import styles from '../styles/find_projects.module.scss';
 
 const freelancerview = ({ searchResults }) => {
   console.log(searchResults);
+  const { currentUser, userData } = useContext(AuthContext);
   const [selectedUser, setSelectedUser] = useState();
   return (
     <div className={styles.find_projects_main}>
@@ -35,6 +37,7 @@ const freelancerview = ({ searchResults }) => {
                   />
                   {selectedUser === result.postTitle && (
                     <Message
+                      currentUser={currentUser}
                       selectedUser={result}
                       setSelectedUser={setSelectedUser}
                     />

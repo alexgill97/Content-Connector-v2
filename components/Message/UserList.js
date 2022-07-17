@@ -4,16 +4,9 @@ import User from './User';
 const UserList = ({ users, setSelectedUser }) => {
   return (
     <div>
-      {users.map(({ uid, username, avatar, city, description }) => (
-        <div onClick={() => setSelectedUser(uid)}>
-          <User
-            key={uid}
-            uid={uid}
-            username={username}
-            avatar={avatar}
-            city={city}
-            description={description}
-          />
+      {users.map((user) => (
+        <div onClick={() => setSelectedUser(user)}>
+          <User key={user.uid} user={user} />
         </div>
       ))}
     </div>

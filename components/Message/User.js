@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from '../../styles/messages.module.scss';
 
-const User = ({ uid, username, avatar, city, description }) => {
+const User = ({ user }) => {
   return (
     <div className={styles.message_card_container}>
-      <img className={styles.message_card_image} src={avatar} alt="" />
+      <img className={styles.message_card_image} src={user.avatar} alt="" />
 
       <div className={styles.message_card_info}>
-        <p>{username}</p>
+        <p>{user.username}</p>
       </div>
     </div>
   );

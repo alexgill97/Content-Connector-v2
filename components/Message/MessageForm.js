@@ -28,8 +28,8 @@ const MessageForm = ({ currentUser, selectedUser, scroll }) => {
 
     const id =
       currentUser > selectedUser
-        ? `${currentUser + selectedUser}`
-        : `${selectedUser + currentUser}`;
+        ? `${currentUser + selectedUser.uid}`
+        : `${selectedUser.uid + currentUser}`;
 
     let url;
     if (img) {
@@ -45,7 +45,7 @@ const MessageForm = ({ currentUser, selectedUser, scroll }) => {
     await addDoc(collection(firestore, 'messages', id, 'chat'), {
       text,
       from: currentUser,
-      to: selectedUser,
+      to: selectedUser.uid,
       createdAt: Timestamp.fromDate(new Date()),
       media: url || '',
     });
@@ -53,7 +53,7 @@ const MessageForm = ({ currentUser, selectedUser, scroll }) => {
     await setDoc(doc(firestore, 'lastMsg', id), {
       text,
       from: currentUser,
-      to: selectedUser,
+      to: selectedUser.uid,
       createdAt: Timestamp.fromDate(new Date()),
       media: url || '',
       unread: true,

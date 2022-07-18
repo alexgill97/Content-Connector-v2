@@ -64,3 +64,20 @@ const index = () => {
 };
 
 export default index;
+
+export async function getServerSideProps({ req }) {
+  const [path] = req.url.split('=');
+  const [_, subPath, userId] = path.split('/');
+  console.log(userId);
+
+  // const query = await getDocs(collection(firestore, 'users'));
+  // const projects = [];
+  // query.forEach((doc) => {
+  //   projects.push(doc.data());
+  // });
+  // return {
+  //   props: {
+  //     projects,
+  //   },
+  // };
+}

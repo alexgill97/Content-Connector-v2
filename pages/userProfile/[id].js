@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { firestore } from '../../firebase/clientApp';
 
-import FreelancerProfile from '../../components/Profiles/FreelancerProfile';
+import CreatorProfile from '../../components/CreatorProfile/';
 import BusinessProfile from '../../components/Profiles/BusinessProfile';
 
 import {
@@ -49,7 +49,7 @@ const index = ({ profile }) => {
       {profile.isBusiness ? (
         <BusinessProfile profile={profile} />
       ) : (
-        <FreelancerProfile profile={profile} portfolio={portfolio} />
+        <CreatorProfile profile={profile} />
       )}
     </>
   );

@@ -17,38 +17,30 @@ import { AuthContext } from '../../firebase/context';
 
 import { useRouter } from 'next/router';
 
-const index = () => {
+const index = ({ profile }) => {
   const { userData, currentUser } = useContext(AuthContext);
+  console.log(profile);
 
   const router = useRouter();
   const { id } = router.query;
-  const [profile, setProfile] = useState({});
   const [posts, setPosts] = useState([]);
   const [portfolio, setPortfolio] = useState([]);
 
-  const getUserData = async (id) => {
-    getDoc(doc(firestore, 'users', id)).then((docSnap) => {
-      if (docSnap.exists) {
-        setProfile(docSnap.data());
-      }
-    });
-  };
+  // const getUserPortfolio = async (id) => {
+  //   const querySnapshot = await getDocs(
+  //     query(collectionGroup(firestore, `portfolio`), where('uid', '==', id))
+  //   );
+  //   let allPortfolios = [];
+  //   querySnapshot.forEach((doc) => {
+  //     allPortfolios.push(doc.data());
+  //   });
+  //   setPortfolio(allPortfolios);
+  // };
 
-  const getUserPortfolio = async (id) => {
-    const querySnapshot = await getDocs(
-      query(collectionGroup(firestore, `portfolio`), where('uid', '==', id))
-    );
-    let allPortfolios = [];
-    querySnapshot.forEach((doc) => {
-      allPortfolios.push(doc.data());
-    });
-    setPortfolio(allPortfolios);
-  };
-
-  useEffect(() => {
-    getUserData(id);
-    getUserPortfolio(id);
-  }, [id]);
+  // useEffect(() => {
+  //   getUserData(id);
+  //   getUserPortfolio(id);
+  // }, [id]);
 
   console.log(portfolio);
 
@@ -70,14 +62,12 @@ export async function getServerSideProps({ req }) {
   const [_, subPath, userId] = path.split('/');
   console.log(userId);
 
-  // const query = await getDocs(collection(firestore, 'users'));
-  // const projects = [];
-  // query.forEach((doc) => {
-  //   projects.push(doc.data());
-  // });
-  // return {
-  //   props: {
-  //     projects,
-  //   },
-  // };
+  const query = await getDoc(doc(firestore, 'users', userId));
+  const profile = query.data();
+
+  return {
+    props: {
+      profile,
+    },
+  };
 }

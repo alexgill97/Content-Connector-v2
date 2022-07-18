@@ -19,7 +19,6 @@ import { useRouter } from 'next/router';
 
 const index = ({ profile }) => {
   const { userData, currentUser } = useContext(AuthContext);
-  console.log(profile);
 
   const router = useRouter();
   const { id } = router.query;
@@ -42,8 +41,6 @@ const index = ({ profile }) => {
   //   getUserPortfolio(id);
   // }, [id]);
 
-  console.log(portfolio);
-
   return (
     <>
       {profile.isBusiness ? (
@@ -60,7 +57,6 @@ export default index;
 export async function getServerSideProps({ req }) {
   const [path] = req.url.split('=');
   const [_, subPath, userId] = path.split('/');
-  console.log(userId);
 
   const query = await getDoc(doc(firestore, 'users', userId));
   const profile = query.data();

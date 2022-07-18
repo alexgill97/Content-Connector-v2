@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styles from '../../styles/creator_profile.module.scss';
+import Header from './Header';
 
 const index = ({ profile }) => {
   console.log(profile);
@@ -13,8 +14,9 @@ const index = ({ profile }) => {
         <div></div>
       </div>
       <div className={styles.profile_main}>
-        test
-        <div className={styles.profile_header}></div>
+        <div className={styles.profile_header}>
+          <Header username={username} city={city} />
+        </div>
         <div className={styles.profile_interface}></div>
       </div>
     </div>

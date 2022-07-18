@@ -1,21 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import styles from '../../styles/find_projects.module.scss';
 
-const tempData = {
-  username: 'chik-fil-a',
-};
-
-export const InfoCard = ({
-  uid,
-  avatar,
-  postTitle,
-  description,
-  address,
-  styles,
-}) => {
+const InfoCard = ({ uid, avatar, postTitle, description, address }) => {
   return (
-    <div className={styles.info_card}>
+    <div className={styles.info_card_container}>
       <div className={styles.info_card_image}>
         <Link href={`/userprofile/${uid}`}>
           <Image src={avatar} layout="fill" objectFit="cover" />
@@ -30,3 +20,5 @@ export const InfoCard = ({
     </div>
   );
 };
+
+export default InfoCard;

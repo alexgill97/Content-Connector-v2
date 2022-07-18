@@ -4,68 +4,48 @@ import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../firebase/clientApp';
 
 //Components
-import Message from '../components/Message';
 import MapComponent from '../components/Find_Projects/MapComponent';
-import { InfoCard } from '../components/Find_Projects/InfoCard';
+import InfoCardList from '../components/Find_Projects/InfoCardList';
 
 //Styles
 import styles from '../styles/find_projects.module.scss';
 
-const freelancerview = ({ searchResults }) => {
-  console.log(searchResults);
+const findprojects = ({ projects }) => {
   const { currentUser, userData } = useContext(AuthContext);
   const [selectedUser, setSelectedUser] = useState();
   return (
-    <div className={styles.find_projects_main}>
-      <main className={styles.main}>
-        <section className={styles.project_list}>
-          <h1>Posts In Your Area</h1>
-          <div className={styles.infocard_container}>
-            {searchResults.map((result) => {
-              const image = result.avatar
-                ? result.avatar
-                : 'https://firebasestorage.googleapis.com/v0/b/content-connector-fb9f1.appspot.com/o/avatar%2FrveDkWrIOgTZ0D2Kzcq9fRYTEya2%2Fimage?alt=media&token=086ee938-6d45-49d5-915a-378965db7911';
-              return (
-                <div onDoubleClick={() => setSelectedUser(result.postTitle)}>
-                  <InfoCard
-                    key={result.uid}
-                    uid={result.uid}
-                    styles={styles}
-                    avatar={image}
-                    postTitle={result.postTitle}
-                    description={result.description}
-                  />
-                  {selectedUser === result.postTitle && (
-                    <Message
-                      currentUser={currentUser}
-                      selectedUser={result}
-                      setSelectedUser={setSelectedUser}
-                    />
-                  )}
-                </div>
-              );
-            })}
-          </div>
+    <div className={styles.find_projects_container}>
+      <main className={styles.find_projects_main}>
+        <section className={styles.project_list_container}>
+          <h5>Projects In Your Area</h5>
+          {projects && (
+            <InfoCardList
+              projects={projects}
+              currentUser={currentUser}
+              selectedUser={selectedUser}
+              setSelectedUser={setSelectedUser}
+            />
+          )}
         </section>
         <section className={styles.map_section}>
-          <MapComponent searchResults={searchResults} />
+          <MapComponent searchResults={projects} />
         </section>
       </main>
     </div>
   );
 };
 
-export default freelancerview;
+export default findprojects;
 
 export async function getStaticProps() {
   const query = await getDocs(collection(firestore, 'posts'));
-  const searchResults = [];
+  const projects = [];
   query.forEach((doc) => {
-    searchResults.push(doc.data());
+    projects.push(doc.data());
   });
   return {
     props: {
-      searchResults,
+      projects,
     },
   };
 }

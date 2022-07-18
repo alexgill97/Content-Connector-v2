@@ -1,21 +1,27 @@
-
-.freelancerview {
+.find_projects_container {
   height: 90vh;
-  background-color:whitesmoke !important;
   font-family: 'Poppins';
 }
 
-.main {
+.find_projects_main {
   display: flex;
 }
 
-.project_list {
+.project_list_container {
   flex-grow: 1;
-  h1 {
+  h5 {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 1em;
+  }
+  .infocard_list_container {
+  }
+
+  .message_container {
+    height: 20rem;
+    min-height: 20rem;
+    max-height: 20rem;
   }
 }
 
@@ -31,12 +37,14 @@
   height: 90vh;
   width: 60vw;
   position: sticky;
-} 
+}
 
-.infocard_container {
+.infocard_list_container {
   overflow-y: scroll;
   height: 80vh;
-  background-color:whitesmoke;
+
+  .info_card_container {
+  }
 
   .info_card {
     display: flex;
@@ -44,52 +52,47 @@
     border-bottom: 1px solid black;
     cursor: pointer;
     align-items: center;
-    background-color:whitesmoke;
+
     flex: 1;
-  
   }
-  
+
   .info_card_image {
     position: relative;
     height: 6rem;
     width: 10rem;
     border-radius: 5px;
   }
-  
+
   .info_card:hover {
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        opacity: 0.8;
-        transition-duration: 200ms;
-        transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-      }
-  
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+    opacity: 0.8;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+
   .info_card_info {
     display: flex;
     flex-direction: column;
     padding-left: 1.25rem;
-    background-color:whitesmoke !important;
     flex: 2;
   }
-  
+
   .info_card_info p {
     margin-top: 0.5rem;
   }
-  
-  
+
   .info_card_right_title_empty {
     border-bottom: 1px solid gray;
     width: 2.5rem;
     padding-top: 0.5rem;
   }
-
-
 }
 
-
-@media screen and (min-width: 768px) { 
+@media screen and (min-width: 768px) {
   // .map {
   //   visibility: visible;
   //   display: inline-flex;
   //   flex-basis: 60%;
   // }
- }
+}

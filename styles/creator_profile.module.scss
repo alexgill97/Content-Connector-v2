@@ -16,8 +16,13 @@
     width: 67%;
     border: 1px solid black;
     .profile_header {
+      height: 33%;
     }
     .profile_interface {
+      height: 67%;
+      .interface_selectors {
+        display: flex;
+      }
     }
   }
 }

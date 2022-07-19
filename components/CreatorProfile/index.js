@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 
 import styles from '../../styles/creator_profile.module.scss';
 import Header from './Header';
+import Description from './Description';
+import Portfolio from './Portfolio';
+import Reviews from './Reviews';
 
 const index = ({ profile }) => {
   const [provileNav, setprovileNav] = useState('description');

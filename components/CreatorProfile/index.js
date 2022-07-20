@@ -27,7 +27,11 @@ const index = ({ profile }) => {
             <p onClick={() => setprovileNav('reviews')}>Reviews</p>
           </div>
 
-          <div>{provileNav === 'description' && <Description />}</div>
+          <div>
+            {provileNav === 'description' && (
+              <Description description={description} />
+            )}
+          </div>
           <div>{provileNav === 'portfolio' && <Portfolio />}</div>
           <div>{provileNav === 'reviews' && <Reviews />}</div>
         </div>

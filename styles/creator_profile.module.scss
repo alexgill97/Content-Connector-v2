@@ -23,6 +23,11 @@
       .interface_selectors {
         display: flex;
       }
+      .interface_description {
+        padding: 1rem;
+        white-space: pre-line;
+        word-break: break-word;
+      }
     }
   }
 }

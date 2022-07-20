@@ -4,9 +4,9 @@ import Editor from '../TextEditor';
 
 const Description = ({ description }) => {
   return (
-    <span className={styles.interface_description}>
+    <div className={styles.interface_description}>
       <Editor />
-    </span>
+    </div>
   );
 };
 

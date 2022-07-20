@@ -1,11 +1,14 @@
-import React from 'react';
-import styles from '../../styles/creator_profile.module.scss';
-import Editor from '../TextEditor';
+import React, { useState, useEffect, useContext } from 'react';
 
-const Description = ({ description }) => {
+import styles from '../../styles/creator_profile.module.scss';
+import TextEditor from '../TextEditor';
+
+const Description = ({ uid }) => {
+  const [description, setDescription] = useState('');
+
   return (
     <div className={styles.interface_description}>
-      <Editor />
+      <TextEditor uid={uid} />
     </div>
   );
 };

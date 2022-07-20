@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../../firebase/context';
 import styles from '../../styles/creator_profile.module.scss';
 import Header from './Header';
 import Description from './Description';
@@ -7,6 +7,8 @@ import Portfolio from './Portfolio';
 import Reviews from './Reviews';
 
 const index = ({ profile }) => {
+  const { userData, currentUser } = useContext(AuthContext);
+
   const [provileNav, setprovileNav] = useState('description');
   const { avatar, city, description, username, uid } = profile;
 
@@ -29,7 +31,7 @@ const index = ({ profile }) => {
 
           <div>
             {provileNav === 'description' && (
-              <Description description={description} />
+              <Description description={description} uid={uid} />
             )}
           </div>
           <div>{provileNav === 'portfolio' && <Portfolio />}</div>

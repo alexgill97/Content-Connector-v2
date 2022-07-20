@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { AuthContext } from '../firebase/context';
+
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import dynamic from 'next/dynamic';
 import { EditorState } from 'draft-js';
@@ -7,7 +9,6 @@ import { useDocumentOnce } from 'react-firebase-hooks/firestore';
 import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 import { convertFromRaw, convertToRaw } from 'draft-js';
 import Draft from 'draft-js';
-import { useRouter } from 'next/dist/client/router';
 import styles from '../styles/text_editor.module.scss';
 
 const Editor = dynamic(
@@ -17,17 +18,15 @@ const Editor = dynamic(
   }
 );
 
-const TextEditor = () => {
+const TextEditor = ({ uid }) => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const router = useRouter();
-  const { id } = router.query;
+  const { userData, currentUser } = useContext(AuthContext);
 
-  const [snapshot] = useDocumentOnce(
-    doc(firestore, 'profiles', '30WctPIRBpVWV1WUdGnzmaKLsbg1')
-  );
+  const [snapshot] = useDocumentOnce(doc(firestore, 'profiles', uid));
 
   useEffect(() => {
     if (snapshot?.data().editorState) {
+      console.log(snapshot.data());
       setEditorState(
         Draft.EditorState.createWithContent(
           convertFromRaw(snapshot.data().editorState)
@@ -48,17 +47,11 @@ const TextEditor = () => {
   return (
     <div>
       <Editor
+        readOnly={true}
+        toolbarClassName={styles.toolbar}
         editorState={editorState}
         onEditorStateChange={onEditorStateChange}
-        // toolbarClassName={styles.toolbar}
-        // toolbar={{
-        //   inline: { inDropdown: true },
-        //   list: { inDropdown: true },
-        //   textAlign: { inDropdown: true },
-        //   link: { inDropdown: true },
-        //   history: { inDropdown: true },
-        // }}
-        editorClassName={styles.editor}
+        editorClassName={currentUser === uid && styles.editor}
       />
     </div>
   );

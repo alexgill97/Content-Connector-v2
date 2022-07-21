@@ -25,7 +25,7 @@ const TextEditor = ({ uid }) => {
   const [snapshot] = useDocumentOnce(doc(firestore, 'profiles', uid));
 
   useEffect(() => {
-    if (snapshot?.data().editorState) {
+    if (snapshot?.data()?.editorState) {
       console.log(snapshot.data());
       setEditorState(
         Draft.EditorState.createWithContent(
@@ -47,11 +47,11 @@ const TextEditor = ({ uid }) => {
   return (
     <div>
       <Editor
-        readOnly={true}
-        toolbarClassName={styles.toolbar}
+        readOnly={currentUser !== uid && true}
+        toolbarClassName={currentUser !== uid && styles.toolbar}
         editorState={editorState}
         onEditorStateChange={onEditorStateChange}
-        editorClassName={currentUser === uid && styles.editor}
+        editorClassName={styles.editor}
       />
     </div>
   );

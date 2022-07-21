@@ -16,6 +16,7 @@ const Slider = ({ uid }) => {
     getUserPortfolio(uid);
   }, [uid]);
 
+  // Get Users Portfolio
   const getUserPortfolio = async (id) => {
     const querySnapshot = await getDocs(
       query(collectionGroup(firestore, `portfolio`), where('uid', '==', id))

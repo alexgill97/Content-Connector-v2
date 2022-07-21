@@ -9,6 +9,8 @@ const Portfolio = ({ uid }) => {
       <div className={styles.portfolio_list}>portfolio list</div>
       <div className={styles.portfolio_render}>
         <div className={styles.portfolio_carousel}>
+          {/* <div className={styles.portfolio_carousel_container}>
+          </div> */}
           <Carousel uid={uid} />
         </div>
         <div className={styles.portfolio_description}>

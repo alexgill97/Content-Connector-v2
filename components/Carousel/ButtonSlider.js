@@ -8,11 +8,7 @@ export default function BtnSlider({ direction, moveSlide }) {
   return (
     <button
       onClick={moveSlide}
-      className={
-        direction === 'next'
-          ? `${styles.btn_slide} ${styles.next}`
-          : `${styles.btn_slide} ${styles.prev}`
-      }
+      className={direction === 'next' ? styles.next : styles.prev}
     >
       <Image
         className={styles.btn_slide_image}

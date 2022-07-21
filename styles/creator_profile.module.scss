@@ -28,6 +28,29 @@
         white-space: pre-line;
         word-break: break-word;
       }
+
+      .interface_portfolio {
+        display: flex;
+
+        .portfolio_list {
+          width: 25%;
+        }
+
+        .portfolio_render {
+          display: flex;
+          flex-direction: column;
+          width: 75%;
+
+          .portfolio_carousel {
+            height: 75%;
+            width: 100%;
+          }
+          .portfolio_description {
+            height: 25%;
+            width: 100%;
+          }
+        }
+      }
     }
   }
 }

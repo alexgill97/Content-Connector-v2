@@ -11,7 +11,6 @@ const UserListItem = ({ user, username, uid, avatar, description, city }) => {
     <>
       <main className={styles.card_container}>
         <Carousel uid={uid} />
-
         <section className={styles.card_info}>
           <div className={styles.card__header}>
             <Link href={`userprofile/${uid}`}>

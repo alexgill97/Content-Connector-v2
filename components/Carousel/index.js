@@ -77,9 +77,7 @@ const Slider = ({ uid }) => {
               <div
                 onClick={() => moveDot(index + 1)}
                 className={
-                  slideIndex === index + 1
-                    ? styles.dot && styles.active
-                    : styles.dot
+                  slideIndex === index + 1 ? styles.active : styles.dot
                 }
               ></div>
             ))}

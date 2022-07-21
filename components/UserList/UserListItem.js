@@ -7,51 +7,27 @@ import { query, getDocs } from 'firebase/firestore';
 import Carousel from '../Carousel/';
 
 const UserListItem = ({ user, username, uid, avatar, description, city }) => {
-  const [loading, setLoading] = useState(true);
-  const [portfolio, setPortfolio] = useState([]);
-  let portfolioImages = [];
-
-  useEffect(() => {
-    getUserPortfolio(uid);
-  }, []);
-
-  const getUserPortfolio = async (id) => {
-    const querySnapshot = await getDocs(
-      query(collectionGroup(firestore, `portfolio`), where('uid', '==', id))
-    );
-    querySnapshot.forEach((doc) => {
-      portfolioImages.push(doc.data().image);
-    });
-    setPortfolio(portfolioImages);
-    setLoading(false);
-    console.log(portfolioImages.length);
-  };
-
   return (
     <>
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <main className={styles.card_container}>
-          <Carousel uid={uid} images={portfolio} />
+      <main className={styles.card_container}>
+        <Carousel uid={uid} />
 
-          <section className={styles.card_info}>
-            <div className={styles.card__header}>
-              <Link href={`userprofile/${uid}`}>
-                <img className={styles.card_avatar} src={avatar} alt="" />
-              </Link>
-              <div className={styles.card_username}>
-                <h3>{username}</h3>
-                <p className={styles.card_city}>{city}</p>
-                <p className={styles.card_price}>$12.50</p>
-              </div>
+        <section className={styles.card_info}>
+          <div className={styles.card__header}>
+            <Link href={`userprofile/${uid}`}>
+              <img className={styles.card_avatar} src={avatar} alt="" />
+            </Link>
+            <div className={styles.card_username}>
+              <h3>{username}</h3>
+              <p className={styles.card_city}>{city}</p>
+              <p className={styles.card_price}>$12.50</p>
             </div>
-            <div className={styles.card__description}>
-              <p>{description}</p>
-            </div>
-          </section>
-        </main>
-      )}
+          </div>
+          <div className={styles.card__description}>
+            <p>{description}</p>
+          </div>
+        </section>
+      </main>
     </>
   );
 };

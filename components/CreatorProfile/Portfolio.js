@@ -5,13 +5,18 @@ import Carousel from '../Carousel';
 import PortfolioList from './PortfolioList';
 
 const Portfolio = ({ uid }) => {
+  const [selectedPortolio, setSelectedPortfolio] = useState('');
   return (
     <div className={styles.interface_portfolio}>
       <div className={styles.portfolio_list}>
-        <PortfolioList />
+        <PortfolioList
+          selectedPortolio={selectedPortolio}
+          setSelectedPortfolio={setSelectedPortfolio}
+        />
       </div>
       <div className={styles.portfolio_render}>
         <div className={styles.portfolio_carousel}>
+          <div>{selectedPortolio}</div>
           <Carousel uid={uid} />
         </div>
         <div className={styles.portfolio_description}>

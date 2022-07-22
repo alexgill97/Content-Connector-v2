@@ -1,0 +1,15 @@
+.portfolio_list_container {
+}
+
+.portfolio_list_item {
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
+.portfolio_list_item:hover {
+  background-color: whitesmoke;
+}

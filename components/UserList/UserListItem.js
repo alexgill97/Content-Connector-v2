@@ -1,9 +1,5 @@
 import Link from 'next/link';
 import styles from '../../styles/user_list.module.scss';
-import React, { useEffect, useState } from 'react';
-import { where, collectionGroup } from 'firebase/firestore';
-import { firestore } from '../../firebase/clientApp';
-import { query, getDocs } from 'firebase/firestore';
 import Carousel from '../Carousel/';
 
 const UserListItem = ({ user, username, uid, avatar, description, city }) => {

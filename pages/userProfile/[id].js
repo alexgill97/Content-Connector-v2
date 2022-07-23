@@ -42,13 +42,13 @@ const index = ({ profile }) => {
   // }, [id]);
 
   return (
-    <>
+    <div>
       {profile.isBusiness ? (
         <BusinessProfile profile={profile} />
       ) : (
         <CreatorProfile profile={profile} />
       )}
-    </>
+    </div>
   );
 };
 

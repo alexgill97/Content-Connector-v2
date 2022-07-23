@@ -15,10 +15,10 @@ const Portfolio = ({ uid }) => {
         />
       </div>
       <div className={styles.portfolio_render}>
-        <div className={styles.portfolio_carousel}>
-          <div>{selectedPortolio}</div>
-          <Carousel uid={uid} />
+        <div className={styles.portfolio_header}>
+          {selectedPortolio || 'Select A Portfolio'}
         </div>
+        <Carousel uid={uid} />
         <div className={styles.portfolio_description}>
           portfolio description
         </div>

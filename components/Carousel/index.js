@@ -67,7 +67,7 @@ const Slider = ({ uid }) => {
                   : styles.slide
               }
             >
-              <img src={image} />
+              <img className={styles.image} src={image} />
             </div>
           ))}
           <BtnSlider moveSlide={nextSlide} direction={'next'} />

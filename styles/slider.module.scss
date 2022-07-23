@@ -5,18 +5,27 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 
 .slide {
   position: absolute;
   opacity: 0;
+  width: 100%;
+  overflow: hidden;
   transition: opacity ease-in-out 0.5s;
+}
+
+.image {
+  object-fit: contain;
+  width: 100%;
 }
 
 .active_anim {
   opacity: 1;
-
+  width: 100%;
   transition: opacity ease-in-out 0.5s;
+  overflow: hidden;
 }
 
 .prev {

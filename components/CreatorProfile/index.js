@@ -9,7 +9,7 @@ import Reviews from './Reviews';
 const index = ({ profile }) => {
   const { userData, currentUser } = useContext(AuthContext);
 
-  const [provileNav, setprovileNav] = useState('reviews');
+  const [provileNav, setprovileNav] = useState('portfolio');
   const { avatar, city, description, username, uid } = profile;
 
   return (

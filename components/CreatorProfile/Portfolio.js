@@ -9,19 +9,16 @@ const Portfolio = ({ uid }) => {
   return (
     <div className={styles.interface_portfolio}>
       <div className={styles.portfolio_list}>
+        <div className={styles.portfolio_header}>
+          {selectedPortolio || 'Select A Portfolio'}
+        </div>
         <PortfolioList
           selectedPortolio={selectedPortolio}
           setSelectedPortfolio={setSelectedPortfolio}
         />
       </div>
       <div className={styles.portfolio_render}>
-        <div className={styles.portfolio_header}>
-          {selectedPortolio || 'Select A Portfolio'}
-        </div>
         <Carousel uid={uid} />
-        <div className={styles.portfolio_description}>
-          portfolio description
-        </div>
       </div>
     </div>
   );

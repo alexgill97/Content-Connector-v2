@@ -1,11 +1,34 @@
+import { setDoc, collection, doc } from 'firebase/firestore';
 import React, { useState } from 'react';
+import { firestore } from '../../firebase/clientApp';
 import styles from '../../styles/create_project.module.scss';
 
-const CreateProject = ({ currentUser, uid }) => {
+const CreateProject = ({ currentUser, profile }) => {
   const [open, setOpen] = useState(false);
+  const [projectTitle, setProjectTitle] = useState('');
+  const [projectOffer, setProjectOffer] = useState(0);
+  const [projectOutline, setProjectOutline] = useState('');
+
+  console.log(profile, currentUser);
 
   const createProject = async (e) => {
     e.preventDefault();
+    const projectId =
+      currentUser > profile.uid
+        ? `${currentUser + profile.uid}`
+        : `${profile.uid + currentUser}`;
+    const creator = profile.isBusiness ? currentUser : profile.uid;
+    const business = profile.isBusiness ? profile.uid : currentUser;
+
+    await setDoc(doc(firestore, 'projects', projectId), {
+      creator,
+      business,
+      projectTitle,
+      projectOffer,
+      projectOutline,
+      accepted: false,
+    });
+
     setOpen(false);
   };
   return (
@@ -15,19 +38,37 @@ const CreateProject = ({ currentUser, uid }) => {
         <>
           <div className={styles.overlay} />
           <div className={styles.create_project_modal}>
-            <form onSubmit={createProject} action="submit">
+            <div className={styles.create_project_header}>
+              <p>Proposal For:</p>
+              <h5>{profile.username}</h5>
+            </div>
+            <form
+              className={styles.form_container}
+              onSubmit={createProject}
+              action="submit"
+            >
+              <label htmlFor="">Describe Your Project</label>
+              <input
+                value={projectTitle}
+                onChange={(e) => setProjectTitle(e.target.value)}
+                type="text"
+              />
+              <label htmlFor="">Project Budget</label>
               <label htmlFor="">
-                Project Name
-                <input type="text" />
+                $
+                <input
+                  className={styles.budget_input_min}
+                  value={projectOffer}
+                  onChange={(e) => setProjectOffer(e.target.value)}
+                  type="number"
+                />
               </label>
-              <label htmlFor="">
-                Project Name
-                <input type="text" />
-              </label>
-              <label htmlFor="">
-                Project Name
-                <input type="text" />
-              </label>
+              <label htmlFor="">Outline Your Project</label>
+              <textarea
+                value={projectOutline}
+                onChange={(e) => setProjectOutline(e.target.value)}
+                className={styles.form_outline}
+              />
 
               <button>Create Project</button>
             </form>

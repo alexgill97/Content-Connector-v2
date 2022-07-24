@@ -19,6 +19,23 @@
     border: 1px solid black;
     .profile_header {
       height: 25%;
+      .profile_header_interface {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        .header_user_info {
+          margin-bottom: 0.5rem;
+        }
+        .header_user_rating {
+          margin-bottom: 0.5rem;
+        }
+        .header_buttons {
+          display: flex;
+          .header_message_button {
+            margin: 0 1rem;
+          }
+        }
+      }
     }
     .interface_main {
       height: 100%;
@@ -35,44 +52,6 @@
           word-break: break-word;
         }
 
-        .interface_portfolio {
-          display: flex;
-          height: 50%;
-
-          .portfolio_list {
-            width: 35%;
-            padding-top: 1rem;
-            overflow: hidden;
-            // border: 1px solid black;
-          }
-
-          .portfolio_render {
-            display: flex;
-            flex-direction: column;
-            width: 70%;
-
-            .portfolio_header {
-              height: 15%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              font-size: 22px;
-            }
-
-            .portfolio_carousel {
-              height: 60%;
-              width: 100%;
-
-              // .portfolio_carousel_container {
-              //   height: 25rem;
-              // }
-            }
-            .portfolio_description {
-              height: 25%;
-              width: 100%;
-            }
-          }
-        }
         .reviews_container {
           height: 100%;
           max-height: 100%;
@@ -103,6 +82,49 @@
           }
         }
       }
+    }
+  }
+}
+
+// Portfolio Section Styling
+.interface_portfolio {
+  display: flex;
+  flex-direction: row;
+  height: 500px;
+  border: 1px solid black;
+  overflow: hidden;
+
+  .portfolio_list {
+    width: 35%;
+    padding-top: 1rem;
+    overflow: hidden;
+  }
+
+  .portfolio_render {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+
+    .portfolio_header {
+      height: 15%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .portfolio_carousel {
+      height: 60%;
+      width: 100%;
+
+      // .portfolio_carousel_container {
+      //   height: 25rem;
+      // }
+    }
+    .portfolio_description {
+      height: 25%;
+      width: 100%;
     }
   }
 }

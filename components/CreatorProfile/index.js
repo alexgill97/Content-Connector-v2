@@ -20,7 +20,12 @@ const index = ({ profile }) => {
       </div>
       <div className={styles.profile_main}>
         <div className={styles.profile_header}>
-          <Header username={username} city={city} />
+          <Header
+            currentUser={currentUser}
+            profile={profile}
+            username={username}
+            city={city}
+          />
         </div>
         <div className={styles.profile_interface}>
           <div className={styles.interface_selectors}>

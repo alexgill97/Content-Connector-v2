@@ -1,6 +1,7 @@
 import React from 'react';
+import CreateProject from '../Modal/CreateProject';
 
-const Header = ({ username, city }) => {
+const Header = ({ currentUser, profile, username, city }) => {
   return (
     <div>
       <div>
@@ -15,6 +16,7 @@ const Header = ({ username, city }) => {
         <button>Message</button>
         <button>Request a Quote</button>
         <button>Report</button>
+        <CreateProject currentUser={currentUser} profile={profile} />
       </div>
     </div>
   );

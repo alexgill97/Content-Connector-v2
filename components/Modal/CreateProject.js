@@ -38,6 +38,12 @@ const CreateProject = ({ currentUser, profile }) => {
         <>
           <div className={styles.overlay} />
           <div className={styles.create_project_modal}>
+            <div
+              onClick={() => setOpen(false)}
+              className={styles.create_project_modal_close}
+            >
+              X
+            </div>
             <div className={styles.create_project_header}>
               <p>Proposal For:</p>
               <h5>{profile.username}</h5>

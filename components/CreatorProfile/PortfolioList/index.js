@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../../../styles/portfolio_list.module.scss';
+import CreatePortfolio from '../../Modal/CreatePortfolio';
 import PortfolioListItem from './PortfolioListItem';
 
 const PortfolioList = ({ selectedPortolio, setSelectedPortfolio }) => {
@@ -26,7 +27,7 @@ const PortfolioList = ({ selectedPortolio, setSelectedPortfolio }) => {
         setSelectedPortfolio={setSelectedPortfolio}
       />
       <div>
-        <button>Upload</button>
+        <CreatePortfolio />
         <button>Delete</button>
       </div>
     </>

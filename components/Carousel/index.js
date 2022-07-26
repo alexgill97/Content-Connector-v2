@@ -21,9 +21,10 @@ const Slider = ({ uid }) => {
     const querySnapshot = await getDocs(
       query(collectionGroup(firestore, `portfolio`), where('uid', '==', id))
     );
-    let portfolioImages = [];
+    let portfolios = [];
     querySnapshot.forEach((doc) => {
-      portfolioImages.push(doc.data().image);
+      console.log(doc.data());
+      portfolios.push(doc.data().image);
     });
 
     setImages(portfolioImages);

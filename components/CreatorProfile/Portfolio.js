@@ -1,24 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../styles/creator_profile.module.scss';
 
+import getUserPortfolios from '../../firebase/getUserPortfolio';
 import Carousel from '../Carousel';
 import PortfolioList from './PortfolioList';
 
 const Portfolio = ({ uid }) => {
-  const [selectedPortolio, setSelectedPortfolio] = useState('');
+  const [selectedPortolio, setSelectedPortfolio] = useState({});
+  const [portfolios, setPortfolios] = useState([]);
+
+  useEffect(() => {
+    getUserPortfolios(uid, setPortfolios);
+    console.log(portfolios);
+  }, []);
+
+  const logPortfolios = () => {
+    console.log(portfolios);
+  };
+
   return (
     <div className={styles.interface_portfolio}>
       <div className={styles.portfolio_list}>
         <div className={styles.portfolio_header}>
-          {selectedPortolio || 'Select A Portfolio'}
+          {selectedPortolio.title || 'Select A Portfolio'}
         </div>
         <PortfolioList
+          portfolios={portfolios}
           selectedPortolio={selectedPortolio}
           setSelectedPortfolio={setSelectedPortfolio}
         />
       </div>
       <div className={styles.portfolio_render}>
-        <Carousel uid={uid} />
+        {selectedPortolio && (
+          <Carousel uid={uid} images={selectedPortolio.images} />
+        )}
       </div>
     </div>
   );

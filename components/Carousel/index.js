@@ -1,35 +1,14 @@
 import BtnSlider from './ButtonSlider';
 import React, { useState, useContext, useEffect } from 'react';
-import { firestore } from '../../firebase/clientApp';
-import { collectionGroup, query, getDocs, where } from 'firebase/firestore';
+
 import { AuthContext } from '../../firebase/context';
 import styles from '../../styles/slider.module.scss';
 
-const Slider = ({ uid }) => {
+const Slider = ({ uid, images }) => {
   //Get current user
   const { currentUser } = useContext(AuthContext);
 
   const [loading, setLoading] = useState(true);
-  const [images, setImages] = useState([]);
-
-  useEffect(() => {
-    getUserPortfolio(uid);
-  }, [uid]);
-
-  // Get Users Portfolio
-  const getUserPortfolio = async (id) => {
-    const querySnapshot = await getDocs(
-      query(collectionGroup(firestore, `portfolio`), where('uid', '==', id))
-    );
-    let portfolios = [];
-    querySnapshot.forEach((doc) => {
-      console.log(doc.data());
-      portfolios.push(doc.data().image);
-    });
-
-    setImages(portfolioImages);
-    setLoading(false);
-  };
 
   //Tracks current selected slide
   const [slideIndex, setSlideIndex] = useState(1);
@@ -56,9 +35,9 @@ const Slider = ({ uid }) => {
 
   return (
     <>
-      {images.length && (
+      {images?.length && (
         <div className={styles.container_slider}>
-          {loading && <div>loading...</div>}
+          {!images && <div>loading...</div>}
           {images.map((image, index) => (
             <div
               key={index}

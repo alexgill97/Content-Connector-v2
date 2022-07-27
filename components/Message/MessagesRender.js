@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import MessageItem from './MessageItem';
+import ProjectItem from './ProjectItem';
 
 const MessagesRender = ({ messages, currentUser }) => {
   const scroll = useRef(null);
@@ -12,7 +13,7 @@ const MessagesRender = ({ messages, currentUser }) => {
     <>
       {messages.map((message) =>
         message.projectTitle ? (
-          <div>{message.projectTitle}</div>
+          <ProjectItem key={message.createdAt} message={message} />
         ) : (
           <MessageItem
             key={message.createdAt}

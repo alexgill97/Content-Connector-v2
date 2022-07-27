@@ -1,0 +1,11 @@
+.project_item {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 5px 0;
+  justify-content: center;
+  width: 50%;
+  border: 1px solid green;
+  border-radius: 8px;
+  background-color: rgba(1, 151, 1, 0.165);
+}

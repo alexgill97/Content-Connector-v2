@@ -43,11 +43,11 @@ const CreateProject = ({ currentUser, profile }) => {
     setOpen(false);
   };
   return (
-    <div className={styles.create_project_container}>
+    <>
       {!open && <button onClick={() => setOpen(true)}>Create Project</button>}
       {open && (
-        <>
-          <div className={styles.overlay} />
+        <div>
+          <div className={styles.overlay}></div>
           <div className={styles.create_project_modal}>
             <div
               onClick={() => setOpen(false)}
@@ -90,9 +90,9 @@ const CreateProject = ({ currentUser, profile }) => {
               <button>Create Project</button>
             </form>
           </div>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

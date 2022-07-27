@@ -1,4 +1,4 @@
-import { setDoc, addDoc, collection, doc } from 'firebase/firestore';
+import { setDoc, addDoc, collection, doc, Timestamp } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { firestore } from '../../firebase/clientApp';
 import styles from '../../styles/create_project.module.scss';
@@ -26,17 +26,18 @@ const CreateProject = ({ currentUser, profile }) => {
       projectTitle,
       projectOffer,
       projectOutline,
+      createdAt: Timestamp.fromDate(new Date()),
       accepted: false,
     });
 
     await addDoc(collection(firestore, 'messages', projectId, 'chat'), {
-      text,
+      text: projectOutline,
       from: currentUser,
-      to: selectedUser.uid,
+      to: profile.uid,
       createdAt: Timestamp.fromDate(new Date()),
       projectTitle,
       projectOffer,
-      projectOutline,
+
       accepted: false,
     });
 

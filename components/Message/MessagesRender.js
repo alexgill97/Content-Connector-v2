@@ -10,18 +10,22 @@ const MessagesRender = ({ messages, currentUser }) => {
 
   return (
     <>
-      {messages.map(({ to, from, text, createdAt, media }) => (
-        <MessageItem
-          key={createdAt}
-          currentUser={currentUser}
-          to={to}
-          from={from}
-          text={text}
-          createdAt={createdAt}
-          media={media}
-          scroll={scroll}
-        />
-      ))}
+      {messages.map((message) =>
+        message.projectTitle ? (
+          <div>{message.projectTitle}</div>
+        ) : (
+          <MessageItem
+            key={message.createdAt}
+            currentUser={message.currentUser}
+            to={message.to}
+            from={message.from}
+            text={message.text}
+            createdAt={message.createdAt}
+            media={message.media}
+            scroll={scroll}
+          />
+        )
+      )}
       <div ref={scroll}></div>
     </>
   );

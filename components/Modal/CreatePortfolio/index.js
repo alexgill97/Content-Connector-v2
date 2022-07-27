@@ -82,6 +82,12 @@ const index = ({}) => {
         <div>
           <div className={styles.overlay}></div>
           <div className={styles.create_portfolio_modal}>
+            <div
+              onClick={() => setOpen(false)}
+              className={styles.create_portfolio_modal_close}
+            >
+              X
+            </div>
             <h5>Create Portfolio</h5>
             <form action="">
               <label htmlFor="">Portfolio Name</label>

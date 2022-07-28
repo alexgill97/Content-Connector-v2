@@ -13,7 +13,15 @@ const index = ({}) => {
   const [urls, setUrls] = useState([]);
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [title, setTitle] = useState('');
+  const [tag, setTag] = useState('');
+  const [tags, setTags] = useState([]);
   const [description, setDescription] = useState('');
+
+  const addTag = (e) => {
+    e.preventDefault();
+    setTags((prevState) => [...prevState, tag]);
+    setTag('');
+  };
 
   const addImageToPortfolio = (e) => {
     for (let i = 0; i < e.target.files.length; i++) {
@@ -60,6 +68,7 @@ const index = ({}) => {
           images: urls,
           description: description,
           uid: currentUser,
+          tags,
         },
         { merge: true }
       );
@@ -68,6 +77,7 @@ const index = ({}) => {
       setDescription('');
       setSelectedFiles([]);
       setUrls([]);
+      setTags('');
     };
 
     if (urls.length === selectedFiles.length && urls.length) {
@@ -96,6 +106,19 @@ const index = ({}) => {
                 onChange={(e) => setTitle(e.target.value)}
                 type="text"
               />
+              <label htmlFor="">Portfolio Tags</label>
+              <input
+                value={tag}
+                onChange={(e) => setTag(e.target.value)}
+                type="text"
+              />
+              <button onClick={(e) => addTag(e)}>Add Tag</button>
+              Tags:
+              <ul>
+                {tags.map((tag) => (
+                  <li>{tag}</li>
+                ))}
+              </ul>
               <label htmlFor="">Portfolio Description</label>
               <textarea
                 value={description}

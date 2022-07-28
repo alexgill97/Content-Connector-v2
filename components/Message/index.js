@@ -10,6 +10,7 @@ import MessagesRender from './MessagesRender';
 const MessageContainer = ({ currentUser, selectedUser, setSelectedUser }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [messageId, setMessageId] = useState('');
 
   useEffect(() => {
     getMessages();
@@ -17,13 +18,13 @@ const MessageContainer = ({ currentUser, selectedUser, setSelectedUser }) => {
 
   const getMessages = async () => {
     //Set unique message ID
-    const messageId =
+    const msgId =
       currentUser > selectedUser
         ? `${currentUser + selectedUser.uid}`
         : `${selectedUser.uid + currentUser}`;
 
     //Get messages between current user and selected user
-    const msgsRef = collection(firestore, 'messages', messageId, 'chat');
+    const msgsRef = collection(firestore, 'messages', msgId, 'chat');
     const messagesQuery = query(msgsRef, orderBy('createdAt', 'asc'));
     onSnapshot(messagesQuery, (messagesSnapshot) => {
       let msgs = [];
@@ -33,14 +34,6 @@ const MessageContainer = ({ currentUser, selectedUser, setSelectedUser }) => {
       setMessages(msgs);
       setLoading(false);
     });
-
-    // // get last message between logged in user and selected user
-    // const docSnap = await getDoc(doc(firestore, 'lastMsg', id));
-    // // if last message exists and message is from selected user
-    // if (docSnap.data() && docSnap.data().from !== user1) {
-    //   // update last message doc, sets unread to false
-    //   await updateDoc(doc(firestore, 'lastMsg', id), { unread: false });
-    // }
   };
 
   return (
@@ -49,7 +42,11 @@ const MessageContainer = ({ currentUser, selectedUser, setSelectedUser }) => {
       <div className={styles.messages_render_main}>
         {loading && <p>Loading...</p>}
         {messages && (
-          <MessagesRender currentUser={currentUser} messages={messages} />
+          <MessagesRender
+            currentUser={currentUser}
+            messages={messages}
+            messageId={messageId}
+          />
         )}
       </div>
       <div className={styles.message_form_test}>

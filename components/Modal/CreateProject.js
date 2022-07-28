@@ -30,7 +30,7 @@ const CreateProject = ({ currentUser, profile }) => {
       accepted: false,
     });
 
-    await addDoc(collection(firestore, 'messages', projectId, 'chat'), {
+    await setDoc(doc(firestore, 'messages', projectId, 'chat', projectTitle), {
       text: projectOutline,
       from: currentUser,
       to: profile.uid,

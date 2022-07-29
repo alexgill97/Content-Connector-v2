@@ -1,16 +1,9 @@
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import getUserPortfolios from '../../firebase/getUserPortfolio';
+
 import styles from '../../styles/user_list.module.scss';
 import Carousel from '../Carousel/';
 
 const UserListItem = ({ user, username, uid, avatar, description, city }) => {
-  const [portfolio, setPortfolios] = useState([]);
-
-  useEffect(() => {
-    getUserPortfolios(uid, setPortfolios);
-  });
-
   return (
     <>
       <main className={styles.card_container}>

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../firebase/context';
 import UserListItem from './UserListItem';
 import styles from '../../styles/user_list.module.scss';
-const UserList = ({ users }) => {
+const UserList = ({ users, portfolios }) => {
   const { userData, currentUser } = useContext(AuthContext);
 
   return (

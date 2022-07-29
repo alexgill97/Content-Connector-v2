@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react';
 import styles from '../styles/user_list.module.scss';
 import UserList from '../components/UserList';
-import { collection, query, getDocs } from 'firebase/firestore';
-import { getDoc, where } from 'firebase/firestore';
+import { collection, query, getDocs, where } from 'firebase/firestore';
 
 import { firestore } from '../firebase/clientApp';
 import { AuthContext } from '../firebase/context';
@@ -51,7 +50,7 @@ const findingFreelancers = ({ users }) => {
 
 export default findingFreelancers;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const querySnapshot = await getDocs(
     query(collection(firestore, 'users'), where('isBusiness', '==', false))
   );

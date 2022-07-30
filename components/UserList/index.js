@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../firebase/context';
 import UserListItem from './UserListItem';
+import PortfolioListItem from './PortfolioListItem';
 import styles from '../../styles/user_list.module.scss';
 const UserList = ({ users, portfolios }) => {
   const { userData, currentUser } = useContext(AuthContext);
@@ -20,7 +21,7 @@ const UserList = ({ users, portfolios }) => {
         ))}
 
       {portfolios.length &&
-        portfolios.map((portfolio) => <PortfolioListItem />)}
+        portfolios.map((portfolio) => <UserListItem portfolio={portfolio} />)}
     </div>
   );
 };

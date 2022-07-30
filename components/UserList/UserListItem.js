@@ -3,11 +3,19 @@ import Link from 'next/link';
 import styles from '../../styles/user_list.module.scss';
 import Carousel from '../Carousel/';
 
-const UserListItem = ({ user, username, uid, avatar, description, city }) => {
+const UserListItem = ({
+  user,
+  username,
+  uid,
+  avatar,
+  description,
+  city,
+  portfolio,
+}) => {
   return (
     <>
       <main className={styles.card_container}>
-        <Carousel uid={uid} />
+        <Carousel uid={uid} images={portfolio?.images} />
         <section className={styles.card_info}>
           <button onClick={() => console.log(portfolio)}>log</button>
           <div className={styles.card__header}>

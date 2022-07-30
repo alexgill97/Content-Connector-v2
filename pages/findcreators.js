@@ -37,7 +37,8 @@ const findingFreelancers = ({ users }) => {
           <button onClick={logPortfolio}>Log</button>
         </div>
         <h4>
-          Content Creators Near: <br /> Toronto, Canada
+          {term ? `${term} ` : 'Top '}Content Creators Near: <br /> Toronto,
+          Canada
         </h4>
         <div>
           <p>filter</p>

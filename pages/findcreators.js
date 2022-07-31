@@ -6,6 +6,7 @@ import { collection, query, getDocs, where } from 'firebase/firestore';
 import { firestore } from '../firebase/clientApp';
 import { AuthContext } from '../firebase/context';
 import getTermPortfolio from '../firebase/getTermPortfolio';
+import CompletedProject from '../components/Modal/CompletedProject';
 
 const findingFreelancers = ({ users }) => {
   const { currentUser, userData } = useContext(AuthContext);
@@ -35,6 +36,7 @@ const findingFreelancers = ({ users }) => {
           />
           <button onClick={searchPortfolios}>Search</button>
           <button onClick={logPortfolio}>Log</button>
+          <CompletedProject />
         </div>
         <h4>
           {term ? `${term} ` : 'Top '}Content Creators Near: <br /> Toronto,

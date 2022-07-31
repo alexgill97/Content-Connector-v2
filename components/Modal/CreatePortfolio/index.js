@@ -17,6 +17,8 @@ const index = ({}) => {
   const [tags, setTags] = useState([]);
   const [description, setDescription] = useState('');
 
+  console.log(userData);
+
   const addTag = (e) => {
     e.preventDefault();
     setTags((prevState) => [...prevState, tag]);
@@ -69,6 +71,8 @@ const index = ({}) => {
           description: description,
           uid: currentUser,
           tags,
+          avatar: userData.avatar,
+          username: userData.username,
         },
         { merge: true }
       );

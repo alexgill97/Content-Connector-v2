@@ -1,23 +1,25 @@
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-
 import styles from '../../styles/user_list.module.scss';
 import Carousel from '../Carousel/';
+import getUserPortfolio from '../../firebase/getUserPortfolio';
 
-const UserListItem = ({
-  user,
-  username,
-  uid,
-  avatar,
-  description,
-  city,
-  portfolio,
-}) => {
+const UserListItem = ({ username, uid, avatar, description, city, images }) => {
+  const [userPortfolio, setUserPortfolio] = useState([]);
+  useEffect(() => {
+    if (!images) {
+      getUserPortfolio(uid, setUserPortfolio);
+    }
+  }, []);
+
   return (
     <>
       <main className={styles.card_container}>
-        <Carousel uid={uid} images={portfolio?.images} />
+        <Carousel
+          uid={uid}
+          images={images ? images : userPortfolio[0]?.images}
+        />
         <section className={styles.card_info}>
-          <button onClick={() => console.log(portfolio)}>log</button>
           <div className={styles.card__header}>
             <Link href={`userprofile/${uid}`}>
               <img className={styles.card_avatar} src={avatar} alt="" />

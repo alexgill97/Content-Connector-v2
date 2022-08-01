@@ -21,7 +21,7 @@ const MessagesRender = ({ messages, messageId, currentUser }) => {
         ) : (
           <MessageItem
             key={message.createdAt}
-            currentUser={message.currentUser}
+            currentUser={currentUser}
             to={message.to}
             from={message.from}
             text={message.text}

@@ -1,10 +1,13 @@
 import { updateDoc, doc } from 'firebase/firestore';
-import React from 'react';
+import React, { useContext } from 'react';
 import { firestore } from '../../firebase/clientApp';
 import styles from '../../styles/project_item.module.scss';
 
+import { AuthContext } from '../../firebase/context';
+import CompleteProject from '../Modal/CompleteProject';
+
 const ProjectItem = ({ message, messageId }) => {
-  console.log(message);
+  const { currentUser, userData } = useContext(AuthContext);
   const { to, from, projectTitle, projectOffer, text, createdAt, accepted } =
     message;
 
@@ -24,6 +27,7 @@ const ProjectItem = ({ message, messageId }) => {
       <p>Project Outline:</p>
       <p>{text}</p>
       {!accepted && <button onClick={acceptOffer}>Accept</button>}
+      {accepted && userData.isBusiness && <CompleteProject />}
     </div>
   );
 };

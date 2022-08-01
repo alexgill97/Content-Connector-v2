@@ -7,12 +7,14 @@ const setUserRating = async (
   completedProjects,
   projectRating
 ) => {
+  const newCompletedProjects = completedProjects + 1;
   const newRating =
-    (currentRating * completedProjects + projectRating) /
-    (completedProjects + 1);
+    (currentRating * completedProjects + projectRating) / newCompletedProjects;
+
   console.log(newRating);
   await setDoc(doc(firestore, 'users', uid), {
     rating: newRating,
+    completedProjects: newCompletedProjects,
   });
 };
 

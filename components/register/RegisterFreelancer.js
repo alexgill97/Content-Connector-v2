@@ -18,6 +18,8 @@ const RegisterFreelancer = ({ setLoading, setStep }) => {
     address: '',
     city: '',
     uid: currentUser,
+    completedProjects: 0,
+    rating: null,
     isOnline: true,
   });
 
@@ -79,7 +81,9 @@ const RegisterFreelancer = ({ setLoading, setStep }) => {
             />
           </div>
         </div>
-        <button className={styles.button}  onClick={onRegisterSubmit}>Register</button>
+        <button className={styles.button} onClick={onRegisterSubmit}>
+          Register
+        </button>
       </form>
     </section>
   );

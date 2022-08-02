@@ -19,7 +19,7 @@ const MessageContainer = ({ currentUser, selectedUser, setSelectedUser }) => {
   const getMessages = async () => {
     //Set unique message ID
     const msgId =
-      currentUser > selectedUser
+      currentUser > selectedUser.uid
         ? `${currentUser + selectedUser.uid}`
         : `${selectedUser.uid + currentUser}`;
 

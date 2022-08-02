@@ -8,7 +8,7 @@ const CompletedProject = ({ uid }) => {
   const [review, setReview] = useState('');
 
   const submitRating = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setUserRating(uid, projectRating);
     setOpen(false);
   };

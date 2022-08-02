@@ -14,7 +14,7 @@ const MessageForm = ({ currentUser, selectedUser, scroll }) => {
     e.preventDefault();
 
     const id =
-      currentUser > selectedUser
+      currentUser > selectedUser.uid
         ? `${currentUser + selectedUser.uid}`
         : `${selectedUser.uid + currentUser}`;
 

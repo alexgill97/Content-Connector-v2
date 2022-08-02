@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import setUserRating from '../../firebase/setUserRating';
+import styles from '../../styles/modal.module.scss';
 
 const CompletedProject = ({ uid }) => {
   const [open, setOpen] = useState(false);
@@ -8,7 +9,7 @@ const CompletedProject = ({ uid }) => {
 
   const submitRating = (e) => {
     e.preventDefault();
-    setUserRating(uid, currentRating, completedProjects, projectRating);
+    setUserRating(uid, projectRating);
     setOpen(false);
   };
   return (
@@ -17,7 +18,7 @@ const CompletedProject = ({ uid }) => {
       {open && (
         <div>
           <div className={styles.overlay}></div>
-          <div>
+          <div className={styles.modal_container}>
             <form action="">
               <label htmlFor="">Rating</label>
               <input
@@ -32,16 +33,7 @@ const CompletedProject = ({ uid }) => {
                 onChange={(e) => setReview(e.target.value)}
               ></textarea>
 
-              <button
-                onClick={submitRating(
-                  uid,
-                  currentRating,
-                  completedProjects,
-                  projectRating
-                )}
-              >
-                Rating
-              </button>
+              <button onClick={submitRating(uid, projectRating)}>Rating</button>
             </form>
           </div>
         </div>

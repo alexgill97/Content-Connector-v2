@@ -26,8 +26,12 @@ const ProjectItem = ({ message, messageId }) => {
       <p>Offer: ${projectOffer}</p>
       <p>Project Outline:</p>
       <p>{text}</p>
-      {!accepted && <button onClick={acceptOffer}>Accept</button>}
-      {accepted && userData.isBusiness && <CompleteProject />}
+      {!accepted && !userData.isBusiness && (
+        <button onClick={acceptOffer}>Accept</button>
+      )}
+      {accepted && userData.isBusiness && (
+        <CompleteProject userData={userData} />
+      )}
     </div>
   );
 };

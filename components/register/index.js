@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import RegisterFreelancer from './RegisterFreelancer';
 import RegisterBusiness from './RegisterBusiness';
 import RegisterInitial from './RegisterInitial';
-import UploadAvatar from '../Profiles/UploadAvatar';
+
 import Geocode from 'react-geocode';
 import styles from '../../styles/Register.module.scss';
 
 const Register = () => {
   const [step, setStep] = useState(1);
   const [isFreelancer, setIsFreelancer] = useState(false);
+  const [userId, setUserId] = useState('');
   const [loading, setLoading] = useState(false);
 
   return (
@@ -21,6 +22,7 @@ const Register = () => {
           {/* {isFreelancer ? <h3>freelancer</h3> : <h3>business</h3>} */}
           {step === 1 && (
             <RegisterInitial
+              setUserId={setUserId}
               setLoading={setLoading}
               setIsFreelancer={setIsFreelancer}
               setStep={setStep}
@@ -28,12 +30,20 @@ const Register = () => {
           )}
           {step === 2 ? (
             isFreelancer ? (
-              <RegisterFreelancer setLoading={setLoading} setStep={setStep} />
+              <RegisterFreelancer
+                userId={userId}
+                setLoading={setLoading}
+                setStep={setStep}
+              />
             ) : (
-              <RegisterBusiness setLoading={setLoading} setStep={setStep} />
+              <RegisterBusiness
+                userId={userId}
+                setLoading={setLoading}
+                setStep={setStep}
+              />
             )
           ) : null}
-          {step === 3 && <UploadAvatar />}
+          {/* {step === 3 && <UploadAvatar />} */}
         </div>
       </div>
     </section>

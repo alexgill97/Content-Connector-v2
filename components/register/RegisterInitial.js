@@ -15,6 +15,7 @@ const RegisterInitial = ({ setStep, setIsFreelancer, loading, setLoading }) => {
     setLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((cred) => {
+        console.log(cred);
         setLoading(false);
         setStep(2);
       })
@@ -22,42 +23,51 @@ const RegisterInitial = ({ setStep, setIsFreelancer, loading, setLoading }) => {
   };
 
   return (
-    <section  >
-    <div>
-      {error && <h1>error...</h1>}
-      <div hidden={loading}>
-        {/* <h3>{email}</h3> */}
-        <form onSubmit={onRegisterAuthSubmit}>
-          <div className="input_container">
-            <label>Email: </label>
-            <input
-              type="email"
-              name="email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
+    <section>
+      <div>
+        {error && <h1>error...</h1>}
+        <div hidden={loading}>
+          {/* <h3>{email}</h3> */}
+          <form onSubmit={onRegisterAuthSubmit}>
+            <div className="input_container">
+              <label>Email: </label>
+              <input
+                type="email"
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div className="input_container">
+              <label>Password: </label>
+              <input
+                type="password"
+                name="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+          </form>
+          <label>Select your role: </label>
+          <div className={styles.roleButton}>
+            <button
+              className={styles.button1}
+              onClick={() => setIsFreelancer(true)}
+            >
+              Freelancer
+            </button>
+            <button
+              className={styles.button1}
+              onClick={() => setIsFreelancer(false)}
+            >
+              Business
+            </button>
           </div>
-
-          <div className="input_container">
-            <label>Password: </label>
-            <input
-              type="password"
-              name="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-
-
-
-        </form>
-        <label>Select your role: </label>
-        <div className={styles.roleButton}>
-        <button className={styles.button1} onClick={() => setIsFreelancer(true)}>Freelancer</button>
-        <button className={styles.button1} onClick={() => setIsFreelancer(false)}>Business</button>
         </div>
       </div>
-    </div>
-<button className={styles.button} onClick={onRegisterAuthSubmit}>Register</button>
-</section>
+      <button className={styles.button} onClick={onRegisterAuthSubmit}>
+        Register
+      </button>
+    </section>
   );
 };
 

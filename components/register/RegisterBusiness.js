@@ -6,14 +6,12 @@ import { firestore } from '../../firebase/clientApp';
 import Geocode from 'react-geocode';
 import styles from '../../styles/Register.module.scss';
 
-const RegisterBusiness = ({ setLoading, setStep }) => {
+const RegisterBusiness = ({ userId, setLoading, setStep }) => {
   const router = useRouter();
   const { currentUser, userData } = useContext(AuthContext);
+  Geocode.setApiKey('AIzaSyDoeEVfzN1WC3vwiDlF7HemOu35NQao-kY');
   Geocode.setLanguage('en');
-
   Geocode.setRegion('na');
-
-  Geocode.setApiKey('AIzaSyDNT14Q8_dETR4hSxsE94Ipd2qP3rqV4dE');
 
   const [data, setData] = useState({
     isBusiness: true,
@@ -28,9 +26,9 @@ const RegisterBusiness = ({ setLoading, setStep }) => {
     isOnline: true,
   });
 
-  const registerUserDb = async (uid, data) => {
-    await setDoc(doc(firestore, 'users', uid), {
-      ...data,
+  const registerUserDb = async (currentUser, formData) => {
+    await setDoc(doc(firestore, 'users', currentUser), {
+      ...formData,
     });
   };
 
@@ -38,9 +36,11 @@ const RegisterBusiness = ({ setLoading, setStep }) => {
     e.preventDefault();
   };
 
-  const onRegisterSubmit = () => {
-    setLoading(true);
-    setStep(3);
+  const onRegisterSubmit = (e) => {
+    e.preventDefault();
+    // setLoading(true);
+    // setStep(3);
+
     Geocode.fromAddress(data.address).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
@@ -51,17 +51,12 @@ const RegisterBusiness = ({ setLoading, setStep }) => {
         console.error(error);
       }
     );
-    setLoading(false);
+    // setLoading(false);
   };
 
   return (
     <section>
-      {/* <h1>{data.uid}</h1>
-      {data.username}
-      {data.description}
-      {data.address} */}
-      {/* <h3>Register a Business Account</h3> */}
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="input_container">
           <label>Enter Business Name: </label>
           <input
@@ -94,7 +89,9 @@ const RegisterBusiness = ({ setLoading, setStep }) => {
             onChange={(e) => setData({ ...data, city: e.target.value })}
           />
         </div>
-        <button className={styles.button} onClick={onRegisterSubmit}>Register</button>
+        <button className={styles.button} onClick={onRegisterSubmit}>
+          Register
+        </button>
       </form>
     </section>
   );

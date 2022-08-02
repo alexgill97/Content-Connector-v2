@@ -6,6 +6,7 @@ import Description from './Description';
 import Portfolio from './Portfolio';
 import Reviews from './Reviews';
 import ProfileDetails from './ProfileDetails';
+import UploadAvatar from '../Modal/UploadAvatar';
 
 const index = ({ profile }) => {
   const { userData, currentUser } = useContext(AuthContext);
@@ -17,6 +18,7 @@ const index = ({ profile }) => {
     <div className={styles.creator_profile_container}>
       <div className={styles.profile_left}>
         <img className={styles.profile_avatar} src={avatar} alt="" />
+        <UploadAvatar currentUser={currentUser} />
         <ProfileDetails />
       </div>
       <div className={styles.profile_main}>

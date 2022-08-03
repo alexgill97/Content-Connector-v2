@@ -1,4 +1,4 @@
-import { updateDoc, doc } from 'firebase/firestore';
+import { updateDoc, doc, Timestamp } from 'firebase/firestore';
 import React, { useContext } from 'react';
 import { firestore } from '../../firebase/clientApp';
 import styles from '../../styles/project_item.module.scss';
@@ -14,7 +14,7 @@ const ProjectItem = ({ message, messageId }) => {
   const acceptOffer = async () => {
     await updateDoc(
       doc(firestore, 'messages', messageId, 'chat', projectTitle),
-      { accepted: true }
+      { accepted: true, acceptedAt: Timestamp.fromDate(new Date()) }
     );
   };
 

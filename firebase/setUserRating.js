@@ -15,6 +15,10 @@ const setUserRating = async (uid, projectTitle, projectRating, reviewText) => {
     rating: newRating,
     completedProjects: newCompletedProjects,
   });
+  await updateDoc(doc(firestore, 'users', uid, 'chat', projectTitle), {
+    completedAt: Timestamp.fromDate(new Date()),
+    completed: true,
+  });
   await addDoc(collection(firestore, 'users', uid, 'reviews'), {
     rating: ratingToNumber,
     projectNumber: newCompletedProjects,

@@ -30,15 +30,16 @@ const CreateProject = ({ currentUser, profile }) => {
       accepted: false,
     });
 
-    await setDoc(doc(firestore, 'messages', projectId, 'chat', projectTitle), {
+    await addDoc(doc(firestore, 'messages', projectId, 'chat'), {
       text: projectOutline,
       from: currentUser,
       to: profile.uid,
       createdAt: Timestamp.fromDate(new Date()),
+      completedBy,
       projectTitle,
       projectOffer,
-
       accepted: false,
+      completed: false,
     });
 
     setOpen(false);
@@ -81,6 +82,8 @@ const CreateProject = ({ currentUser, profile }) => {
                   type="number"
                 />
               </label>
+              <label htmlFor="">Completed By</label>
+              <input type="date" value={new Date()} min={new Date()} />
               <label htmlFor="">Outline Your Project</label>
               <textarea
                 value={projectOutline}

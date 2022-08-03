@@ -22,6 +22,7 @@ const setUserRating = async (uid, projectTitle, projectRating, reviewText) => {
   await addDoc(collection(firestore, 'users', uid, 'reviews'), {
     rating: ratingToNumber,
     projectNumber: newCompletedProjects,
+    completedAt: Timestamp.fromDate(new Date()),
     projectTitle,
     reviewText,
   });

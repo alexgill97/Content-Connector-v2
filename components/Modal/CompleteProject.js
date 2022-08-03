@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import setUserRating from '../../firebase/setUserRating';
 import styles from '../../styles/modal.module.scss';
 
-const CompletedProject = ({ userData, projectTitle, creatorUid }) => {
+const CompletedProject = ({
+  userData,
+  projectTitle,
+  projectOffer,
+  creatorUid,
+}) => {
   const [open, setOpen] = useState(false);
   const [projectRating, setProjectRating] = useState(0);
 

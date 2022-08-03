@@ -8,8 +8,16 @@ import CompleteProject from '../Modal/CompleteProject';
 
 const ProjectItem = ({ message, messageId }) => {
   const { currentUser, userData } = useContext(AuthContext);
-  const { to, from, projectTitle, projectOffer, text, createdAt, accepted } =
-    message;
+  const {
+    to,
+    from,
+    projectTitle,
+    projectOffer,
+    text,
+    createdAt,
+    completedBy,
+    accepted,
+  } = message;
 
   const acceptOffer = async () => {
     await updateDoc(
@@ -23,6 +31,7 @@ const ProjectItem = ({ message, messageId }) => {
       Offer Receieved
       <h5>{projectTitle}</h5>
       <p>{from}</p>
+      <p>{completedBy}</p>
       <p>Offer: ${projectOffer}</p>
       <p>Project Outline:</p>
       <p>{text}</p>

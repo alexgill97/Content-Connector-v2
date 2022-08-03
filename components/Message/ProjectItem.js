@@ -30,7 +30,12 @@ const ProjectItem = ({ message, messageId }) => {
         <button onClick={acceptOffer}>Accept</button>
       )}
       {accepted && userData.isBusiness && (
-        <CompleteProject userData={userData} creatorUid={to} />
+        <CompleteProject
+          userData={userData}
+          creatorUid={to}
+          projectTitle={projectTitle}
+          projectOffer={projectOffer}
+        />
       )}
     </div>
   );

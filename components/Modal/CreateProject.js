@@ -2,14 +2,16 @@ import { setDoc, addDoc, collection, doc, Timestamp } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { firestore } from '../../firebase/clientApp';
 import styles from '../../styles/create_project.module.scss';
+import DatePicker from 'react-datepicker';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 const CreateProject = ({ currentUser, profile }) => {
   const [open, setOpen] = useState(false);
   const [projectTitle, setProjectTitle] = useState('');
   const [projectOffer, setProjectOffer] = useState(0);
   const [projectOutline, setProjectOutline] = useState('');
-
-  console.log(profile, currentUser);
+  const [completedBy, setCompletedBy] = useState(new Date());
 
   const createProject = async (e) => {
     e.preventDefault();
@@ -27,10 +29,11 @@ const CreateProject = ({ currentUser, profile }) => {
       projectOffer,
       projectOutline,
       createdAt: Timestamp.fromDate(new Date()),
+      completedBy,
       accepted: false,
     });
 
-    await addDoc(doc(firestore, 'messages', projectId, 'chat'), {
+    await addDoc(collection(firestore, 'messages', projectId, 'chat'), {
       text: projectOutline,
       from: currentUser,
       to: profile.uid,
@@ -83,7 +86,10 @@ const CreateProject = ({ currentUser, profile }) => {
                 />
               </label>
               <label htmlFor="">Completed By</label>
-              <input type="date" value={new Date()} min={new Date()} />
+              <DatePicker
+                selected={completedBy}
+                onChange={(date) => setCompletedBy(date)}
+              />
               <label htmlFor="">Outline Your Project</label>
               <textarea
                 value={projectOutline}

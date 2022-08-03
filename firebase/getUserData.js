@@ -1,9 +1,13 @@
-import { getDoc } from 'firebase/firestore';
+import { getDoc, doc } from 'firebase/firestore';
 import { firestore } from './clientApp';
 
-const getUserData = async (uid) => {
+const getUserData = async (uid, setState = 0) => {
   const userData = await getDoc(doc(firestore, 'users', uid));
-  return userData;
+  if (setState) {
+    setState(userData.data());
+  } else {
+    return userData.data();
+  }
 };
 
 export default getUserData;

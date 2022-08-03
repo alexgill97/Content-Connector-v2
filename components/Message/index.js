@@ -22,7 +22,7 @@ const MessageContainer = ({ currentUser, selectedUser, setSelectedUser }) => {
       currentUser > selectedUser.uid
         ? `${currentUser + selectedUser.uid}`
         : `${selectedUser.uid + currentUser}`;
-
+    setMessageId(msgId);
     //Get messages between current user and selected user
     const msgsRef = collection(firestore, 'messages', msgId, 'chat');
     const messagesQuery = query(msgsRef, orderBy('createdAt', 'asc'));

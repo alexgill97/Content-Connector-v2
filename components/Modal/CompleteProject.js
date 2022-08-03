@@ -1,25 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import setUserRating from '../../firebase/setUserRating';
 import styles from '../../styles/modal.module.scss';
 
-const CompletedProject = ({ uid }) => {
+const CompletedProject = ({ userData, creatorUid }) => {
   const [open, setOpen] = useState(false);
   const [projectRating, setProjectRating] = useState(0);
+
   const [review, setReview] = useState('');
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   const submitRating = (e) => {
-    // e.preventDefault();
-    setUserRating(uid, projectRating);
+    e.preventDefault();
+
+    setUserRating(creatorUid, projectRating, review);
     setOpen(false);
   };
   return (
     <div>
-      {!open && <div onClick={setOpen(true)}>Complete Project</div>}
+      {!open && (
+        <div onClick={() => setOpen(true)}>
+          <button>Complete Project</button>
+        </div>
+      )}
       {open && (
         <div>
           <div className={styles.overlay}></div>
           <div className={styles.modal_container}>
-            <form action="">
+            <form onSubmit={handleSubmit} action="">
               <label htmlFor="">Rating</label>
               <input
                 type="number"
@@ -33,7 +43,7 @@ const CompletedProject = ({ uid }) => {
                 onChange={(e) => setReview(e.target.value)}
               ></textarea>
 
-              <button onClick={submitRating(uid, projectRating)}>Rating</button>
+              <button onClick={submitRating}>Rating</button>
             </form>
           </div>
         </div>

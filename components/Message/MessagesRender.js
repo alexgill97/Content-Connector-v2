@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import MessageItem from './MessageItem';
 import ProjectItem from './ProjectItem';
 
 const MessagesRender = ({ messages, messageId, currentUser }) => {
+  const [selectedUserDetails, setSelectedUserDetails] = useState();
   const scroll = useRef(null);
 
   useEffect(() => {

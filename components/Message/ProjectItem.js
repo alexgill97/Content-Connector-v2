@@ -31,7 +31,9 @@ const ProjectItem = ({ message, messageId }) => {
       Offer Receieved
       <h5>{projectTitle}</h5>
       <p>{from}</p>
-      <p>{completedBy}</p>
+      {completedBy && (
+        <p>Complete by: {completedBy.toDate().toLocaleDateString('en-US')}</p>
+      )}
       <p>Offer: ${projectOffer}</p>
       <p>Project Outline:</p>
       <p>{text}</p>

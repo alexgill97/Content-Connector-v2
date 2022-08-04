@@ -9,13 +9,13 @@ const MessagesRender = ({ messages, messageId, currentUser }) => {
   useEffect(() => {
     return scroll.current.scrollIntoView({ behaviour: 'auto' });
   }, [messages]);
-
+  console.log(messages);
   return (
     <>
       {messages.map((message) =>
         message.projectTitle ? (
           <ProjectItem
-            key={message.createdAt}
+            key={message.createdAt.toDate()}
             message={message}
             messageId={messageId}
           />

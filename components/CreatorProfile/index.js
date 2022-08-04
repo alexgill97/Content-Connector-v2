@@ -42,7 +42,7 @@ const index = ({ profile }) => {
           )}
           {provileNav === 'portfolio' && <Portfolio uid={uid} />}
 
-          {provileNav === 'reviews' && <Reviews />}
+          {provileNav === 'reviews' && <Reviews uid={uid} />}
         </div>
       </div>
     </div>

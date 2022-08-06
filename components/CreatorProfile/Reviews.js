@@ -1,24 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../../styles/creator_profile.module.scss';
 import getUserReviews from '../../firebase/getUserReviews';
 
 const Reviews = ({ uid }) => {
+  const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    getUserReviews(uid);
+    getUserReviews(uid, setReviews);
   }, []);
+  console.log(reviews);
 
   return (
     <div className={styles.interface_reviews}>
-      {/* {reviews.map(({ overview, rating, date, feedback }) => (
+      {reviews?.map(({ projectOutline, rating, completedAt, reviewText }) => (
         <div className={styles.review_item}>
-          <h5>{overview}</h5>
+          <h5>{projectOutline}</h5>
           <div className={styles.review_sub_info}>
             <p>{rating}</p>
-            <p className={styles.date}>{date}</p>
+            <p className={styles.date}>
+              {completedAt.toDate().toLocaleDateString('en-US')}
+            </p>
           </div>
-          <div className={styles.feedback}>{feedback}</div>
+          <div className={styles.feedback}>{reviewText}</div>
         </div>
-      ))} */}
+      ))}
     </div>
   );
 };

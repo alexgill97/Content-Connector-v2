@@ -2,7 +2,13 @@ import { doc, updateDoc, addDoc, setDoc, collection } from 'firebase/firestore';
 import { firestore } from './clientApp';
 import getUserData from './getUserData';
 
-const setUserRating = async (uid, projectTitle, projectRating, reviewText) => {
+const setUserRating = async (
+  uid,
+  projectTitle,
+  projectRating,
+  reviewText,
+  projectOutline
+) => {
   const { completedProjects, rating } = await getUserData(uid);
   const ratingToNumber = Number(projectRating);
   const projectAverageTotal = rating * completedProjects;
@@ -25,6 +31,8 @@ const setUserRating = async (uid, projectTitle, projectRating, reviewText) => {
     completedAt: Timestamp.fromDate(new Date()),
     projectTitle,
     reviewText,
+    projectOutline,
+    anonymous,
   });
 };
 

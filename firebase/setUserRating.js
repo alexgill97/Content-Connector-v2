@@ -32,7 +32,6 @@ const setUserRating = async (
     projectTitle,
     reviewText,
     projectOutline,
-    anonymous,
   });
 };
 

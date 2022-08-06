@@ -3,7 +3,7 @@ import CreateProject from '../Modal/CreateProject';
 import Message from '../Message';
 import styles from '../../styles/creator_profile.module.scss';
 
-const Header = ({ currentUser, profile, username, city }) => {
+const Header = ({ currentUser, profile, username, city, rating }) => {
   const [open, setOpen] = useState(false);
   console.log(profile);
   return (
@@ -24,7 +24,7 @@ const Header = ({ currentUser, profile, username, city }) => {
           </div>
           <div className={styles.header_user_rating}>
             <p>Rating</p>
-            <p>4.7 X X X X X</p>
+            <p>{rating.toPrecision(2)} X X X X X</p>
           </div>
           <div className={styles.header_buttons}>
             <CreateProject currentUser={currentUser} profile={profile} set />

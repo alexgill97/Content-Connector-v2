@@ -12,14 +12,23 @@ const index = ({ profile }) => {
   const { userData, currentUser } = useContext(AuthContext);
 
   const [provileNav, setprovileNav] = useState('portfolio');
-  const { avatar, city, description, username, uid } = profile;
+  console.log(profile);
+  const {
+    avatar,
+    city,
+    description,
+    username,
+    uid,
+    completedProjects,
+    rating,
+  } = profile;
 
   return (
     <div className={styles.creator_profile_container}>
       <div className={styles.profile_left}>
         <img className={styles.profile_avatar} src={avatar} alt="" />
         <UploadAvatar currentUser={currentUser} />
-        <ProfileDetails />
+        <ProfileDetails completedProjects={completedProjects} />
       </div>
       <div className={styles.profile_main}>
         <div className={styles.profile_header}>
@@ -28,6 +37,7 @@ const index = ({ profile }) => {
             profile={profile}
             username={username}
             city={city}
+            rating={rating}
           />
         </div>
         <div className={styles.profile_interface}>

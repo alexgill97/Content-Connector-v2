@@ -7,6 +7,7 @@ const PortfolioList = ({
   portfolios,
   selectedPortolio,
   setSelectedPortfolio,
+  userSelf,
 }) => {
   return (
     <>
@@ -19,10 +20,12 @@ const PortfolioList = ({
         />
       ))}
 
-      <div>
-        <CreatePortfolio />
-        <button>Delete</button>
-      </div>
+      {userSelf && (
+        <div>
+          <CreatePortfolio />
+          <button>Delete</button>
+        </div>
+      )}
     </>
   );
 };

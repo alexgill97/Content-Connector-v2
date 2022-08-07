@@ -5,7 +5,7 @@ import getUserPortfolios from '../../firebase/getUserPortfolio';
 import Carousel from '../Carousel';
 import PortfolioList from './PortfolioList';
 
-const Portfolio = ({ uid }) => {
+const Portfolio = ({ uid, userSelf }) => {
   const [selectedPortolio, setSelectedPortfolio] = useState({});
   const [portfolios, setPortfolios] = useState([]);
 
@@ -28,6 +28,7 @@ const Portfolio = ({ uid }) => {
           portfolios={portfolios}
           selectedPortolio={selectedPortolio}
           setSelectedPortfolio={setSelectedPortfolio}
+          userSelf={userSelf}
         />
       </div>
       <div className={styles.portfolio_render}>

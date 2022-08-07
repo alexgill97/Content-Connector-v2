@@ -24,7 +24,11 @@ const Header = ({ currentUser, profile, username, city, rating }) => {
           </div>
           <div className={styles.header_user_rating}>
             <p>Rating</p>
-            <p>{rating.toPrecision(2)} X X X X X</p>
+            {rating ? (
+              <p>{rating.toPrecision(2)} X X X X X</p>
+            ) : (
+              <p>No projects completed</p>
+            )}
           </div>
           <div className={styles.header_buttons}>
             <CreateProject currentUser={currentUser} profile={profile} set />

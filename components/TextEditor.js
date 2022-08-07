@@ -18,7 +18,7 @@ const Editor = dynamic(
   }
 );
 
-const TextEditor = ({ uid }) => {
+const TextEditor = ({ uid, userSelf }) => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const { userData, currentUser } = useContext(AuthContext);
 
@@ -47,8 +47,8 @@ const TextEditor = ({ uid }) => {
   return (
     <div>
       <Editor
-        readOnly={currentUser !== uid && true}
-        toolbarClassName={currentUser !== uid && styles.toolbar}
+        readOnly={!userSelf}
+        toolbarClassName={!userSelf && styles.toolbar}
         editorState={editorState}
         onEditorStateChange={onEditorStateChange}
         editorClassName={styles.editor}

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../firebase/context';
 import styles from '../../styles/creator_profile.module.scss';
 import Header from './Header';
@@ -12,7 +12,8 @@ const index = ({ profile }) => {
   const { userData, currentUser } = useContext(AuthContext);
 
   const [provileNav, setprovileNav] = useState('portfolio');
-  console.log(profile);
+  const [userSelf, setUserSelf] = useState(false);
+
   const {
     avatar,
     city,
@@ -23,11 +24,17 @@ const index = ({ profile }) => {
     rating,
   } = profile;
 
+  useEffect(() => {
+    if (profile.uid === currentUser) {
+      setUserSelf(true);
+    }
+  }, []);
+
   return (
     <div className={styles.creator_profile_container}>
       <div className={styles.profile_left}>
         <img className={styles.profile_avatar} src={avatar} alt="" />
-        <UploadAvatar currentUser={currentUser} />
+        {userSelf && <UploadAvatar currentUser={currentUser} />}
         <ProfileDetails completedProjects={completedProjects} />
       </div>
       <div className={styles.profile_main}>
@@ -48,9 +55,15 @@ const index = ({ profile }) => {
           </div>
 
           {provileNav === 'description' && (
-            <Description description={description} uid={uid} />
+            <Description
+              description={description}
+              uid={uid}
+              userSelf={userSelf}
+            />
           )}
-          {provileNav === 'portfolio' && <Portfolio uid={uid} />}
+          {provileNav === 'portfolio' && (
+            <Portfolio uid={uid} userSelf={userSelf} />
+          )}
 
           {provileNav === 'reviews' && <Reviews uid={uid} />}
         </div>

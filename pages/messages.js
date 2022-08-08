@@ -11,6 +11,7 @@ import Link from 'next/link';
 import Navigation from '../components/Message/Navigation';
 
 import getCreatorProjects from '../firebase/getCreatorProjects';
+import getBusinessProjects from '../firebase/getBusinessProjects';
 
 const Messages = ({ users, creators, businesses }) => {
   const [selectedUser, setSelectedUser] = useState(null);
@@ -20,6 +21,7 @@ const Messages = ({ users, creators, businesses }) => {
 
   useEffect(() => {
     if (userData.isBusiness) {
+      getBusinessProjects(currentUser, setUserProjects);
     } else {
       getCreatorProjects(currentUser, setUserProjects);
     }

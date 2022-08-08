@@ -18,6 +18,7 @@ const ProjectItem = ({ message, messageId }) => {
     completed,
     createdAt,
     completedBy,
+    completedAt,
     accepted,
   } = message;
 
@@ -41,6 +42,9 @@ const ProjectItem = ({ message, messageId }) => {
       <p>{from}</p>
       {completedBy && (
         <p>Complete by: {completedBy.toDate().toLocaleDateString('en-US')}</p>
+      )}
+      {completedAt && (
+        <p>Complete on: {completedAt.toDate().toLocaleDateString('en-US')}</p>
       )}
       <p>Offer: ${projectOffer}</p>
       <p>Project Outline:</p>

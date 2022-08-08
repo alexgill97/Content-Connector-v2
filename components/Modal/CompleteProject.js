@@ -4,7 +4,7 @@ import styles from '../../styles/modal.module.scss';
 
 const CompletedProject = ({
   userData,
-  id,
+  projectId,
   projectTitle,
   projectOffer,
   creatorUid,
@@ -24,7 +24,7 @@ const CompletedProject = ({
     setUserRating(
       creatorUid,
       messageId,
-      id,
+      projectId,
       projectTitle,
       projectRating,
       review

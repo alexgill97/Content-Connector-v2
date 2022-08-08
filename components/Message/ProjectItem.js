@@ -11,7 +11,7 @@ const ProjectItem = ({ message, messageId }) => {
   const {
     to,
     from,
-    id,
+    projectId,
     projectTitle,
     projectOffer,
     text,
@@ -23,11 +23,11 @@ const ProjectItem = ({ message, messageId }) => {
   } = message;
 
   const acceptOffer = async () => {
-    await updateDoc(doc(firestore, 'messages', messageId, 'chat', id), {
+    await updateDoc(doc(firestore, 'messages', messageId, 'chat', projectId), {
       accepted: true,
       acceptedAt: Timestamp.fromDate(new Date()),
     });
-    await updateDoc(doc(firestore, 'projects', id), {
+    await updateDoc(doc(firestore, 'projects', projectId), {
       accepted: true,
       acceptedAt: Timestamp.fromDate(new Date()),
     });
@@ -55,7 +55,7 @@ const ProjectItem = ({ message, messageId }) => {
       {accepted && !completed && userData.isBusiness && (
         <CompleteProject
           userData={userData}
-          id={id}
+          projectId={projectId}
           creatorUid={to}
           messageId={messageId}
           projectTitle={projectTitle}

@@ -8,22 +8,32 @@ const ProjectList = ({ projects, setSelectedUser }) => {
 
   return (
     <div>
-      {projects.map(({ projectTitle, creator, business, accepted }) => (
-        <div
-          onClick={() =>
-            currentUser === creator
-              ? getUserData(business, setSelectedUser)
-              : getUserData(creator, setSelectedUser)
-          }
-        >
-          <p>{projectTitle}</p>
-          <div>
-            {!accepted && !completed && <p>Offer Receieved</p>}
-            {accepted && !completed && <p>Project in Progress</p>}
-            {accepted && completed && <p>Project Completed</p>}
+      {projects.map(
+        ({
+          projectTitle,
+          creator,
+          business,
+          accepted,
+          completed,
+          projectId,
+        }) => (
+          <div
+            key={projectId}
+            onClick={() =>
+              currentUser === creator
+                ? getUserData(business, setSelectedUser)
+                : getUserData(creator, setSelectedUser)
+            }
+          >
+            <p>{projectTitle}</p>
+            <div>
+              {!accepted && !completed && <p>Offer Receieved</p>}
+              {accepted && !completed && <p>Project in Progress</p>}
+              {accepted && completed && <p>Project Completed</p>}
+            </div>
           </div>
-        </div>
-      ))}
+        )
+      )}
     </div>
   );
 };

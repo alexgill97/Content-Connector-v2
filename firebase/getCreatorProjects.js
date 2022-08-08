@@ -1,15 +1,15 @@
-import { collection, getDocs, where } from 'firebase/firestore';
+import { collection, query, getDocs, where } from 'firebase/firestore';
 import { firestore } from './clientApp';
 
 const getCreatorProjects = async (uid, setUserProjects) => {
   const projectSnapshots = await getDocs(
-    collection(firestore, 'projects'),
-    where('creator', '==', uid)
+    query(collection(firestore, 'projects'), where('creator', '==', uid))
   );
   const projects = [];
   projectSnapshots.forEach((project) => {
     projects.push(project.data());
   });
+  console.log(projects);
   setUserProjects(projects);
 };
 

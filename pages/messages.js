@@ -1,16 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../firebase/context';
 import { firestore } from '../firebase/clientApp';
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  onSnapshot,
-  collectionGroup,
-  orderBy,
-  doc,
-} from 'firebase/firestore';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 import styles from '../styles/messages.module.scss';
 
@@ -18,6 +9,8 @@ import MessageContainer from '../components/Message';
 
 import Link from 'next/link';
 import Navigation from '../components/Message/Navigation';
+
+import getCreatorProjects from '../firebase/getCreatorProjects';
 
 const Messages = ({ users, creators, businesses }) => {
   const [selectedUser, setSelectedUser] = useState(null);
@@ -28,8 +21,9 @@ const Messages = ({ users, creators, businesses }) => {
   useEffect(() => {
     if (userData.isBusiness) {
     } else {
+      getCreatorProjects(currentUser, setUserProjects);
     }
-  });
+  }, []);
 
   return (
     <main className={styles.messages_main}>
@@ -45,6 +39,7 @@ const Messages = ({ users, creators, businesses }) => {
       <Navigation
         creators={creators}
         businesses={businesses}
+        projects={userProjects}
         selectedCategory={selectedCategory}
         setSelectedUser={setSelectedUser}
         setSelectedCategory={setSelectedCategory}

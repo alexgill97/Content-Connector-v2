@@ -15,17 +15,17 @@ const CreateProject = ({ currentUser, profile }) => {
 
   const createProject = async (e) => {
     e.preventDefault();
-    const projectId =
+    const messagesId =
       currentUser > profile.uid
         ? `${currentUser + profile.uid}`
         : `${profile.uid + currentUser}`;
     const creator = profile.isBusiness ? currentUser : profile.uid;
     const business = profile.isBusiness ? profile.uid : currentUser;
 
-    const docRef = doc(collection(firestore, 'messages', projectId, 'chat'));
+    const docRef = doc(collection(firestore, 'messages', messagesId, 'chat'));
 
     await setDoc(docRef, {
-      id: docRef.id,
+      projectId: docRef.id,
       text: projectOutline,
       from: currentUser,
       to: profile.uid,
@@ -37,9 +37,10 @@ const CreateProject = ({ currentUser, profile }) => {
       completed: false,
     });
     await setDoc(doc(firestore, 'projects', docRef.id), {
-      id: docRef.id,
+      projectId: docRef.id,
       creator,
       business,
+      messagesId,
       projectTitle,
       projectOffer,
       text: projectOutline,

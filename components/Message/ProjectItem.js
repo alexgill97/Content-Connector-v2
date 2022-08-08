@@ -11,6 +11,7 @@ const ProjectItem = ({ message, messageId }) => {
   const {
     to,
     from,
+    id,
     projectTitle,
     projectOffer,
     text,
@@ -20,10 +21,14 @@ const ProjectItem = ({ message, messageId }) => {
   } = message;
 
   const acceptOffer = async () => {
-    await updateDoc(
-      doc(firestore, 'messages', messageId, 'chat', projectTitle),
-      { accepted: true, acceptedAt: Timestamp.fromDate(new Date()) }
-    );
+    await updateDoc(doc(firestore, 'messages', messageId, 'chat', id), {
+      accepted: true,
+      acceptedAt: Timestamp.fromDate(new Date()),
+    });
+    await updateDoc(doc(firestore, 'projects', id), {
+      accepted: true,
+      acceptedAt: Timestamp.fromDate(new Date()),
+    });
   };
 
   return (

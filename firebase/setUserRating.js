@@ -1,4 +1,12 @@
-import { doc, updateDoc, addDoc, setDoc, collection } from 'firebase/firestore';
+import {
+  doc,
+  updateDoc,
+  addDoc,
+  setDoc,
+  collection,
+  Timestamp,
+} from 'firebase/firestore';
+
 import { firestore } from './clientApp';
 import getUserData from './getUserData';
 

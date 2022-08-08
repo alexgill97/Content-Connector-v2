@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../../styles/messages.module.scss';
+import ProjectList from './ProjectList';
 import UserList from './UserList';
 
 const Navigation = ({
@@ -24,7 +25,9 @@ const Navigation = ({
       {selectedCategory === 'Businesses' && (
         <UserList users={businesses} setSelectedUser={setSelectedUser} />
       )}
-      {selectedCategory === 'Projects' && <UserList />}
+      {selectedCategory === 'Projects' && (
+        <ProjectList projects={projects} setSelectedUser={setSelectedUser} />
+      )}
     </div>
   );
 };

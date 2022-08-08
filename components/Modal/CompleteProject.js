@@ -4,13 +4,14 @@ import styles from '../../styles/modal.module.scss';
 
 const CompletedProject = ({
   userData,
+  id,
   projectTitle,
   projectOffer,
   creatorUid,
+  messageId,
 }) => {
   const [open, setOpen] = useState(false);
   const [projectRating, setProjectRating] = useState(0);
-
   const [review, setReview] = useState('');
 
   const handleSubmit = (e) => {
@@ -20,7 +21,14 @@ const CompletedProject = ({
   const submitRating = (e) => {
     e.preventDefault();
 
-    setUserRating(creatorUid, projectRating, review);
+    setUserRating(
+      creatorUid,
+      messageId,
+      id,
+      projectTitle,
+      projectRating,
+      review
+    );
     setOpen(false);
   };
   return (

@@ -15,6 +15,7 @@ const ProjectItem = ({ message, messageId }) => {
     projectTitle,
     projectOffer,
     text,
+    completed,
     createdAt,
     completedBy,
     accepted,
@@ -33,7 +34,9 @@ const ProjectItem = ({ message, messageId }) => {
 
   return (
     <div className={styles.project_item}>
-      Offer Receieved
+      {!accepted && !completed && <p>Offer Receieved</p>}
+      {accepted && !completed && <p>Project in Progress</p>}
+      {accepted && completed && <p>Project Completed</p>}
       <h5>{projectTitle}</h5>
       <p>{from}</p>
       {completedBy && (
@@ -45,10 +48,12 @@ const ProjectItem = ({ message, messageId }) => {
       {!accepted && !userData.isBusiness && (
         <button onClick={acceptOffer}>Accept</button>
       )}
-      {accepted && userData.isBusiness && (
+      {accepted && !completed && userData.isBusiness && (
         <CompleteProject
           userData={userData}
+          id={id}
           creatorUid={to}
+          messageId={messageId}
           projectTitle={projectTitle}
           projectOffer={projectOffer}
         />

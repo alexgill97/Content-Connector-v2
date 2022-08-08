@@ -12,10 +12,11 @@ import getUserData from './getUserData';
 
 const setUserRating = async (
   uid,
+  messageId,
+  id,
   projectTitle,
   projectRating,
-  reviewText,
-  projectOutline
+  reviewText
 ) => {
   const { completedProjects, rating } = await getUserData(uid);
   const ratingToNumber = Number(projectRating);
@@ -29,7 +30,11 @@ const setUserRating = async (
     rating: newRating,
     completedProjects: newCompletedProjects,
   });
-  await updateDoc(doc(firestore, 'users', uid, 'chat', projectTitle), {
+  await updateDoc(doc(firestore, 'messages', messageId, 'chat', id), {
+    completedAt: Timestamp.fromDate(new Date()),
+    completed: true,
+  });
+  await updateDoc(doc(firestore, 'projects', id), {
     completedAt: Timestamp.fromDate(new Date()),
     completed: true,
   });
@@ -39,7 +44,6 @@ const setUserRating = async (
     completedAt: Timestamp.fromDate(new Date()),
     projectTitle,
     reviewText,
-    projectOutline,
   });
 };
 

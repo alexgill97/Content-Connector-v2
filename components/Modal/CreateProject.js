@@ -1,4 +1,4 @@
-import { setDoc, addDoc, collection, doc, Timestamp } from 'firebase/firestore';
+import { setDoc, collection, addDoc, doc, Timestamp } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { firestore } from '../../firebase/clientApp';
 import styles from '../../styles/create_project.module.scss';
@@ -22,18 +22,10 @@ const CreateProject = ({ currentUser, profile }) => {
     const creator = profile.isBusiness ? currentUser : profile.uid;
     const business = profile.isBusiness ? profile.uid : currentUser;
 
-    await setDoc(doc(firestore, 'projects', projectId), {
-      creator,
-      business,
-      projectTitle,
-      projectOffer,
-      projectOutline,
-      createdAt: Timestamp.fromDate(new Date()),
-      completedBy,
-      accepted: false,
-    });
+    const docRef = doc(collection(firestore, 'messages', projectId, 'chat'));
 
-    await addDoc(collection(firestore, 'messages', projectId, 'chat'), {
+    await setDoc(docRef, {
+      id: docRef.id,
       text: projectOutline,
       from: currentUser,
       to: profile.uid,
@@ -41,6 +33,18 @@ const CreateProject = ({ currentUser, profile }) => {
       completedBy,
       projectTitle,
       projectOffer,
+      accepted: false,
+      completed: false,
+    });
+    await setDoc(doc(firestore, 'projects', docRef.id), {
+      id: docRef.id,
+      creator,
+      business,
+      projectTitle,
+      projectOffer,
+      text: projectOutline,
+      createdAt: Timestamp.fromDate(new Date()),
+      completedBy,
       accepted: false,
       completed: false,
     });

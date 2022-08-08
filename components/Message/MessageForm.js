@@ -12,7 +12,7 @@ const MessageForm = ({ currentUser, selectedUser, scroll }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(selectedUser);
     const id =
       currentUser > selectedUser.uid
         ? `${currentUser + selectedUser.uid}`

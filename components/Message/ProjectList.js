@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../firebase/context';
+import getUserData from '../../firebase/getUserData';
 
 const ProjectList = ({ projects, setSelectedUser }) => {
   console.log(projects);
@@ -7,13 +8,16 @@ const ProjectList = ({ projects, setSelectedUser }) => {
 
   return (
     <div>
-      {projects.map(({ projectTitle, creator, business }) => (
+      {projects.map(({ projectTitle, creator, business, accepted }) => (
         <div
           onClick={() =>
-            setSelectedUser(currentUser === creator ? business : creator)
+            currentUser === creator
+              ? getUserData(business, setSelectedUser)
+              : getUserData(creator, setSelectedUser)
           }
         >
-          {projectTitle}
+          <p>{projectTitle}</p>
+          <p>Status: {accepted ? 'On Going' : 'pending'}</p>
         </div>
       ))}
     </div>

@@ -5,6 +5,7 @@ import UserList from './UserList';
 const Navigation = ({
   creators,
   businesses,
+  projects,
   setSelectedUser,
   selectedCategory,
   setSelectedCategory,

@@ -28,7 +28,7 @@ const MessageContainer = ({ currentUser, selectedUser, setSelectedUser }) => {
     const messagesQuery = query(msgsRef, orderBy('createdAt', 'asc'));
     onSnapshot(messagesQuery, (messagesSnapshot) => {
       let msgs = [];
-      messagesSnapshot.forEach((doc) => {
+      messagesSnapshot.forEach((doc, index) => {
         msgs.push(doc.data());
       });
       setMessages(msgs);

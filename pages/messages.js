@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../firebase/context';
 import { firestore } from '../firebase/clientApp';
 import {
@@ -7,12 +7,13 @@ import {
   where,
   getDocs,
   onSnapshot,
+  collectionGroup,
+  orderBy,
+  doc,
 } from 'firebase/firestore';
 
 import styles from '../styles/messages.module.scss';
 
-import MessageForm from '../components/Message/MessageForm';
-import UserList from '../components/Message/UserList';
 import MessageContainer from '../components/Message';
 
 import Link from 'next/link';
@@ -21,7 +22,14 @@ import Navigation from '../components/Message/Navigation';
 const Messages = ({ users, creators, businesses }) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('Creators');
+  const [userProjects, setUserProjects] = useState([]);
   const { currentUser, userData } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (userData.isBusiness) {
+    } else {
+    }
+  });
 
   return (
     <main className={styles.messages_main}>
@@ -71,11 +79,8 @@ export async function getStaticProps() {
   const businessesSnapshot = await getDocs(businessesQuery);
   const businesses = [];
   businessesSnapshot.forEach((doc) => {
-    console.log(doc.id, '=>', doc.data());
     businesses.push(doc.data());
   });
-
-  //Get Users Projects from Firestore
 
   return {
     props: {

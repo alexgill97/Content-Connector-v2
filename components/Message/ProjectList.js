@@ -17,7 +17,11 @@ const ProjectList = ({ projects, setSelectedUser }) => {
           }
         >
           <p>{projectTitle}</p>
-          <p>Status: {accepted ? 'On Going' : 'pending'}</p>
+          <div>
+            {!accepted && !completed && <p>Offer Receieved</p>}
+            {accepted && !completed && <p>Project in Progress</p>}
+            {accepted && completed && <p>Project Completed</p>}
+          </div>
         </div>
       ))}
     </div>

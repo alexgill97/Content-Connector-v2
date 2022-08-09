@@ -1,5 +1,6 @@
 import { setDoc, collection, addDoc, doc, Timestamp } from 'firebase/firestore';
 import React, { useState } from 'react';
+
 import { firestore } from '../../firebase/clientApp';
 import styles from '../../styles/create_project.module.scss';
 import DatePicker from 'react-datepicker';
@@ -7,11 +8,13 @@ import Geocode from 'react-geocode';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-const CreateProject = ({ currentUser, profile }) => {
+const CreateProject = ({ currentUser, userData, profile }) => {
+  const { city, address } = userData;
   const [open, setOpen] = useState(false);
   const [projectTitle, setProjectTitle] = useState('');
   const [projectOffer, setProjectOffer] = useState(0);
-  const [projectLocation, setProjectLocation] = useState();
+  const [projectCity, setProjectCity] = useState(city);
+  const [projectLocation, setProjectLocation] = useState(address);
   const [projectOutline, setProjectOutline] = useState('');
   const [completedBy, setCompletedBy] = useState(new Date());
 
@@ -54,6 +57,7 @@ const CreateProject = ({ currentUser, profile }) => {
       projectOffer,
       accepted: false,
       completed: false,
+      city: projectCity,
       projectLocation,
       projectCoordinates,
     });
@@ -69,6 +73,7 @@ const CreateProject = ({ currentUser, profile }) => {
       completedBy,
       accepted: false,
       completed: false,
+      city: projectCity,
       projectLocation,
       projectCoordinates,
     });
@@ -120,8 +125,15 @@ const CreateProject = ({ currentUser, profile }) => {
                 selected={completedBy}
                 onChange={(date) => setCompletedBy(date)}
               />
-              {/* Project Location */}
-              <label htmlFor="">Project Location</label>
+              {/* Project City */}
+              <label htmlFor="">Project City</label>
+              <input
+                type="text"
+                value={projectCity}
+                onChange={(e) => setProjectCity(e.target.value)}
+              />
+              {/* Project Address */}
+              <label htmlFor="">Project Address</label>
               <input
                 type="address"
                 value={projectLocation}

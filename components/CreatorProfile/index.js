@@ -41,6 +41,7 @@ const index = ({ profile }) => {
         <div className={styles.profile_header}>
           <Header
             currentUser={currentUser}
+            userData={userData}
             profile={profile}
             username={username}
             city={city}

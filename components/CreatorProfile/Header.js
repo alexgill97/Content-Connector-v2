@@ -3,7 +3,7 @@ import CreateProject from '../Modal/CreateProject';
 import Message from '../Message';
 import styles from '../../styles/creator_profile.module.scss';
 
-const Header = ({ currentUser, profile, username, city, rating }) => {
+const Header = ({ currentUser, userData, profile, username, city, rating }) => {
   const [open, setOpen] = useState(false);
   console.log(profile);
   return (
@@ -31,7 +31,11 @@ const Header = ({ currentUser, profile, username, city, rating }) => {
             )}
           </div>
           <div className={styles.header_buttons}>
-            <CreateProject currentUser={currentUser} profile={profile} set />
+            <CreateProject
+              currentUser={currentUser}
+              userData={userData}
+              profile={profile}
+            />
             <button
               className={styles.header_message_button}
               onClick={() => setOpen(true)}

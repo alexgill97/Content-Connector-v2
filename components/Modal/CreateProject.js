@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { firestore } from '../../firebase/clientApp';
 import styles from '../../styles/create_project.module.scss';
 import DatePicker from 'react-datepicker';
+import Geocode from 'react-geocode';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -10,8 +11,13 @@ const CreateProject = ({ currentUser, profile }) => {
   const [open, setOpen] = useState(false);
   const [projectTitle, setProjectTitle] = useState('');
   const [projectOffer, setProjectOffer] = useState(0);
+  const [projectLocation, setProjectLocation] = useState();
   const [projectOutline, setProjectOutline] = useState('');
   const [completedBy, setCompletedBy] = useState(new Date());
+
+  Geocode.setApiKey('AIzaSyDoeEVfzN1WC3vwiDlF7HemOu35NQao-kY');
+  Geocode.setLanguage('en');
+  Geocode.setRegion('na');
 
   const createProject = async (e) => {
     e.preventDefault();
@@ -21,6 +27,19 @@ const CreateProject = ({ currentUser, profile }) => {
         : `${profile.uid + currentUser}`;
     const creator = profile.isBusiness ? currentUser : profile.uid;
     const business = profile.isBusiness ? profile.uid : currentUser;
+
+    let projectCoordinates = {};
+
+    Geocode.fromAddress(projectLocation).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        projectCoordinates = { lat: lat, lng: lng };
+        console.log(projectCoordinates);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
 
     const docRef = doc(collection(firestore, 'messages', messagesId, 'chat'));
 
@@ -35,6 +54,8 @@ const CreateProject = ({ currentUser, profile }) => {
       projectOffer,
       accepted: false,
       completed: false,
+      projectLocation,
+      projectCoordinates,
     });
     await setDoc(doc(firestore, 'projects', docRef.id), {
       projectId: docRef.id,
@@ -48,6 +69,8 @@ const CreateProject = ({ currentUser, profile }) => {
       completedBy,
       accepted: false,
       completed: false,
+      projectLocation,
+      projectCoordinates,
     });
 
     setOpen(false);
@@ -74,15 +97,16 @@ const CreateProject = ({ currentUser, profile }) => {
               onSubmit={createProject}
               action="submit"
             >
-              <label htmlFor="">Describe Your Project</label>
+              {/* Project Title */}
+              <label htmlFor="">Project Title</label>
               <input
                 value={projectTitle}
                 onChange={(e) => setProjectTitle(e.target.value)}
                 type="text"
               />
+              {/* Project Budget */}
               <label htmlFor="">Project Budget</label>
               <label htmlFor="">
-                $
                 <input
                   className={styles.budget_input_min}
                   value={projectOffer}
@@ -90,11 +114,21 @@ const CreateProject = ({ currentUser, profile }) => {
                   type="number"
                 />
               </label>
+              {/* Project Completion Date */}
               <label htmlFor="">Completed By</label>
               <DatePicker
                 selected={completedBy}
                 onChange={(date) => setCompletedBy(date)}
               />
+              {/* Project Location */}
+              <label htmlFor="">Project Location</label>
+              <input
+                type="address"
+                value={projectLocation}
+                onChange={(e) => setProjectLocation(e.target.value)}
+              />
+
+              {/* Project Outline */}
               <label htmlFor="">Outline Your Project</label>
               <textarea
                 value={projectOutline}

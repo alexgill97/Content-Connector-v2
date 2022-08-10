@@ -6,7 +6,13 @@ import MessageForm from './MessageForm';
 import MessagesRender from './MessagesRender';
 import getUserMessages from '../../firebase/getUserMessages';
 
-const MessageContainer = ({ currentUser, selectedUser, setSelectedUser }) => {
+const MessageContainer = ({
+  currentUser,
+  selectedUserId,
+  selectedUserAvatar,
+  selectedUserUsername,
+  setSelectedUser,
+}) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [messageId, setMessageId] = useState('');
@@ -14,16 +20,20 @@ const MessageContainer = ({ currentUser, selectedUser, setSelectedUser }) => {
   useEffect(() => {
     getUserMessages(
       currentUser,
-      selectedUser.uid,
+      selectedUserId,
       setMessages,
       setMessageId,
       setLoading
     );
-  }, [selectedUser]);
+  }, [selectedUserId]);
 
   return (
     <div className={styles.messages_render_container}>
-      <Header selectedUser={selectedUser} setSelectedUser={setSelectedUser} />
+      <Header
+        avatar={selectedUserAvatar}
+        username={selectedUserUsername}
+        setSelectedUser={setSelectedUser}
+      />
       <div className={styles.messages_render_main}>
         {loading && <p>Loading...</p>}
         {messages && (
@@ -35,7 +45,10 @@ const MessageContainer = ({ currentUser, selectedUser, setSelectedUser }) => {
         )}
       </div>
       <div className={styles.message_form_test}>
-        <MessageForm currentUser={currentUser} selectedUser={selectedUser} />
+        <MessageForm
+          currentUser={currentUser}
+          selectedUserId={selectedUserId}
+        />
       </div>
     </div>
   );

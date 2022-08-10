@@ -26,7 +26,9 @@ const InfoCardList = ({
               <div className={styles.message_container}>
                 <Message
                   currentUser={currentUser}
-                  selectedUser={project}
+                  selectedUser={project.business}
+                  selectedUserAvatar={project.businessAvatar}
+                  selectedUserUsername={project.businessUsername}
                   setSelectedUser={setSelectedUser}
                 />
               </div>

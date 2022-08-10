@@ -6,17 +6,17 @@ import { collection, addDoc, Timestamp, setDoc, doc } from 'firebase/firestore';
 
 import styles from '../../styles/messages.module.scss';
 
-const MessageForm = ({ currentUser, selectedUser, scroll }) => {
+const MessageForm = ({ currentUser, selectedUserId, scroll }) => {
   const [text, setText] = useState('');
   const [img, setImg] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(selectedUser);
+
     const id =
-      currentUser > selectedUser.uid
-        ? `${currentUser + selectedUser.uid}`
-        : `${selectedUser.uid + currentUser}`;
+      currentUser > selectedUserId
+        ? `${currentUser + selectedUserId}`
+        : `${selectedUserId + currentUser}`;
 
     let url;
     if (img) {
@@ -32,7 +32,7 @@ const MessageForm = ({ currentUser, selectedUser, scroll }) => {
     await addDoc(collection(firestore, 'messages', id, 'chat'), {
       text,
       from: currentUser,
-      to: selectedUser.uid,
+      to: selectedUserId,
       createdAt: Timestamp.fromDate(new Date()),
       media: url || '',
     });
@@ -40,7 +40,7 @@ const MessageForm = ({ currentUser, selectedUser, scroll }) => {
     await setDoc(doc(firestore, 'lastMsg', id), {
       text,
       from: currentUser,
-      to: selectedUser.uid,
+      to: selectedUserId,
       createdAt: Timestamp.fromDate(new Date()),
       media: url || '',
       unread: true,

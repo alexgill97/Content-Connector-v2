@@ -6,7 +6,7 @@ import styles from '../../styles/MapComponent.module.scss';
 
 const MapComponent = ({ searchResults }) => {
   const [selectedLocation, setSelectedLocation] = useState({});
-
+  console.log(selectedLocation);
   const coordinates = searchResults.map((result) => ({
     longitude: result.projectCoordinates.lng,
     latitude: result.projectCoordinates.lat,
@@ -34,35 +34,34 @@ const MapComponent = ({ searchResults }) => {
         <div>
           <Marker
             style={{ backgroundColor: 'transparent' }}
-            latitude={result.lat}
-            longitude={result.lng}
+            latitude={result.projectCoordinates.lat}
+            longitude={result.projectCoordinates.lng}
             offsetTop={-50}
             onClick={() => {
               setSelectedLocation(result);
             }}
           >
             <div className={styles.marker}>
-              <img src={result.avatar} alt="" />
+              <img src={result.businessAvatar} alt="" />
             </div>
           </Marker>
-          {selectedLocation.lng === result.lng ? (
+          {selectedLocation?.projectCoordinates?.lng ===
+            result.projectCoordinates.lng && (
             <Popup
               onClose={() => setSelectedLocation({})}
               closeOnClick={false}
-              latitude={result.lat}
-              longitude={result.lng}
+              latitude={result.projectCoordinates.lat}
+              longitude={result.projectCoordinates.lng}
               className={styles.popup}
             >
               <div className={styles.popupdiv}>
-                <img src={result.avatar} />
+                <img src={result.businessAvatar} />
                 <div>
                   <h1>{result.postTitle}</h1>
                   <h3>{result.description}</h3>
                 </div>
               </div>
             </Popup>
-          ) : (
-            false
           )}
         </div>
       ))}

@@ -1,5 +1,5 @@
 import { setDoc, collection, addDoc, doc, Timestamp } from 'firebase/firestore';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { firestore } from '../../firebase/clientApp';
 import styles from '../../styles/create_project.module.scss';
@@ -9,14 +9,14 @@ import Geocode from 'react-geocode';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const CreateProject = ({ currentUser, userData, profile }) => {
-  const { city, address } = userData;
   const [open, setOpen] = useState(false);
   const [projectTitle, setProjectTitle] = useState('');
   const [projectOffer, setProjectOffer] = useState(0);
-  const [projectCity, setProjectCity] = useState(city);
-  const [projectLocation, setProjectLocation] = useState(address);
+  const [projectCity, setProjectCity] = useState(userData.city);
+  const [projectLocation, setProjectLocation] = useState(userData.address);
   const [projectOutline, setProjectOutline] = useState('');
   const [completedBy, setCompletedBy] = useState(new Date());
+  console.log(userData);
 
   Geocode.setApiKey('AIzaSyDoeEVfzN1WC3vwiDlF7HemOu35NQao-kY');
   Geocode.setLanguage('en');
@@ -55,6 +55,7 @@ const CreateProject = ({ currentUser, userData, profile }) => {
       completedBy,
       projectTitle,
       projectOffer,
+      businessAvatar: userData.avatar,
       accepted: false,
       completed: false,
       city: projectCity,
@@ -69,6 +70,7 @@ const CreateProject = ({ currentUser, userData, profile }) => {
       projectTitle,
       projectOffer,
       text: projectOutline,
+      businessAvatar: userData.avatar,
       createdAt: Timestamp.fromDate(new Date()),
       completedBy,
       accepted: false,

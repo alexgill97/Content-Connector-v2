@@ -71,7 +71,8 @@ const CreateProject = ({ currentUser, userData, profile }) => {
     await setDoc(doc(firestore, 'projects', docRef.id), {
       projectId: docRef.id,
       creator,
-      business,
+      businessId: business,
+      businessUsername: profile.username,
       messagesId,
       projectTitle,
       projectOffer,

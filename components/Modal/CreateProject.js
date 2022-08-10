@@ -1,4 +1,10 @@
-import { setDoc, collection, addDoc, doc, Timestamp } from 'firebase/firestore';
+import {
+  setDoc,
+  collection,
+  addDoc,
+  doc,
+  serverTimestamp,
+} from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
 
 import { firestore } from '../../firebase/clientApp';
@@ -51,7 +57,7 @@ const CreateProject = ({ currentUser, userData, profile }) => {
       text: projectOutline,
       from: currentUser,
       to: profile.uid,
-      createdAt: Timestamp.fromDate(new Date()),
+      createdAt: serverTimestamp(),
       completedBy,
       projectTitle,
       projectOffer,
@@ -71,7 +77,7 @@ const CreateProject = ({ currentUser, userData, profile }) => {
       projectOffer,
       text: projectOutline,
       businessAvatar: userData.avatar,
-      createdAt: Timestamp.fromDate(new Date()),
+      createdAt: serverTimestamp(),
       completedBy,
       accepted: false,
       completed: false,

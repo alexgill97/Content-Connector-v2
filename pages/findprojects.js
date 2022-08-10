@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../firebase/context';
 import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../firebase/clientApp';
+import getProjects from '../firebase/getProjects';
 
 //Components
 import MapComponent from '../components/Find_Projects/MapComponent';
@@ -13,6 +14,7 @@ import styles from '../styles/find_projects.module.scss';
 const findprojects = ({ projects }) => {
   const { currentUser, userData } = useContext(AuthContext);
   const [selectedUser, setSelectedUser] = useState();
+
   return (
     <div className={styles.find_projects_container}>
       <main className={styles.find_projects_main}>
@@ -38,11 +40,9 @@ const findprojects = ({ projects }) => {
 export default findprojects;
 
 export async function getStaticProps() {
-  const query = await getDocs(collection(firestore, 'posts'));
-  const projects = [];
-  query.forEach((doc) => {
-    projects.push(doc.data());
-  });
+  const projects = await getProjects('toronto');
+  console.log(projects);
+
   return {
     props: {
       projects,

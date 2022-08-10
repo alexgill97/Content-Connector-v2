@@ -8,8 +8,8 @@ const MapComponent = ({ searchResults }) => {
   const [selectedLocation, setSelectedLocation] = useState({});
 
   const coordinates = searchResults.map((result) => ({
-    longitude: result.lng,
-    latitude: result.lat,
+    longitude: result.projectCoordinates.lng,
+    latitude: result.projectCoordinates.lat,
   }));
 
   const center = getCenter(coordinates);

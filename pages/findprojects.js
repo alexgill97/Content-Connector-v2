@@ -14,7 +14,7 @@ import styles from '../styles/find_projects.module.scss';
 const findprojects = ({ projects }) => {
   const { currentUser, userData } = useContext(AuthContext);
   const [selectedUser, setSelectedUser] = useState();
-
+  console.log(projects);
   return (
     <div className={styles.find_projects_container}>
       <main className={styles.find_projects_main}>

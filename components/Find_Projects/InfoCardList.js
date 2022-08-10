@@ -13,13 +13,13 @@ const InfoCardList = ({
     <div className={styles.infocard_list_container}>
       {projects.map((project) => {
         return (
-          <div onClick={() => setSelectedUser(project.uid)}>
+          <div onClick={() => setSelectedUser(project.business)}>
             <InfoCard
-              key={project.uid}
-              uid={project.uid}
-              avatar={project.avatar}
-              postTitle={project.postTitle}
-              description={project.description}
+              key={project.projectId}
+              uid={project.business}
+              avatar={project.businessAvatar}
+              postTitle={project.projectTitle}
+              description={project.text}
             />
 
             {selectedUser === project.uid && (

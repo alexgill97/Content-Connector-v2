@@ -3,12 +3,26 @@ import styles from '../../styles/modal.module.scss';
 
 const EditProfile = ({}) => {
   const [open, setOpen] = useState(false);
-  const [languages, setLanguages] = useState(['english', 'french']);
   const [services, setServices] = useState(['wedding', 'events', 'products']);
+  const [newService, setNewService] = useState('');
+  const [languages, setLanguages] = useState(['english', 'french']);
+  const [newLanguage, setNewLanguage] = useState('');
 
   const removeItem = (section, setSection, itemToRemove) => {
     const newSectionArr = section.filter((item) => item !== itemToRemove);
     setSection(newSectionArr);
+  };
+
+  const addItem = (section, setSection, itemToAdd) => {};
+
+  const handleNewService = () => {
+    setServices([...services, newService]);
+    setNewService('');
+  };
+
+  const handleNewLanguage = () => {
+    setLanguages([...languages, newLanguage]);
+    setNewLanguage('');
   };
 
   const handleSubmit = (e) => {
@@ -30,6 +44,7 @@ const EditProfile = ({}) => {
               X
             </div>
             <form onSubmit={handleSubmit} action="">
+              {/* Services */}
               <label htmlFor="">Services</label>
               <ul>
                 {services.map((service) => (
@@ -43,15 +58,42 @@ const EditProfile = ({}) => {
                   </li>
                 ))}
               </ul>
-              <input type="text" />
+              <input
+                type="text"
+                value={newService}
+                onChange={(e) => {
+                  setNewService(e.target.value);
+                }}
+              />
+              <button onClick={handleNewService}>Add Service</button>
 
+              {/* Languages */}
               <label htmlFor="">Languages</label>
               <ul>
-                {languages.map((service) => (
-                  <li>{service}</li>
+                {languages.map((language) => (
+                  <li>
+                    {language}{' '}
+                    <button
+                      onClick={() =>
+                        removeItem(languages, setLanguages, language)
+                      }
+                    >
+                      Delete
+                    </button>
+                  </li>
                 ))}
               </ul>
-              <input type="text" />
+              <input
+                type="text"
+                value={newLanguage}
+                onChange={(e) => {
+                  setNewLanguage(e.target.value);
+                }}
+              />
+              <button onClick={handleNewLanguage}>Add Language</button>
+
+              {/* Submit Updated Data */}
+              <button>Update Profile</button>
             </form>
           </div>
         </div>

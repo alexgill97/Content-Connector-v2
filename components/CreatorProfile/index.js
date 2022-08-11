@@ -42,6 +42,7 @@ const index = ({ profile }) => {
           <Header
             currentUser={currentUser}
             userData={userData}
+            userSelf={userSelf}
             profile={profile}
             username={username}
             city={city}

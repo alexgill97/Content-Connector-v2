@@ -46,6 +46,10 @@
         display: flex;
         flex-direction: column;
         padding: 1rem;
+        .header_username {
+          display: flex;
+          justify-content: space-between;
+        }
         .header_user_info {
           margin-bottom: 0.5rem;
         }

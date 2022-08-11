@@ -3,7 +3,15 @@ import CreateProject from '../Modal/CreateProject';
 import Message from '../Message';
 import styles from '../../styles/creator_profile.module.scss';
 
-const Header = ({ currentUser, userData, profile, username, city, rating }) => {
+const Header = ({
+  currentUser,
+  userData,
+  profile,
+  userSelf,
+  username,
+  city,
+  rating,
+}) => {
   const [open, setOpen] = useState(false);
   console.log(profile);
   return (
@@ -19,7 +27,10 @@ const Header = ({ currentUser, userData, profile, username, city, rating }) => {
       {!open && (
         <div className={styles.profile_header_interface}>
           <div className={styles.header_user_info}>
-            <h3>{username}</h3>
+            <div className={styles.header_username}>
+              <h3>{username}</h3>
+              {userSelf && <button>Edit Profile</button>}
+            </div>
             <p>{city}</p>
           </div>
           <div className={styles.header_user_rating}>

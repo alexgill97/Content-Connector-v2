@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { firestore } from '../../firebase/clientApp';
 import styles from '../../styles/modal.module.scss';
 
-const EditProfile = ({ currentUser }) => {
+const EditProfile = ({ currentUser, userData }) => {
   const [open, setOpen] = useState(false);
   const [services, setServices] = useState(['wedding', 'events', 'products']);
   const [newService, setNewService] = useState('');
@@ -14,8 +14,6 @@ const EditProfile = ({ currentUser }) => {
     const newSectionArr = section.filter((item) => item !== itemToRemove);
     setSection(newSectionArr);
   };
-
-  const addItem = (section, setSection, itemToAdd) => {};
 
   const handleNewService = () => {
     setServices([...services, newService]);
@@ -57,7 +55,7 @@ const EditProfile = ({ currentUser }) => {
               {/* Services */}
               <label htmlFor="">Services</label>
               <ul>
-                {services.map((service) => (
+                {userData.services?.map((service) => (
                   <li>
                     {service}
                     <button
@@ -80,9 +78,9 @@ const EditProfile = ({ currentUser }) => {
               {/* Languages */}
               <label htmlFor="">Languages</label>
               <ul>
-                {languages.map((language) => (
+                {userData.languages?.map((language) => (
                   <li>
-                    {language}{' '}
+                    {language}
                     <button
                       onClick={() =>
                         removeItem(languages, setLanguages, language)

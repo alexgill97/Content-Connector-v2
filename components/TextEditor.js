@@ -35,9 +35,7 @@ const TextEditor = ({ uid, userSelf }) => {
     }
   }, [snapshot]);
 
-  const onEditorStateChange = (editorState) => {
-    setEditorState(editorState);
-
+  const updateDescription = () => {
     const docRef = collection(firestore, 'profiles');
     setDoc(doc(docRef, '30WctPIRBpVWV1WUdGnzmaKLsbg1'), {
       editorState: convertToRaw(editorState.getCurrentContent()),
@@ -50,9 +48,12 @@ const TextEditor = ({ uid, userSelf }) => {
         readOnly={!userSelf}
         toolbarClassName={!userSelf && styles.toolbar}
         editorState={editorState}
-        onEditorStateChange={onEditorStateChange}
+        onEditorStateChange={(editorState) => setEditorState(editorState)}
         editorClassName={styles.editor}
       />
+      {userSelf && (
+        <button onClick={updateDescription}>Submit Description Change</button>
+      )}
     </div>
   );
 };

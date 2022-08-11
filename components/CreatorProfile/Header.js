@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CreateProject from '../Modal/CreateProject';
+import EditProfile from '../Modal/EditProfile';
 import Message from '../Message';
 import styles from '../../styles/creator_profile.module.scss';
 
@@ -29,7 +30,7 @@ const Header = ({
           <div className={styles.header_user_info}>
             <div className={styles.header_username}>
               <h3>{username}</h3>
-              {userSelf && <button>Edit Profile</button>}
+              {userSelf && <EditProfile />}
             </div>
             <p>{city}</p>
           </div>

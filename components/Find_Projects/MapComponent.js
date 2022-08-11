@@ -6,7 +6,7 @@ import styles from '../../styles/MapComponent.module.scss';
 
 const MapComponent = ({ searchResults }) => {
   const [selectedLocation, setSelectedLocation] = useState({});
-  console.log(selectedLocation);
+
   const coordinates = searchResults.map((result) => ({
     longitude: result.projectCoordinates.lng,
     latitude: result.projectCoordinates.lat,
@@ -21,7 +21,6 @@ const MapComponent = ({ searchResults }) => {
     longitude: center.longitude,
     zoom: 11,
   });
-  // console.log(Marker);
 
   return (
     <MapGL

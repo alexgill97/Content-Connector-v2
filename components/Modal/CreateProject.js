@@ -34,8 +34,8 @@ const CreateProject = ({ currentUser, userData, profile }) => {
       currentUser > profile.uid
         ? `${currentUser + profile.uid}`
         : `${profile.uid + currentUser}`;
-    const creator = profile.isBusiness ? currentUser : profile.uid;
-    const business = profile.isBusiness ? profile.uid : currentUser;
+    const creator = profile.isBusiness ? userData : profile;
+    const business = profile.isBusiness ? profile : userData;
 
     let projectCoordinates = {};
 
@@ -61,7 +61,7 @@ const CreateProject = ({ currentUser, userData, profile }) => {
       completedBy,
       projectTitle,
       projectOffer,
-      businessAvatar: userData.avatar,
+      businessAvatar: business.avatar,
       accepted: false,
       completed: false,
       city: projectCity,
@@ -70,14 +70,15 @@ const CreateProject = ({ currentUser, userData, profile }) => {
     });
     await setDoc(doc(firestore, 'projects', docRef.id), {
       projectId: docRef.id,
-      creatorId: creator,
-      businessId: business,
-      businessUsername: profile.username,
+      creatorId: creator.uid,
+      businessId: business.uid,
+      businessUsername: business.username,
+      creatorUsername: creator.username,
       messagesId,
       projectTitle,
       projectOffer,
-      text: projectOutline,
-      businessAvatar: userData.avatar,
+      projectOutline,
+      businessAvatar: business.avatar,
       createdAt: serverTimestamp(),
       completedBy,
       accepted: false,

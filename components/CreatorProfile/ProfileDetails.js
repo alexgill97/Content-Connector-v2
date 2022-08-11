@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../../styles/creator_profile.module.scss';
 
-const ProfileDetails = ({ completedProjects }) => {
+const ProfileDetails = ({ userData }) => {
   return (
     <div className={styles.profiledetails}>
       <div className={styles.profiledetails_single}>
@@ -10,19 +10,19 @@ const ProfileDetails = ({ completedProjects }) => {
       </div>
       <div className={styles.profiledetails_single}>
         <p>Total Successful Projects</p>
-        <p>{completedProjects}</p>
+        <p>{userData.completedProjects || 0}</p>
       </div>
       <div className={styles.profiledetails_list}>
         <h5>Services</h5>
-        <p>Wedding</p>
-        <p>Products</p>
-        <p>Sports</p>
-        <p>Events</p>
+        {userData.services?.map((service) => (
+          <p key={service}>{service}</p>
+        ))}
       </div>
       <div className={styles.profiledetails_list}>
         <h5>Languages</h5>
-        <p>English</p>
-        <p>Spanish</p>
+        {userData.languages?.map((language) => (
+          <p key={language}>{language}</p>
+        ))}
       </div>
     </div>
   );

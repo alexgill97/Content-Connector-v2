@@ -1,7 +1,9 @@
+import { doc, updateDoc } from 'firebase/firestore';
 import React, { useState } from 'react';
+import { firestore } from '../../firebase/clientApp';
 import styles from '../../styles/modal.module.scss';
 
-const EditProfile = ({}) => {
+const EditProfile = ({ currentUser }) => {
   const [open, setOpen] = useState(false);
   const [services, setServices] = useState(['wedding', 'events', 'products']);
   const [newService, setNewService] = useState('');
@@ -23,6 +25,14 @@ const EditProfile = ({}) => {
   const handleNewLanguage = () => {
     setLanguages([...languages, newLanguage]);
     setNewLanguage('');
+  };
+
+  const handleProfileUpdate = async () => {
+    await updateDoc(doc(firestore, 'users', currentUser), {
+      languages,
+      services,
+    });
+    setOpen(!open);
   };
 
   const handleSubmit = (e) => {
@@ -93,7 +103,7 @@ const EditProfile = ({}) => {
               <button onClick={handleNewLanguage}>Add Language</button>
 
               {/* Submit Updated Data */}
-              <button>Update Profile</button>
+              <button onClick={handleProfileUpdate}>Update Profile</button>
             </form>
           </div>
         </div>

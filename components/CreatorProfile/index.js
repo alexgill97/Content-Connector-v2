@@ -35,7 +35,7 @@ const index = ({ profile }) => {
       <div className={styles.profile_left}>
         <img className={styles.profile_avatar} src={avatar} alt="" />
         {userSelf && <UploadAvatar currentUser={currentUser} />}
-        <ProfileDetails completedProjects={completedProjects} />
+        <ProfileDetails userData={userData} />
       </div>
       <div className={styles.profile_main}>
         <div className={styles.profile_header}>

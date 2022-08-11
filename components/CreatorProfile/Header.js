@@ -30,7 +30,7 @@ const Header = ({
           <div className={styles.header_user_info}>
             <div className={styles.header_username}>
               <h3>{username}</h3>
-              {userSelf && <EditProfile />}
+              {userSelf && <EditProfile currentUser={currentUser} />}
             </div>
             <p>{city}</p>
           </div>

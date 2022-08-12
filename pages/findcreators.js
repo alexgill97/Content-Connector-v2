@@ -12,6 +12,7 @@ const findingFreelancers = ({ users }) => {
   const { currentUser, userData } = useContext(AuthContext);
   const [term, setTerm] = useState('');
   const [portfolios, setPortfolios] = useState([]);
+  const [filterParam, setFilterParam] = useState('');
 
   const searchPortfolios = () => {
     console.log(term);
@@ -42,10 +43,21 @@ const findingFreelancers = ({ users }) => {
           Canada
         </h4>
         <div>
-          <p>filter</p>
+          <p>Filter:</p>
+          <select onChange={(e) => setFilterParam(e.target.value)}>
+            <option value="trending">Trending</option>
+            <option value="best">Top Rated</option>
+            <option value="priceHigh">Price: High</option>
+            <option value="priceLow">Price: Low</option>
+            {/* <option value="fastest">Fastest</option> */}
+          </select>
         </div>
       </div>
-      <UserList users={users} portfolios={portfolios} />
+      <UserList
+        users={users}
+        portfolios={portfolios}
+        filterParam={filterParam}
+      />
     </div>
   );
 };

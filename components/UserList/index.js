@@ -9,7 +9,20 @@ const UserList = ({ users, portfolios, filterParam }) => {
     <div className={styles.user_list_container}>
       {!portfolios.length &&
         users
-          .sort((a, b) => (a.username.length < b.username.length ? 1 : -1))
+          .sort((a, b) => {
+            if (filterParam === 'topRated') {
+              return a.rating < b.rating ? 1 : -1;
+            }
+            if (filterParam === 'trending') {
+              return a.username.length < b.username.length ? 1 : -1;
+            }
+            if (filterParam === 'priceHigh') {
+              return a.hourly < b.hourly ? 1 : -1;
+            }
+            if (filterParam === 'priceLow') {
+              return a.hourly > b.hourly ? 1 : -1;
+            }
+          })
           .map((user) => (
             <UserListItem
               key={user.uid}
@@ -17,6 +30,7 @@ const UserList = ({ users, portfolios, filterParam }) => {
               rating={user.rating}
               uid={user.uid}
               avatar={user.avatar}
+              hourly={user.hourly}
               user={user}
               city={user.city}
             ></UserListItem>

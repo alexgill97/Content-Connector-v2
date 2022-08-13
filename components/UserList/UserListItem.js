@@ -30,18 +30,35 @@ const UserListItem = ({
         />
         <section className={styles.card_info}>
           <div className={styles.card__header}>
-            <Link href={`userprofile/${uid}`}>
-              <img className={styles.card_avatar} src={avatar} alt="" />
-            </Link>
-            <div className={styles.card_username}>
-              <h3>{username}</h3>
-              <p className={styles.card_city}>{city}</p>
-              <p className={styles.card_price}>${hourly}</p>
-              <p>rating: {rating?.toPrecision(2)}</p>
+            <div className={styles.card__header__info}>
+              <Link href={`userprofile/${uid}`}>
+                <img className={styles.card_avatar} src={avatar} alt="" />
+              </Link>
+              <div className={styles.card_username}>
+                <p className={styles.card_city}>{city}</p>
+                <h3>{username}</h3>
+              </div>
+            </div>
+            <div>
+              <div>o</div>
+              <div className={styles.card__message}>x</div>
             </div>
           </div>
           <div className={styles.card__description}>
-            <p>{description}</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+            </p>
+          </div>
+          <div className={styles.card__footer}>
+            <div>
+              <p>rating: {rating?.toPrecision(2)}</p>
+              <p>XXXXX</p>
+            </div>
+            <div>
+              <p>hourly</p>
+              <p className={styles.card_price}>${hourly}</p>
+            </div>
           </div>
         </section>
       </main>

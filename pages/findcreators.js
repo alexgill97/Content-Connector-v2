@@ -6,7 +6,6 @@ import { collection, query, getDocs, where } from 'firebase/firestore';
 import { firestore } from '../firebase/clientApp';
 import { AuthContext } from '../firebase/context';
 import getTermPortfolio from '../firebase/getTermPortfolio';
-import CompleteProject from '../components/Modal/CompleteProject';
 
 const findingFreelancers = ({ users }) => {
   const { currentUser, userData } = useContext(AuthContext);

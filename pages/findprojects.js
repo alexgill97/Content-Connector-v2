@@ -5,8 +5,8 @@ import { firestore } from '../firebase/clientApp';
 import getProjects from '../firebase/getProjects';
 
 //Components
-import MapComponent from '../components/Find_Projects/MapComponent';
-import InfoCardList from '../components/Find_Projects/InfoCardList';
+import MapComponent from '../components/FindProjects/MapComponent';
+import InfoCardList from '../components/FindProjects/InfoCardList';
 
 //Styles
 import styles from '../styles/find_projects.module.scss';

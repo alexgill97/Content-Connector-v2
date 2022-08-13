@@ -52,11 +52,16 @@ const UserListItem = ({
           </div>
           <div className={styles.card__footer}>
             <div>
-              <p>rating: {rating?.toPrecision(2)}</p>
+              <p>
+                <span className={styles.rating_text}>Rating </span>
+                <span className={styles.rating_number}>
+                  {rating?.toPrecision(2)}
+                </span>
+              </p>
               <p>XXXXX</p>
             </div>
             <div>
-              <p>hourly</p>
+              <p className={styles.card_hourly_text}>hourly</p>
               <p className={styles.card_price}>${hourly}</p>
             </div>
           </div>

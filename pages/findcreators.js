@@ -14,12 +14,7 @@ const findingFreelancers = ({ users }) => {
   const [filterParam, setFilterParam] = useState('');
 
   const searchPortfolios = () => {
-    console.log(term);
     getTermPortfolio(term, setPortfolios);
-  };
-
-  const logPortfolio = () => {
-    console.log(portfolios);
   };
 
   return (
@@ -35,28 +30,17 @@ const findingFreelancers = ({ users }) => {
             type="text"
           />
           <button onClick={searchPortfolios}>Search</button>
-          <button onClick={logPortfolio}>Log</button>
         </div>
         <h4>
           {term ? `${term} ` : 'Top '}Content Creators Near: <br /> Toronto,
           Canada
         </h4>
-        <div>
-          <p>Filter:</p>
-          {filterParam}
-          <select onChange={(e) => setFilterParam(e.target.value)}>
-            <option value="trending">Trending</option>
-            <option value="topRated">Top Rated</option>
-            <option value="priceHigh">Price: High</option>
-            <option value="priceLow">Price: Low</option>
-            {/* <option value="fastest">Fastest</option> */}
-          </select>
-        </div>
       </div>
       <UserList
         users={users}
         portfolios={portfolios}
         filterParam={filterParam}
+        setFilterParam={setFilterParam}
       />
     </div>
   );

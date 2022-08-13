@@ -65,14 +65,14 @@ const UserListItem = ({
                 <p>
                   <span className={styles.rating_text}>Rating </span>
                   <span className={styles.rating_number}>
-                    {rating?.toPrecision(2)}
+                    {rating?.toPrecision(2).toString()}
                   </span>
                 </p>
                 <p>XXXXX</p>
               </div>
               <div>
                 <p className={styles.card_hourly_text}>hourly</p>
-                <p className={styles.card_price}>${hourly}</p>
+                <p className={styles.card_hourly_price}>${hourly}</p>
               </div>
             </div>
           </section>

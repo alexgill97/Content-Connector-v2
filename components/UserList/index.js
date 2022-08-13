@@ -26,6 +26,7 @@ const UserList = ({ users, portfolios, filterParam }) => {
           .map((user) => (
             <UserListItem
               key={user.uid}
+              currentUser={currentUser}
               username={user.username}
               rating={user.rating}
               uid={user.uid}

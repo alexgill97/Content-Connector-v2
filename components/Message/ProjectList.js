@@ -11,8 +11,8 @@ const ProjectList = ({ projects, setSelectedUser }) => {
       {projects.map(
         ({
           projectTitle,
-          creator,
-          business,
+          creatorId,
+          businessId,
           accepted,
           completed,
           projectId,
@@ -20,9 +20,9 @@ const ProjectList = ({ projects, setSelectedUser }) => {
           <div
             key={projectId}
             onClick={() =>
-              currentUser === creator
-                ? getUserData(business, setSelectedUser)
-                : getUserData(creator, setSelectedUser)
+              currentUser === creatorId
+                ? getUserData(businessId, setSelectedUser)
+                : getUserData(creatorId, setSelectedUser)
             }
           >
             <p>{projectTitle}</p>

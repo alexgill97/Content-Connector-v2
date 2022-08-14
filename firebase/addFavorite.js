@@ -1,4 +1,4 @@
-import { collection, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { firestore } from './clientApp';
 
 const addFavorite = async (
@@ -8,7 +8,7 @@ const addFavorite = async (
   selectedUserAvatar
 ) => {
   await setDoc(
-    collection(firestore, 'users', currentUser, 'favorites', selectedUserId),
+    doc(firestore, 'users', currentUser, 'favorites', selectedUserId),
     {
       selectedUserId,
       selectedUserAvatar,

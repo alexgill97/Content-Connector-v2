@@ -4,6 +4,7 @@ import styles from '../../styles/user_list.module.scss';
 import Carousel from '../Carousel/';
 import Message from '../Message';
 import getUserPortfolio from '../../firebase/getUserPortfolio';
+import addFavorite from '../../firebase/addFavorite';
 
 const UserListItem = ({
   currentUser,
@@ -45,7 +46,13 @@ const UserListItem = ({
                 </div>
               </div>
               <div>
-                <div>o</div>
+                <div
+                  onClick={() =>
+                    addFavorite(currentUser, uid, username, avatar)
+                  }
+                >
+                  o
+                </div>
                 <div
                   onClick={() => setMessageOpen(!messageOpen)}
                   className={styles.card__message}

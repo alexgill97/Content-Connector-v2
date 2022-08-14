@@ -9,7 +9,7 @@ const UserList = ({ users, portfolios, filterParam, setFilterParam }) => {
     <div className={styles.user_list}>
       <div className={styles.user_list_filter}>
         <p>Filter </p>
-        {filterParam}
+
         <select onChange={(e) => setFilterParam(e.target.value)}>
           <option value="trending">Trending</option>
           <option value="topRated">Top Rated</option>
@@ -50,15 +50,30 @@ const UserList = ({ users, portfolios, filterParam, setFilterParam }) => {
             ))}
 
         {portfolios.length &&
-          portfolios.map(({ images, username, uid, avatar }) => (
-            <UserListItem
-              key={uid}
-              images={images}
-              username={username}
-              uid={uid}
-              avatar={avatar}
-            />
-          ))}
+          portfolios
+            .sort((a, b) => {
+              if (filterParam === 'topRated') {
+                return a.rating < b.rating ? 1 : -1;
+              }
+              if (filterParam === 'trending') {
+                return a.username.length < b.username.length ? 1 : -1;
+              }
+              if (filterParam === 'priceHigh') {
+                return a.hourly < b.hourly ? 1 : -1;
+              }
+              if (filterParam === 'priceLow') {
+                return a.hourly > b.hourly ? 1 : -1;
+              }
+            })
+            .map(({ images, username, uid, avatar }) => (
+              <UserListItem
+                key={uid}
+                images={images}
+                username={username}
+                uid={uid}
+                avatar={avatar}
+              />
+            ))}
       </div>
     </div>
   );

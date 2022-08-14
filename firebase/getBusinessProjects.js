@@ -3,7 +3,7 @@ import { firestore } from './clientApp';
 
 const getBusinessProjects = async (uid, setUserProjects) => {
   const projectSnapshots = await getDocs(
-    query(collection(firestore, 'projects'), where('business', '==', uid))
+    query(collection(firestore, 'projects'), where('businessId', '==', uid))
   );
   const projects = [];
   projectSnapshots.forEach((project) => {

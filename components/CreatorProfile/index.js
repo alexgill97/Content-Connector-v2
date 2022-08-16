@@ -31,7 +31,7 @@ const index = ({ profile }) => {
   }, []);
 
   return (
-    <div className={styles.creator_profile_container}>
+    <div className={styles.creator_profile}>
       <div className={styles.profile_left}>
         <img className={styles.profile_avatar} src={avatar} alt="" />
         {userSelf && <UploadAvatar currentUser={currentUser} />}

@@ -6,18 +6,22 @@ const Filter = () => {
 
   return (
     <div className={styles.findprojects__filters}>
-      <input type="text" />
-      <div>
-        <button>Budget</button>
+      <div className={styles.findprojects__search}>
+        <input type="text" />
       </div>
-      <div>
-        <button>Distance</button>
-      </div>
-      <div>
-        <button>Type</button>
-      </div>
-      <div>
-        <button>Category</button>
+      <div className={styles.filter__item_container}>
+        <div className={styles.filter__item}>
+          <button>Budget</button>
+        </div>
+        <div className={styles.filter__item}>
+          <button>Distance</button>
+        </div>
+        <div className={styles.filter__item}>
+          <button>Type</button>
+        </div>
+        <div className={styles.filter__item}>
+          <button>Category</button>
+        </div>
       </div>
     </div>
   );

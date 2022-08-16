@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import styles from '../../styles/find_projects.module.scss';
+import styles from '../../../styles/find_projects.module.scss';
+import BudgetFilter from './BudgetFilter';
 
 const Filter = () => {
   const [selectedFilter, setSelectedFilter] = useState('');

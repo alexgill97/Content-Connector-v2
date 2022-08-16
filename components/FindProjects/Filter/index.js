@@ -12,6 +12,7 @@ const Filter = () => {
       <div className={styles.filter__item_container}>
         <div className={styles.filter__item}>
           <button>Budget</button>
+          {selectedFilter === 'budget' && <BudgetFilter />}
         </div>
         <div className={styles.filter__item}>
           <button>Distance</button>

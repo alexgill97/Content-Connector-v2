@@ -28,6 +28,7 @@
     justify-content: space-between;
     .filter__item {
       margin-right: 1rem;
+      position: relative;
       button {
         all: unset;
         cursor: pointer;
@@ -35,6 +36,12 @@
         border: 1px solid rgba(65, 63, 63, 0.415);
         padding: 0 10px;
         height: 32px;
+      }
+      .filter__modal {
+        position: absolute;
+        z-index: 10;
+        background-color: white;
+        padding: 5rem;
       }
     }
   }

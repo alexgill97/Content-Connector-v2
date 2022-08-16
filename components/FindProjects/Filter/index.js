@@ -12,7 +12,12 @@ const Filter = () => {
       </div>
       <div className={styles.filter__item_container}>
         <div className={styles.filter__item}>
-          <button>Budget</button>
+          <button
+            onDoubleClick={() => setSelectedFilter(null)}
+            onClick={() => setSelectedFilter('budget')}
+          >
+            Budget
+          </button>
           {selectedFilter === 'budget' && <BudgetFilter />}
         </div>
         <div className={styles.filter__item}>

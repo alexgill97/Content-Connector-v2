@@ -3,7 +3,7 @@
   font-family: 'Poppins';
 }
 .findprojects__filters {
-  height: 10vh;
+  height: 7vh;
   width: 100%;
   border: 1px solid black;
 }
@@ -38,14 +38,14 @@
   flex-grow: 3;
   top: 10vh;
   position: sticky;
-  height: 80vh;
+  height: 83vh;
   width: 60vw;
   position: sticky;
 }
 
 .infocard_list_container {
   overflow-y: scroll;
-  height: 70vh;
+  height: 73vh;
 
   .info_card_container {
   }

@@ -17,7 +17,13 @@ const findprojects = ({ projects }) => {
   console.log(projects);
   return (
     <div className={styles.find_projects_container}>
-      <div className={styles.findprojects__filters}>Filters</div>
+      <div className={styles.findprojects__filters}>
+        <input type="text" />
+        <button>Budget</button>
+        <button>Distance</button>
+        <button>Type</button>
+        <button>Category</button>
+      </div>
       <main className={styles.find_projects_main}>
         <section className={styles.project_list_container}>
           <h5>Projects In Your Area</h5>

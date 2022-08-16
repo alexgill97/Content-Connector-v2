@@ -10,6 +10,7 @@ import InfoCardList from '../components/FindProjects/InfoCardList';
 
 //Styles
 import styles from '../styles/find_projects.module.scss';
+import Filter from '../components/FindProjects/Filter';
 
 const findprojects = ({ projects }) => {
   const { currentUser, userData } = useContext(AuthContext);
@@ -17,13 +18,7 @@ const findprojects = ({ projects }) => {
   console.log(projects);
   return (
     <div className={styles.find_projects_container}>
-      <div className={styles.findprojects__filters}>
-        <input type="text" />
-        <button>Budget</button>
-        <button>Distance</button>
-        <button>Type</button>
-        <button>Category</button>
-      </div>
+      <Filter />
       <main className={styles.find_projects_main}>
         <section className={styles.project_list_container}>
           <h5>Projects In Your Area</h5>

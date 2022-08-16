@@ -1,3 +1,7 @@
+.userprofile {
+  height: 100%;
+}
+
 .creator_profile_container {
   height: 90vh;
   max-height: 90vh;
@@ -38,6 +42,7 @@
   }
 
   .profile_main {
+    height: 100%;
     width: 67%;
     border: 1px solid black;
     .profile_header {
@@ -75,46 +80,18 @@
     margin: 0 1rem;
   }
 }
+
 .interface_main {
   height: 100%;
   .profile_interface {
     height: 75%;
+    max-height: 75%;
     border: 1px solid black;
 
     .interface_description {
       padding: 1rem;
       white-space: pre-line;
       word-break: break-word;
-    }
-
-    .reviews_container {
-      height: 100%;
-      max-height: 100%;
-      overflow: scroll;
-      .interface_reviews {
-        padding: 1rem;
-        .review_item {
-          display: flex;
-          flex-direction: column;
-          margin: 1rem 0;
-          border-bottom: 1px solid gray;
-          h5 {
-            font-size: 15px;
-            margin-bottom: 5px;
-          }
-          .review_sub_info {
-            display: flex;
-            padding: 0 0.5rem 0.5rem 5px;
-            font-size: 14px;
-            .date {
-              margin-left: 1rem;
-            }
-          }
-          .feedback {
-            margin-bottom: 1rem;
-          }
-        }
-      }
     }
   }
 }
@@ -158,6 +135,39 @@
     .portfolio_description {
       height: 25%;
       width: 100%;
+    }
+  }
+}
+
+// Reviews Section Styling
+.reviews {
+  padding: 1rem;
+  height: 100%;
+  max-height: 100%;
+  min-height: 100%;
+  overflow: scroll;
+
+  .review_item {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+    padding: 0.75rem;
+    border: 1px solid black;
+    border-bottom: 1px solid gray;
+    h5 {
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+    .review_sub_info {
+      display: flex;
+      padding: 0 0.5rem 0.5rem 5px;
+      font-size: 14px;
+      .date {
+        margin-left: 1rem;
+      }
+    }
+    .feedback {
+      margin-bottom: 1rem;
     }
   }
 }

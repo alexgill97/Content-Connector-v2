@@ -13,7 +13,7 @@ import Navigation from '../components/Message/Navigation';
 import getCreatorProjects from '../firebase/getCreatorProjects';
 import getBusinessProjects from '../firebase/getBusinessProjects';
 
-const Messages = ({ users, creators, businesses }) => {
+const Messages = ({ creators, businesses }) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('Creators');
   const [userProjects, setUserProjects] = useState([]);
@@ -25,7 +25,7 @@ const Messages = ({ users, creators, businesses }) => {
     } else {
       getCreatorProjects(currentUser, setUserProjects);
     }
-  }, []);
+  }, [userData]);
 
   return (
     <main className={styles.messages_main}>

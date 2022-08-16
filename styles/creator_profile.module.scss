@@ -23,16 +23,26 @@
     .profiledetails {
       margin-top: 2rem;
       width: 100%;
-      .profiledetails_single {
+      .profiledetails__single {
         display: flex;
         justify-content: space-between;
         width: 100%;
         margin-bottom: 1rem;
       }
-      .profiledetails_list {
+      .profiledetails__list {
         display: flex;
         flex-direction: column;
         margin-bottom: 1rem;
+        .profiledetails__services_header {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .profiledetails__services_list {
+          display: flex;
+          justify-content: space-between;
+        }
+
         h5 {
           margin-bottom: 0.5rem;
         }

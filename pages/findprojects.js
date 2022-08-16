@@ -17,6 +17,7 @@ const findprojects = ({ projects }) => {
   console.log(projects);
   return (
     <div className={styles.find_projects_container}>
+      <div className={styles.findprojects__filters}>Filters</div>
       <main className={styles.find_projects_main}>
         <section className={styles.project_list_container}>
           <h5>Projects In Your Area</h5>

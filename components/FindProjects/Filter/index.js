@@ -13,15 +13,22 @@ const Filter = () => {
       <div className={styles.filter__item_container}>
         <div className={styles.filter__item}>
           <button
-            onDoubleClick={() => setSelectedFilter(null)}
-            onClick={() => setSelectedFilter('budget')}
+            onClick={() =>
+              setSelectedFilter(selectedFilter !== 'budget' ? 'budget' : '')
+            }
           >
             Budget
           </button>
           {selectedFilter === 'budget' && <BudgetFilter />}
         </div>
         <div className={styles.filter__item}>
-          <button>Distance</button>
+          <button
+            onClick={() =>
+              setSelectedFilter(selectedFilter !== 'distance' ? 'distance' : '')
+            }
+          >
+            Distance
+          </button>
         </div>
         <div className={styles.filter__item}>
           <button>Type</button>

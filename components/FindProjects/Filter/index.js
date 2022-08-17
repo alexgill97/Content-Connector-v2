@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styles from '../../../styles/find_projects.module.scss';
 import BudgetFilter from './BudgetFilter';
+import DistanceFilter from './DistanceFilter';
+import CategoryFilter from './CategoryFilter';
+import TypeFilter from './TypeFilter';
 
 const Filter = () => {
   const [selectedFilter, setSelectedFilter] = useState('');
@@ -29,7 +32,7 @@ const Filter = () => {
           >
             Distance
           </button>
-          {selectedFilter === 'distance' && <BudgetFilter />}
+          {selectedFilter === 'distance' && <DistanceFilter />}
         </div>
         <div className={styles.filter__item}>
           <button
@@ -39,7 +42,7 @@ const Filter = () => {
           >
             Type
           </button>
-          {selectedFilter === 'type' && <BudgetFilter />}
+          {selectedFilter === 'type' && <TypeFilter />}
         </div>
         <div className={styles.filter__item}>
           <button
@@ -49,7 +52,7 @@ const Filter = () => {
           >
             Category
           </button>
-          {selectedFilter === 'category' && <BudgetFilter />}
+          {selectedFilter === 'category' && <CategoryFilter />}
         </div>
       </div>
     </div>

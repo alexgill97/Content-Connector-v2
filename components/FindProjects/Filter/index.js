@@ -5,7 +5,18 @@ import DistanceFilter from './DistanceFilter';
 import CategoryFilter from './CategoryFilter';
 import TypeFilter from './TypeFilter';
 
-const Filter = () => {
+const Filter = ({
+  minimum,
+  setMinimum,
+  maximum,
+  setMaximum,
+  distance,
+  setDistance,
+  mediaType,
+  setMediaType,
+  checkboxCategories,
+  setCheckboxCategories,
+}) => {
   const [selectedFilter, setSelectedFilter] = useState('');
 
   return (
@@ -22,7 +33,14 @@ const Filter = () => {
           >
             Budget
           </button>
-          {selectedFilter === 'budget' && <BudgetFilter />}
+          {selectedFilter === 'budget' && (
+            <BudgetFilter
+              minimum={minimum}
+              setMinimum={setMinimum}
+              maximum={maximum}
+              setMaximum={setMaximum}
+            />
+          )}
         </div>
         <div className={styles.filter__item}>
           <button
@@ -32,7 +50,9 @@ const Filter = () => {
           >
             Distance
           </button>
-          {selectedFilter === 'distance' && <DistanceFilter />}
+          {selectedFilter === 'distance' && (
+            <DistanceFilter distance={distance} setDistance={setDistance} />
+          )}
         </div>
         <div className={styles.filter__item}>
           <button
@@ -42,7 +62,9 @@ const Filter = () => {
           >
             Type
           </button>
-          {selectedFilter === 'type' && <TypeFilter />}
+          {selectedFilter === 'type' && (
+            <TypeFilter mediaType={mediaType} setMediaType={setMediaType} />
+          )}
         </div>
         <div className={styles.filter__item}>
           <button
@@ -52,7 +74,12 @@ const Filter = () => {
           >
             Category
           </button>
-          {selectedFilter === 'category' && <CategoryFilter />}
+          {selectedFilter === 'category' && (
+            <CategoryFilter
+              checkboxCategories={checkboxCategories}
+              setCheckboxCategories={setCheckboxCategories}
+            />
+          )}
         </div>
         <button>Submit</button>
       </div>

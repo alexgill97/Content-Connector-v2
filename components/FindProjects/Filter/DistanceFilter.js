@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../../../styles/find_projects.module.scss';
 
-const DistanceFilter = () => {
-  const [distance, setDistance] = useState(80);
-
+const DistanceFilter = ({ distance, setDistance }) => {
   return (
     <div className={styles.filter__modal}>
       <button

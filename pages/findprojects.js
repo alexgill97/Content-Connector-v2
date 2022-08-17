@@ -15,10 +15,39 @@ import Filter from '../components/FindProjects/Filter';
 const findprojects = ({ projects }) => {
   const { currentUser, userData } = useContext(AuthContext);
   const [selectedUser, setSelectedUser] = useState();
+
+  const [minimum, setMinimum] = useState(0);
+  const [maximum, setMaximum] = useState(0);
+  const [distance, setDistance] = useState(80);
+  const [mediaType, setMediaType] = useState('both');
+  const [checkboxCategories, setCheckboxCategories] = useState([
+    { displayName: 'Wedding', id: 'wedding', value: true },
+    { displayName: 'Lifestyle', id: 'lifestyle', value: true },
+    { displayName: 'Product', id: 'product', value: true },
+    { displayName: 'Fashion', id: 'fashion', value: true },
+    { displayName: 'Sport', id: 'sport', value: true },
+    { displayName: 'Real Estate', id: 'realEstate', value: true },
+    { displayName: 'Automotive', id: 'automotive', value: true },
+    { displayName: 'Portrait', id: 'portrait', value: true },
+    { displayName: 'Brand', id: 'brand', value: true },
+    { displayName: 'Event', id: 'event', value: true },
+  ]);
+
   console.log(projects);
   return (
     <div className={styles.find_projects_container}>
-      <Filter />
+      <Filter
+        minimum={minimum}
+        setMinimum={setMinimum}
+        maximum={maximum}
+        setMaximum={setMaximum}
+        distance={distance}
+        setDistance={setDistance}
+        mediaType={mediaType}
+        setMediaType={setMediaType}
+        checkboxCategories={checkboxCategories}
+        setCheckboxCategories={setCheckboxCategories}
+      />
       <main className={styles.find_projects_main}>
         <section className={styles.project_list_container}>
           <h5>Projects In Your Area</h5>

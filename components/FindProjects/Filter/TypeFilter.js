@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../../../styles/find_projects.module.scss';
 
-const TypeFilter = () => {
-  const [mediaType, setMediaType] = useState('both');
-
+const TypeFilter = ({ mediaType, setMediaType }) => {
   return (
     <div className={styles.filter__modal}>
       <button

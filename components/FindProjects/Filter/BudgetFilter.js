@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../../../styles/find_projects.module.scss';
 
-const BudgetFilter = () => {
-  const [minimum, setMinimum] = useState(0);
-  const [maximum, setMaximum] = useState(0);
-
+const BudgetFilter = ({ minimum, setMinimum, maximum, setMaximum }) => {
   return (
     <div className={styles.filter__modal}>
       <div className={styles.budget__input_container}>

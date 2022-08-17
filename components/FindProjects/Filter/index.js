@@ -54,6 +54,7 @@ const Filter = () => {
           </button>
           {selectedFilter === 'category' && <CategoryFilter />}
         </div>
+        <button>Submit</button>
       </div>
     </div>
   );

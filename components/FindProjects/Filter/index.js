@@ -29,6 +29,7 @@ const Filter = () => {
           >
             Distance
           </button>
+          {selectedFilter === 'distance' && <BudgetFilter />}
         </div>
         <div className={styles.filter__item}>
           <button>Type</button>

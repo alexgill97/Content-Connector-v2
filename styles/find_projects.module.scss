@@ -45,6 +45,19 @@
       }
     }
   }
+
+  //Budget
+
+  .budget__input_container {
+    display: flex;
+    input {
+      width: 5rem;
+    }
+
+    p {
+      margin: 0 5px;
+    }
+  }
 }
 .find_projects_main {
   display: flex;

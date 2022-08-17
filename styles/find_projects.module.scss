@@ -42,12 +42,17 @@
         z-index: 10;
         background-color: white;
         padding: 5rem;
+
+        //Type
+        .type__selected {
+          border: 1px solid blue;
+          background-color: rgba(33, 33, 239, 0.167);
+        }
       }
     }
   }
 
   //Budget
-
   .budget__input_container {
     display: flex;
     input {
@@ -59,6 +64,7 @@
     }
   }
 }
+
 .find_projects_main {
   display: flex;
 }

@@ -32,10 +32,24 @@ const Filter = () => {
           {selectedFilter === 'distance' && <BudgetFilter />}
         </div>
         <div className={styles.filter__item}>
-          <button>Type</button>
+          <button
+            onClick={() =>
+              setSelectedFilter(selectedFilter !== 'type' ? 'type' : '')
+            }
+          >
+            Type
+          </button>
+          {selectedFilter === 'type' && <BudgetFilter />}
         </div>
         <div className={styles.filter__item}>
-          <button>Category</button>
+          <button
+            onClick={() =>
+              setSelectedFilter(selectedFilter !== 'category' ? 'category' : '')
+            }
+          >
+            Category
+          </button>
+          {selectedFilter === 'category' && <BudgetFilter />}
         </div>
       </div>
     </div>

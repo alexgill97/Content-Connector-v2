@@ -15,28 +15,29 @@ import styles from '../../../styles/find_projects.module.scss';
 // ];
 
 const CategoryFilter = () => {
-  const [checkboxCategories, setCheckboxCategory] = useState([
-    { displayName: 'Wedding', value: true },
-    { displayName: 'Lifestyle', value: true },
-    { displayName: 'Product', value: true },
-    { displayName: 'Fashion', value: true },
-    { displayName: 'Sports', value: true },
-    { displayName: 'Real Estate', value: true },
-    { displayName: 'Automotive', value: true },
-    { displayName: 'Portrait', value: true },
-    { displayName: 'Brand', value: true },
-    { displayName: 'Event', value: true },
+  const [checkboxCategories, setCheckboxCategories] = useState([
+    { displayName: 'Wedding', id: 'wedding', value: true },
+    { displayName: 'Lifestyle', id: 'lifestyle', value: true },
+    { displayName: 'Product', id: 'product', value: true },
+    { displayName: 'Fashion', id: 'fashion', value: true },
+    { displayName: 'Sport', id: 'sport', value: true },
+    { displayName: 'Real Estate', id: 'realEstate', value: true },
+    { displayName: 'Automotive', id: 'automotive', value: true },
+    { displayName: 'Portrait', id: 'portrait', value: true },
+    { displayName: 'Brand', id: 'brand', value: true },
+    { displayName: 'Event', id: 'event', value: true },
   ]);
 
   const handleChange = (event, category, index) => {
     let tempCheckboxCategories = [...checkboxCategories];
     tempCheckboxCategories[index].value = !category.value;
-    setCheckboxCategory(tempCheckboxCategories);
+    setCheckboxCategories(tempCheckboxCategories);
   };
 
   const listCategories = checkboxCategories.map((category, index) => (
     <div>
       <input
+        key={category.index}
         type="checkbox"
         name=""
         value={category}

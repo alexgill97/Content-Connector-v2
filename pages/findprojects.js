@@ -43,7 +43,6 @@ export default findprojects;
 
 export async function getStaticProps() {
   const projects = await getProjects('toronto');
-  console.log(projects);
 
   return {
     props: {

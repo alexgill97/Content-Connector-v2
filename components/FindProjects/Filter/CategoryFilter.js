@@ -1,19 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../../../styles/find_projects.module.scss';
 
-// const checkboxCategories = [
-//   { displayName: 'Wedding', value: true },
-//   { displayName: 'Lifestyle', value: true },
-//   { displayName: 'Product', value: true },
-//   { displayName: 'Fashion', value: true },
-//   { displayName: 'Sports', value: true },
-//   { displayName: 'Real Estate', value: true },
-//   { displayName: 'Automotive', value: true },
-//   { displayName: 'Portrait', value: true },
-//   { displayName: 'Brand', value: true },
-//   { displayName: 'Event', value: true },
-// ];
-
 const CategoryFilter = () => {
   const [checkboxCategories, setCheckboxCategories] = useState([
     { displayName: 'Wedding', id: 'wedding', value: true },
@@ -28,7 +15,7 @@ const CategoryFilter = () => {
     { displayName: 'Event', id: 'event', value: true },
   ]);
 
-  const handleChange = (event, category, index) => {
+  const handleChange = (category, index) => {
     let tempCheckboxCategories = [...checkboxCategories];
     tempCheckboxCategories[index].value = !category.value;
     setCheckboxCategories(tempCheckboxCategories);
@@ -42,7 +29,7 @@ const CategoryFilter = () => {
         name=""
         value={category}
         checked={category.value}
-        onChange={(e) => handleChange(e, category, index)}
+        onChange={() => handleChange(category, index)}
         id={category.displayName}
       />
       <label htmlFor={category.displayName}>{category.displayName}</label>

@@ -6,6 +6,7 @@ import CategoryFilter from './CategoryFilter';
 import TypeFilter from './TypeFilter';
 
 const Filter = ({
+  getFilteredProjects,
   minimum,
   setMinimum,
   maximum,
@@ -81,7 +82,7 @@ const Filter = ({
             />
           )}
         </div>
-        <button>Submit</button>
+        <button onClick={() => getFilteredProjects()}>Submit</button>
       </div>
     </div>
   );

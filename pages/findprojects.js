@@ -2,7 +2,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../firebase/context';
 import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../firebase/clientApp';
+
 import getProjects from '../firebase/getProjects';
+import getProjectsFilters from '../firebase/getProjectsFilters';
 
 //Components
 import MapComponent from '../components/FindProjects/MapComponent';
@@ -34,9 +36,20 @@ const findprojects = ({ projects }) => {
   ]);
 
   console.log(projects);
+
+  const getFilteredProjects = () => {
+    getProjectsFilters(
+      minimum,
+      maximum,
+      distance,
+      mediaType,
+      checkboxCategories
+    );
+  };
   return (
     <div className={styles.find_projects_container}>
       <Filter
+        getFilteredProjects={getFilteredProjects}
         minimum={minimum}
         setMinimum={setMinimum}
         maximum={maximum}

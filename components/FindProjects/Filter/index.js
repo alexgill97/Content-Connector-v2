@@ -17,6 +17,7 @@ const Filter = ({
   setMediaType,
   checkboxCategories,
   setCheckboxCategories,
+  toggleMap,
 }) => {
   const [selectedFilter, setSelectedFilter] = useState('');
 
@@ -83,6 +84,9 @@ const Filter = ({
           )}
         </div>
         <button onClick={() => getFilteredProjects()}>Submit</button>
+      </div>
+      <div className={styles.findprojects__filters_maptoggle}>
+        <button>Toggle Map</button>
       </div>
     </div>
   );

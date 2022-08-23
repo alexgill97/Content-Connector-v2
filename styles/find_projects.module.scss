@@ -8,9 +8,10 @@
   border: 1px solid black;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
 
   .findprojects__search {
-    margin-left: 1rem;
     height: 75%;
 
     input {
@@ -23,9 +24,8 @@
 
   .filter__item_container {
     display: flex;
-    margin-left: 2rem;
     width: 20rem;
-    justify-content: space-between;
+    margin-right: 10rem;
     .filter__item {
       margin-right: 1rem;
       position: relative;
@@ -55,6 +55,9 @@
           background-color: rgba(33, 33, 239, 0.167);
         }
       }
+    }
+    .findprojects__filters_maptoggle {
+      justify-content: flex-end;
     }
   }
 

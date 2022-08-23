@@ -63,7 +63,9 @@ const findprojects = ({ projects }) => {
       />
       <main className={styles.find_projects_main}>
         <section className={styles.project_list_container}>
-          <h5>Projects In Your Area</h5>
+          <h5 className={styles.findprojects__container_header}>
+            Projects In Your Area
+          </h5>
           {projects && (
             <InfoCardList
               projects={projects}

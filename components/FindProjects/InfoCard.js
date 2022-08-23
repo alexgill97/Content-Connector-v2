@@ -13,21 +13,33 @@ const InfoCard = ({
   address,
 }) => {
   return (
-    <div className={styles.info_card_container}>
-      <div className={styles.info_card_image}>
-        <Link href={`/userprofile/${uid}`}>
-          <Image src={avatar} layout="fill" objectFit="cover" />
-        </Link>
+    <div className={styles.infocard}>
+      {/* Header */}
+      <div className={styles.infocard__header}>
+        <div className={styles.infocard__header_image}>
+          <Link href={`/userprofile/${uid}`}>
+            <Image src={avatar} layout="fill" objectFit="cover" />
+          </Link>
+        </div>
+        <div>
+          <p>{username}</p>
+        </div>
+        <div className={styles.infocard__header_info_bottom}>x</div>
       </div>
-      <div
-        className={styles.info_card_info}
-        onClick={() => setSelectedUser(uid)}
-      >
-        <h3>{username}</h3>
+      {/* Body */}
+      <div className={styles.infocard_body}>
         <h5>{postTitle}</h5>
-        <div className={styles.info_card_right_title_empty}></div>
-        <p>{description}</p>
-        <p>{address}</p>
+      </div>
+      {/* Footer */}
+      <div className={styles.infocard__footer}>
+        <div className={styles.infocard__footer_budget}>
+          <p className={styles.infocard__footer_budget_text}>Budget</p>
+          <p>$400</p>
+        </div>
+        <div className={styles.infocard__footer_buttons}>
+          <button onClick={() => setSelectedUser(uid)}>Message</button>
+          <button>Apply</button>
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../../styles/find_projects.module.scss';
+import addFavorite from '../../firebase/addFavorite';
+import { AuthContext } from '../../firebase/context';
 
 const InfoCard = ({
   uid,
@@ -12,23 +14,30 @@ const InfoCard = ({
   description,
   address,
 }) => {
+  const { currentUser } = useContext(AuthContext);
+
   return (
     <div className={styles.infocard}>
       {/* Header */}
       <div className={styles.infocard__header}>
-        <div className={styles.infocard__header_image}>
-          <Link href={`/userprofile/${uid}`}>
-            <Image src={avatar} layout="fill" objectFit="cover" />
-          </Link>
-        </div>
         <div>
-          <p>{username}</p>
+          <div className={styles.infocard__header_image}>
+            <Link href={`/userprofile/${uid}`}>
+              <Image src={avatar} layout="fill" objectFit="cover" />
+            </Link>
+          </div>
+          <p className={styles.infocard__header_username}>{username}</p>
         </div>
-        <div className={styles.infocard__header_info_bottom}>x</div>
+        <div
+          onClick={() => addFavorite(currentUser, uid, username, avatar)}
+          className={styles.infocard__header_favorite}
+        >
+          x
+        </div>
       </div>
       {/* Body */}
-      <div className={styles.infocard_body}>
-        <h5>{postTitle}</h5>
+      <div className={styles.infocard__body}>
+        <p>{postTitle}</p>
       </div>
       {/* Footer */}
       <div className={styles.infocard__footer}>

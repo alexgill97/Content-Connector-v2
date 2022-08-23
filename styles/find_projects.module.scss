@@ -122,7 +122,6 @@
     border: 1px solid black;
     min-width: 17rem;
     width: 17rem;
-    cursor: pointer;
     border-radius: 8px;
   }
 
@@ -135,7 +134,15 @@
       position: relative;
       height: 5rem;
       width: 5rem;
-      border-radius: 50%;
+      border-radius: 8px;
+    }
+
+    .infocard__header_favorite {
+      cursor: pointer;
+    }
+
+    .infocard__header_username {
+      font-weight: bold;
     }
 
     .infocard__header_info {
@@ -149,7 +156,10 @@
     }
   }
 
-  .infocard_body {
+  .infocard__body {
+    margin-top: 1rem;
+    font-weight: 300;
+    font-size: 0.85rem;
   }
 
   .infocard__footer {

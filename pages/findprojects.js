@@ -17,6 +17,7 @@ import Filter from '../components/FindProjects/Filter';
 const findprojects = () => {
   const { currentUser, userData } = useContext(AuthContext);
   const [selectedUser, setSelectedUser] = useState();
+  const [showMap, setShowMap] = useState(true);
   const [projects, setProjects] = useState([]);
 
   const [minimum, setMinimum] = useState(0);
@@ -68,6 +69,8 @@ const findprojects = () => {
         setMediaType={setMediaType}
         checkboxCategories={checkboxCategories}
         setCheckboxCategories={setCheckboxCategories}
+        showMap={showMap}
+        setShowMap={setShowMap}
       />
       <main className={styles.find_projects_main}>
         <section className={styles.project_list_container}>
@@ -84,7 +87,9 @@ const findprojects = () => {
           )}
         </section>
         <section className={styles.map_section}>
-          {projects?.length && <MapComponent searchResults={projects} />}
+          {projects?.length && showMap && (
+            <MapComponent searchResults={projects} />
+          )}
         </section>
       </main>
     </div>

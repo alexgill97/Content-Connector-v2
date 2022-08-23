@@ -14,9 +14,10 @@ import InfoCardList from '../components/FindProjects/InfoCardList';
 import styles from '../styles/find_projects.module.scss';
 import Filter from '../components/FindProjects/Filter';
 
-const findprojects = ({ projects }) => {
+const findprojects = () => {
   const { currentUser, userData } = useContext(AuthContext);
   const [selectedUser, setSelectedUser] = useState();
+  const [projects, setProjects] = useState([]);
 
   const [minimum, setMinimum] = useState(0);
   const [maximum, setMaximum] = useState(0);
@@ -37,15 +38,22 @@ const findprojects = ({ projects }) => {
 
   console.log(projects);
 
-  const getFilteredProjects = () => {
-    getProjectsFilters(
-      minimum,
-      maximum,
-      distance,
-      mediaType,
-      checkboxCategories
+  const getFilteredProjects = async () => {
+    setProjects(
+      await getProjectsFilters(
+        minimum,
+        maximum,
+        distance,
+        mediaType,
+        checkboxCategories,
+        setProjects
+      )
     );
   };
+
+  useEffect(() => {
+    getFilteredProjects();
+  }, []);
   return (
     <div className={styles.find_projects_container}>
       <Filter
@@ -76,7 +84,7 @@ const findprojects = ({ projects }) => {
           )}
         </section>
         <section className={styles.map_section}>
-          <MapComponent searchResults={projects} />
+          {projects?.length && <MapComponent searchResults={projects} />}
         </section>
       </main>
     </div>

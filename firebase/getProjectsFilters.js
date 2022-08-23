@@ -6,7 +6,8 @@ async function getProjectsFilters(
   maximum,
   distance,
   mediaType,
-  checkboxCategories
+  checkboxCategories,
+  setProjects
 ) {
   const filteredCategories = checkboxCategories.filter(
     (category) => category.value
@@ -34,7 +35,8 @@ async function getProjectsFilters(
   querySnapshot.forEach((project) => {
     projects.push(project.data());
   });
-  console.log(projects);
+
+  return projects;
 }
 
 export default getProjectsFilters;

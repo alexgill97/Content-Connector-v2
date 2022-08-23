@@ -22,7 +22,9 @@ const CreateProject = ({ currentUser, userData, profile }) => {
   const [projectLocation, setProjectLocation] = useState(userData.address);
   const [projectOutline, setProjectOutline] = useState('');
   const [completedBy, setCompletedBy] = useState(new Date());
-  console.log(userData);
+  const [projectMediaType, setProjectMediaType] = useState('both');
+  const [projectCategory, setProjectCategory] = useState('brand');
+  console.log(projectMediaType);
 
   Geocode.setApiKey('AIzaSyDoeEVfzN1WC3vwiDlF7HemOu35NQao-kY');
   Geocode.setLanguage('en');
@@ -39,7 +41,7 @@ const CreateProject = ({ currentUser, userData, profile }) => {
 
     let projectCoordinates = {};
 
-    Geocode.fromAddress(projectLocation).then(
+    await Geocode.fromAddress(projectLocation).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
         projectCoordinates = { lat: lat, lng: lng };
@@ -49,6 +51,8 @@ const CreateProject = ({ currentUser, userData, profile }) => {
         console.error(error);
       }
     );
+
+    if (!projectCoordinates) console.log('Please enter valid location');
 
     const docRef = doc(collection(firestore, 'messages', messagesId, 'chat'));
 
@@ -74,6 +78,8 @@ const CreateProject = ({ currentUser, userData, profile }) => {
       businessId: business.uid,
       businessUsername: business.username,
       creatorUsername: creator.username,
+      projectCategory,
+      projectMediaType,
       messagesId,
       projectTitle,
       projectOffer,
@@ -119,16 +125,36 @@ const CreateProject = ({ currentUser, userData, profile }) => {
                 onChange={(e) => setProjectTitle(e.target.value)}
                 type="text"
               />
-              {/* Project Budget */}
+              {/* Media Type */}
+              <label htmlFor="">Project Media Type</label>
+              <select onChange={(e) => setProjectMediaType(e.target.value)}>
+                <option value="both">Photography + Videography</option>
+                <option value="photo">Photography</option>
+                <option value="video">Videography</option>
+              </select>
+
+              {/* Category */}
+              <select onChange={() => setProjectCategory(e.target.value)}>
+                <option value="brand">Brand</option>
+                <option value="product">Product</option>
+                <option value="lifestyle">Lifestyle</option>
+                <option value="realEstate">Real Estate</option>
+                <option value="automotive">Automotive</option>
+                <option value="portrait">Portrait</option>
+                <option value="events">Event</option>
+                <option value="sports">Sport</option>
+                <option value="fashion">Fashion</option>
+              </select>
+
+              {/* Budget */}
               <label htmlFor="">Project Budget</label>
-              <label htmlFor="">
-                <input
-                  className={styles.budget_input_min}
-                  value={projectOffer}
-                  onChange={(e) => setProjectOffer(e.target.value)}
-                  type="number"
-                />
-              </label>
+              <input
+                className={styles.budget_input_min}
+                value={projectOffer}
+                onChange={(e) => setProjectOffer(Number(e.target.value))}
+                type="number"
+              />
+
               {/* Project Completion Date */}
               <label htmlFor="">Completed By</label>
               <DatePicker

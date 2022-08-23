@@ -10,7 +10,7 @@ const InfoCardList = ({
   setSelectedUser,
 }) => {
   return (
-    <div className={styles.infocard_list_container}>
+    <div className={styles.infocardlist}>
       {projects.map((project) => {
         return (
           <div>

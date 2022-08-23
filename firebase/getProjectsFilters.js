@@ -21,7 +21,6 @@ async function getProjectsFilters(
   const projectsRef = collection(firestore, 'projects');
   const q = query(
     projectsRef,
-
     where('accepted', '==', false),
     where('projectOffer', '>', minimum),
     where('projectOffer', '<', max),

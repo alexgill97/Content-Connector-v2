@@ -18,14 +18,16 @@ const InfoCard = ({
 
   return (
     <div className={styles.infocard}>
-      {/* Header */}
+      {/* --Header-- */}
       <div className={styles.infocard__header}>
         <div>
+          {/* Header Image */}
           <div className={styles.infocard__header_image}>
             <Link href={`/userprofile/${uid}`}>
               <Image src={avatar} layout="fill" objectFit="cover" />
             </Link>
           </div>
+          {/* Header Username */}
           <p className={styles.infocard__header_username}>{username}</p>
         </div>
         <div
@@ -35,17 +37,19 @@ const InfoCard = ({
           x
         </div>
       </div>
-      {/* Body */}
+      {/* --Body-- */}
       <div className={styles.infocard__body}>
         <p>{postTitle}</p>
       </div>
-      {/* Footer */}
+      {/* --Footer-- */}
       <div className={styles.infocard__footer}>
         <div className={styles.infocard__footer_budget}>
+          {/* Budget */}
           <p className={styles.infocard__footer_budget_text}>Budget</p>
           <p>$400</p>
         </div>
         <div className={styles.infocard__footer_buttons}>
+          {/* Buttons */}
           <button onClick={() => setSelectedUser(uid)}>Message</button>
           <button>Apply</button>
         </div>

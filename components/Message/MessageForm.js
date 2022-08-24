@@ -31,6 +31,7 @@ const MessageForm = ({ currentUser, selectedUserId, scroll }) => {
 
     await addDoc(collection(firestore, 'messages', id, 'chat'), {
       text,
+      messageType: 'dm',
       from: currentUser,
       to: selectedUserId,
       createdAt: Timestamp.fromDate(new Date()),

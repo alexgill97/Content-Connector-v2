@@ -48,6 +48,7 @@ const setProject = async (
   const docRef = doc(collection(firestore, 'messages', messagesId, 'chat'));
   await setDoc(docRef, {
     projectId: docRef.id,
+    messageType: 'proposal',
     text: projectOutline,
     from: userData.uid,
     to: profile.uid,

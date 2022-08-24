@@ -1,7 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../firebase/context';
-import { collection, getDocs } from 'firebase/firestore';
-import { firestore } from '../firebase/clientApp';
 
 import getProjects from '../firebase/getProjects';
 import getProjectsFilters from '../firebase/getProjectsFilters';
@@ -36,8 +34,6 @@ const findprojects = () => {
     { displayName: 'Brand', id: 'brand', value: true },
     { displayName: 'Event', id: 'event', value: true },
   ]);
-
-  console.log(projects);
 
   const getFilteredProjects = async () => {
     setProjects(

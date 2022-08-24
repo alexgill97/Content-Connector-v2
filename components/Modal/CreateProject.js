@@ -15,8 +15,6 @@ const CreateProject = ({ currentUser, userData, profile }) => {
   const [projectMediaType, setProjectMediaType] = useState('both');
   const [projectCategory, setProjectCategory] = useState('brand');
 
-  console.log(userData);
-
   const createProject = async (e) => {
     e.preventDefault();
     setProject(

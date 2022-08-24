@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../../styles/find_projects.module.scss';
 import addFavorite from '../../firebase/addFavorite';
 import { AuthContext } from '../../firebase/context';
+import CreateProject from '../Modal/CreateProject';
 
 const InfoCard = ({
   uid,
@@ -14,7 +15,8 @@ const InfoCard = ({
   description,
   address,
 }) => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, userData } = useContext(AuthContext);
+  const [openCreateProject, setOpenCreateProject] = useState(false);
 
   return (
     <div className={styles.infocard}>
@@ -51,7 +53,7 @@ const InfoCard = ({
         <div className={styles.infocard__footer_buttons}>
           {/* Buttons */}
           <button onClick={() => setSelectedUser(uid)}>Message</button>
-          <button>Apply</button>
+          <CreateProject currentUser={currentUser} userData={userData} />
         </div>
       </div>
     </div>

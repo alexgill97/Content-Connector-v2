@@ -1,17 +1,7 @@
-import {
-  setDoc,
-  collection,
-  addDoc,
-  doc,
-  serverTimestamp,
-} from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
-
-import { firestore } from '../../firebase/clientApp';
+import setProject from '../../firebase/setProject';
 import styles from '../../styles/create_project.module.scss';
 import DatePicker from 'react-datepicker';
-import Geocode from 'react-geocode';
-
 import 'react-datepicker/dist/react-datepicker.css';
 
 const CreateProject = ({ currentUser, userData, profile }) => {
@@ -24,76 +14,23 @@ const CreateProject = ({ currentUser, userData, profile }) => {
   const [completedBy, setCompletedBy] = useState(new Date());
   const [projectMediaType, setProjectMediaType] = useState('both');
   const [projectCategory, setProjectCategory] = useState('brand');
-  console.log(projectMediaType);
 
-  Geocode.setApiKey('AIzaSyDoeEVfzN1WC3vwiDlF7HemOu35NQao-kY');
-  Geocode.setLanguage('en');
-  Geocode.setRegion('na');
+  console.log(userData);
 
   const createProject = async (e) => {
     e.preventDefault();
-    const messagesId =
-      currentUser > profile.uid
-        ? `${currentUser + profile.uid}`
-        : `${profile.uid + currentUser}`;
-    const creator = profile.isBusiness ? userData : profile;
-    const business = profile.isBusiness ? profile : userData;
-
-    let projectCoordinates = {};
-
-    await Geocode.fromAddress(projectLocation).then(
-      (response) => {
-        const { lat, lng } = response.results[0].geometry.location;
-        projectCoordinates = { lat: lat, lng: lng };
-        console.log(projectCoordinates);
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-
-    if (!projectCoordinates) console.log('Please enter valid location');
-
-    const docRef = doc(collection(firestore, 'messages', messagesId, 'chat'));
-
-    await setDoc(docRef, {
-      projectId: docRef.id,
-      text: projectOutline,
-      from: currentUser,
-      to: profile.uid,
-      createdAt: serverTimestamp(),
-      completedBy,
+    setProject(
+      userData,
+      profile,
       projectTitle,
       projectOffer,
-      businessAvatar: business.avatar,
-      accepted: false,
-      completed: false,
-      city: projectCity,
+      projectCity,
       projectLocation,
-      projectCoordinates,
-    });
-    await setDoc(doc(firestore, 'projects', docRef.id), {
-      projectId: docRef.id,
-      creatorId: creator.uid,
-      businessId: business.uid,
-      businessUsername: business.username,
-      creatorUsername: creator.username,
-      projectCategory,
-      projectMediaType,
-      messagesId,
-      projectTitle,
-      projectOffer,
       projectOutline,
-      businessAvatar: business.avatar,
-      createdAt: serverTimestamp(),
       completedBy,
-      accepted: false,
-      completed: false,
-      city: projectCity,
-      projectLocation,
-      projectCoordinates,
-    });
-
+      projectMediaType,
+      projectCategory
+    );
     setOpen(false);
   };
   return (

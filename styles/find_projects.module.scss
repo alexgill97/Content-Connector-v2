@@ -113,6 +113,8 @@
   overflow-y: scroll;
   height: 73vh;
   padding: 1rem;
+  display: grid;
+  justify-content: center;
 
   .infocard {
     display: flex;
@@ -209,6 +211,12 @@
 
 @media screen and (min-width: 1150px) {
   .infocardlist {
-    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  .infocardlist {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

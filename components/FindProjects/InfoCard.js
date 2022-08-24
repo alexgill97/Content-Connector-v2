@@ -19,8 +19,7 @@ const InfoCard = ({
   address,
   setSelectedApplyProjectId,
 }) => {
-  const { currentUser, userData } = useContext(AuthContext);
-  const [openApply, setOpenApply] = useState(false);
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <div className={styles.infocard}>

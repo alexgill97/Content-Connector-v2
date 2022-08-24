@@ -77,6 +77,7 @@ const findprojects = () => {
             <InfoCardList
               projects={projects}
               currentUser={currentUser}
+              userData={userData}
               selectedUser={selectedUser}
               setSelectedUser={setSelectedUser}
             />

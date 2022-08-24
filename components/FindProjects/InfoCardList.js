@@ -8,6 +8,7 @@ import ApplyProject from '../Modal/ApplyProject';
 const InfoCardList = ({
   projects,
   currentUser,
+  userData,
   selectedUser,
   setSelectedUser,
 }) => {
@@ -47,6 +48,7 @@ const InfoCardList = ({
               <ApplyProject
                 setOpen={setSelectedApplyProjectId}
                 project={project}
+                userData={userData}
               />
             )}
           </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import User from './User';
 
 const UserList = ({ users, setSelectedUser }) => {
+  console.log(users);
   return (
     <div>
       {users.map((user) => (

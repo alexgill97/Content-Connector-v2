@@ -6,7 +6,7 @@ import { collection, addDoc, Timestamp, setDoc, doc } from 'firebase/firestore';
 
 import styles from '../../styles/messages.module.scss';
 
-const MessageForm = ({ currentUser, selectedUserId, scroll }) => {
+const MessageForm = ({ currentUser, selectedUser, scroll }) => {
   const [text, setText] = useState('');
   const [img, setImg] = useState('');
 
@@ -14,9 +14,9 @@ const MessageForm = ({ currentUser, selectedUserId, scroll }) => {
     e.preventDefault();
 
     const id =
-      currentUser > selectedUserId
-        ? `${currentUser + selectedUserId}`
-        : `${selectedUserId + currentUser}`;
+      currentUser > selectedUser.uid
+        ? `${currentUser + selectedUser.uid}`
+        : `${selectedUser.uid + currentUser}`;
 
     let url;
     if (img) {
@@ -33,7 +33,7 @@ const MessageForm = ({ currentUser, selectedUserId, scroll }) => {
       text,
       messageType: 'dm',
       from: currentUser,
-      to: selectedUserId,
+      to: selectedUser.uid,
       createdAt: Timestamp.fromDate(new Date()),
       media: url || '',
     });
@@ -41,7 +41,7 @@ const MessageForm = ({ currentUser, selectedUserId, scroll }) => {
     await setDoc(doc(firestore, 'lastMsg', id), {
       text,
       from: currentUser,
-      to: selectedUserId,
+      to: selectedUser.uid,
       createdAt: Timestamp.fromDate(new Date()),
       media: url || '',
       unread: true,

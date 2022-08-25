@@ -8,7 +8,7 @@ import getUserMessages from '../../firebase/getUserMessages';
 
 const MessageContainer = ({
   currentUser,
-  selectedUserId,
+  selectedUser,
   selectedUserAvatar,
   selectedUserUsername,
   setSelectedUser,
@@ -20,12 +20,12 @@ const MessageContainer = ({
   useEffect(() => {
     getUserMessages(
       currentUser,
-      selectedUserId,
+      selectedUser,
       setMessages,
       setMessageId,
       setLoading
     );
-  }, [selectedUserId]);
+  }, [selectedUser]);
 
   return (
     <div className={styles.messages_render_container}>
@@ -45,10 +45,7 @@ const MessageContainer = ({
         )}
       </div>
       <div className={styles.message_form_test}>
-        <MessageForm
-          currentUser={currentUser}
-          selectedUserId={selectedUserId}
-        />
+        <MessageForm currentUser={currentUser} selectedUser={selectedUser} />
       </div>
     </div>
   );

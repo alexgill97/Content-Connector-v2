@@ -9,10 +9,12 @@ const getUserMessages = async (
   setLoading
 ) => {
   //Set unique message ID
+
   const msgId =
-    currentUser > selectedUser
-      ? `${currentUser + selectedUser}`
-      : `${selectedUser + currentUser}`;
+    currentUser > selectedUser.uid
+      ? `${currentUser + selectedUser.uid}`
+      : `${selectedUser.uid + currentUser}`;
+  console.log(msgId);
   setMessageId(msgId);
   //Get messages between current user and selected user
   const msgsRef = collection(firestore, 'messages', msgId, 'chat');
@@ -22,6 +24,7 @@ const getUserMessages = async (
     messagesSnapshot.forEach((doc) => {
       msgs.push(doc.data());
     });
+    console.log(msgs);
     setMessages(msgs);
     setLoading(false);
   });
